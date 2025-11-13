@@ -1,0 +1,82 @@
+# Vivado generated folders
+*.runs/
+*.cache/
+*.hw/
+*.ip_user_files/
+*.sim/
+*.srcs/sources_1/ipshared/
+*.srcs/sources_1/bd/*/hdl/
+*.srcs/sources_1/bd/*/ip/
+*.srcs/sources_1/bd/*/ipshared/
+*.srcs/sources_1/bd/*/ui/
+
+# Simulation output
+*.wdb
+*.jou
+*.log
+*.pb
+*.str
+*.vcd
+*.vvp
+*.vpf
+*.tcl.history
+
+# Vivado database and journal files
+*.Xil/
+*.vivado/
+*.cache/
+*.data/
+*.gen/
+*.hbs
+*.dmp
+
+# Checkpoint and temporary files
+*.runs/
+*.temp/
+*.tmp
+*.bak
+*.backup
+*.old
+*.log
+*.xpr.lock
+*.xpr.user
+*.xpr.lck
+
+# Generated bitstreams and reports
+*.bit
+*.bin
+*.mmi
+*.rpt
+*.html
+*.xml
+*.csv
+
+# SDK / Vitis generated files
+*.sdk/
+*.ide/
+*.metadata/
+*.settings/
+*.bsp/
+*.xsa
+*.xpfm
+
+# Operating system files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Optional: ignore Vivado autosave files
+*.autosave
+
+# Keep these important files
+!*.xpr
+!*.xdc
+!*.v
+!*.sv
+!*.vh
+!*.vhd
+!*.tcl
+!*.csv
+!*.txt
+!*.md
