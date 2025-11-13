@@ -2,8 +2,8 @@
 //Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
-//Date        : Thu Nov 13 11:01:17 2025
-//Host        : laptop-MATTEO running 64-bit major release  (build 9200)
+//Date        : Thu Nov 13 11:39:02 2025
+//Host        : Jorbenzijnpc running 64-bit major release  (build 9200)
 //Command     : generate_target timer_LED_toggling_design_wrapper.bd
 //Design      : timer_LED_toggling_design_wrapper
 //Purpose     : IP block netlist

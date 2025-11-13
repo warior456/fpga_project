@@ -2,10 +2,10 @@
 // Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
-// Date        : Thu Nov 13 10:57:35 2025
-// Host        : laptop-MATTEO running 64-bit major release  (build 9200)
+// Date        : Thu Nov 13 11:40:11 2025
+// Host        : Jorbenzijnpc running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
-//               c:/labosDigOnt/final_vivado_project/Vivado_LED_toggling.gen/sources_1/bd/timer_LED_toggling_design/ip/timer_LED_toggling_design_timer_LED_toggling_F_0_1/timer_LED_toggling_design_timer_LED_toggling_F_0_1_sim_netlist.v
+//               c:/Users/Jorbe/Vivado_project/fpga_project/Vivado_LED_toggling.gen/sources_1/bd/timer_LED_toggling_design/ip/timer_LED_toggling_design_timer_LED_toggling_F_0_1/timer_LED_toggling_design_timer_LED_toggling_F_0_1_sim_netlist.v
 // Design      : timer_LED_toggling_design_timer_LED_toggling_F_0_1
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.

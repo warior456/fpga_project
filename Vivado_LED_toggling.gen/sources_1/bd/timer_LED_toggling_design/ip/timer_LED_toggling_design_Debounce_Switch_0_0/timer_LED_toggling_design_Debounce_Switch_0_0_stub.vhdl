@@ -2,10 +2,10 @@
 -- Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
--- Date        : Thu Nov 13 10:10:34 2025
--- Host        : laptop-MATTEO running 64-bit major release  (build 9200)
+-- Date        : Thu Nov 13 11:40:11 2025
+-- Host        : Jorbenzijnpc running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub
---               c:/labosDigOnt/final_vivado_project/Vivado_LED_toggling.gen/sources_1/bd/timer_LED_toggling_design/ip/timer_LED_toggling_design_Debounce_Switch_0_0/timer_LED_toggling_design_Debounce_Switch_0_0_stub.vhdl
+--               c:/Users/Jorbe/Vivado_project/fpga_project/Vivado_LED_toggling.gen/sources_1/bd/timer_LED_toggling_design/ip/timer_LED_toggling_design_Debounce_Switch_0_0/timer_LED_toggling_design_Debounce_Switch_0_0_stub.vhdl
 -- Design      : timer_LED_toggling_design_Debounce_Switch_0_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z020clg400-1
