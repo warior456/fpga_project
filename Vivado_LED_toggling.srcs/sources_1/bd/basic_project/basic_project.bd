@@ -1,0 +1,513 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0xF19331F039076DA6",
+      "device": "xc7z020clg400-1",
+      "gen_directory": "../../../../Vivado_LED_toggling.gen/sources_1/bd/basic_project",
+      "name": "basic_project",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2025.1",
+      "validated": "true"
+    },
+    "design_tree": {
+      "video_timings_0": "",
+      "video_pattern_0": "",
+      "rgb2dvi_0": "",
+      "xlconcat_0": "",
+      "clk_wiz_0": "",
+      "xlconstant_0": "",
+      "xlconstant_1": "",
+      "xlconstant_2": ""
+    },
+    "ports": {
+      "iRst": {
+        "direction": "I"
+      },
+      "iClk": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "basic_project_clk_in1_0",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "default"
+          }
+        }
+      },
+      "hdmi_tx_clk_p": {
+        "type": "clk",
+        "direction": "O",
+        "parameters": {
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "default"
+          }
+        }
+      },
+      "hdmi_tx_clk_n": {
+        "type": "clk",
+        "direction": "O",
+        "parameters": {
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "default"
+          }
+        }
+      },
+      "hdmi_tx_d_p": {
+        "direction": "O",
+        "left": "2",
+        "right": "0"
+      },
+      "hdmi_tx_d_n": {
+        "direction": "O",
+        "left": "2",
+        "right": "0"
+      }
+    },
+    "components": {
+      "video_timings_0": {
+        "vlnv": "xilinx.com:module_ref:video_timings:1.0",
+        "ip_revision": "1",
+        "xci_name": "basic_project_video_timings_0_0",
+        "xci_path": "ip\\basic_project_video_timings_0_0\\basic_project_video_timings_0_0.xci",
+        "inst_hier_path": "video_timings_0",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "video_timings",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "iClk": {
+            "direction": "I",
+            "parameters": {
+              "FREQ_HZ": {
+                "value": "25000000",
+                "value_src": "ip_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "ip_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "/clk_wiz_0_clk_out1",
+                "value_src": "ip_prop"
+              }
+            }
+          },
+          "iRst": {
+            "direction": "I"
+          },
+          "oCountH": {
+            "direction": "O",
+            "left": "9",
+            "right": "0"
+          },
+          "oCountV": {
+            "direction": "O",
+            "left": "9",
+            "right": "0"
+          },
+          "oHS": {
+            "direction": "O"
+          },
+          "oVS": {
+            "direction": "O"
+          }
+        }
+      },
+      "video_pattern_0": {
+        "vlnv": "xilinx.com:module_ref:video_pattern:1.0",
+        "ip_revision": "1",
+        "xci_name": "basic_project_video_pattern_0_0",
+        "xci_path": "ip\\basic_project_video_pattern_0_0\\basic_project_video_pattern_0_0.xci",
+        "inst_hier_path": "video_pattern_0",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "video_pattern",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "iClk": {
+            "direction": "I",
+            "parameters": {
+              "FREQ_HZ": {
+                "value": "25000000",
+                "value_src": "ip_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "ip_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "/clk_wiz_0_clk_out1",
+                "value_src": "ip_prop"
+              }
+            }
+          },
+          "iRst": {
+            "direction": "I"
+          },
+          "iCountH": {
+            "direction": "I",
+            "left": "9",
+            "right": "0"
+          },
+          "iCountV": {
+            "direction": "I",
+            "left": "9",
+            "right": "0"
+          },
+          "iShapeX": {
+            "direction": "I",
+            "left": "9",
+            "right": "0"
+          },
+          "iShapeY": {
+            "direction": "I",
+            "left": "9",
+            "right": "0"
+          },
+          "iShapeSize": {
+            "direction": "I",
+            "left": "9",
+            "right": "0"
+          },
+          "oRed": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          },
+          "oGreen": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          },
+          "oBlue": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          },
+          "oActive": {
+            "direction": "O"
+          }
+        }
+      },
+      "rgb2dvi_0": {
+        "vlnv": "digilentinc.com:ip:rgb2dvi:1.4",
+        "ip_revision": "8",
+        "xci_name": "basic_project_rgb2dvi_0_0",
+        "xci_path": "ip\\basic_project_rgb2dvi_0_0\\basic_project_rgb2dvi_0_0.xci",
+        "inst_hier_path": "rgb2dvi_0",
+        "has_run_ip_tcl": "true",
+        "parameters": {
+          "kGenerateSerialClk": {
+            "value": "false"
+          }
+        }
+      },
+      "xlconcat_0": {
+        "vlnv": "xilinx.com:ip:xlconcat:2.1",
+        "ip_revision": "7",
+        "xci_name": "basic_project_xlconcat_0_0",
+        "xci_path": "ip\\basic_project_xlconcat_0_0\\basic_project_xlconcat_0_0.xci",
+        "inst_hier_path": "xlconcat_0",
+        "has_run_ip_tcl": "true",
+        "parameters": {
+          "IN0_WIDTH": {
+            "value": "8"
+          },
+          "IN1_WIDTH": {
+            "value": "8"
+          },
+          "IN2_WIDTH": {
+            "value": "8"
+          },
+          "NUM_PORTS": {
+            "value": "3"
+          }
+        }
+      },
+      "clk_wiz_0": {
+        "vlnv": "xilinx.com:ip:clk_wiz:6.0",
+        "ip_revision": "16",
+        "xci_name": "basic_project_clk_wiz_0_1",
+        "xci_path": "ip\\basic_project_clk_wiz_0_1\\basic_project_clk_wiz_0_1.xci",
+        "inst_hier_path": "clk_wiz_0",
+        "has_run_ip_tcl": "true",
+        "parameters": {
+          "CLKIN1_JITTER_PS": {
+            "value": "80.0"
+          },
+          "CLKOUT1_JITTER": {
+            "value": "165.419"
+          },
+          "CLKOUT1_PHASE_ERROR": {
+            "value": "96.948"
+          },
+          "CLKOUT1_REQUESTED_OUT_FREQ": {
+            "value": "25"
+          },
+          "CLKOUT2_JITTER": {
+            "value": "104.759"
+          },
+          "CLKOUT2_PHASE_ERROR": {
+            "value": "96.948"
+          },
+          "CLKOUT2_REQUESTED_OUT_FREQ": {
+            "value": "250"
+          },
+          "CLKOUT2_USED": {
+            "value": "true"
+          },
+          "CLK_IN1_BOARD_INTERFACE": {
+            "value": "sys_clock"
+          },
+          "CLK_OUT1_PORT": {
+            "value": "clk_25"
+          },
+          "CLK_OUT2_PORT": {
+            "value": "clk_250"
+          },
+          "MMCM_CLKFBOUT_MULT_F": {
+            "value": "8.000"
+          },
+          "MMCM_CLKIN1_PERIOD": {
+            "value": "8.000"
+          },
+          "MMCM_CLKOUT0_DIVIDE_F": {
+            "value": "40.000"
+          },
+          "MMCM_CLKOUT1_DIVIDE": {
+            "value": "4"
+          },
+          "NUM_OUT_CLKS": {
+            "value": "2"
+          },
+          "USE_LOCKED": {
+            "value": "false"
+          },
+          "USE_RESET": {
+            "value": "false"
+          }
+        }
+      },
+      "xlconstant_0": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "ip_revision": "10",
+        "xci_name": "basic_project_xlconstant_0_0",
+        "xci_path": "ip\\basic_project_xlconstant_0_0\\basic_project_xlconstant_0_0.xci",
+        "inst_hier_path": "xlconstant_0",
+        "has_run_ip_tcl": "true",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "100"
+          },
+          "CONST_WIDTH": {
+            "value": "10"
+          }
+        }
+      },
+      "xlconstant_1": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "ip_revision": "10",
+        "xci_name": "basic_project_xlconstant_0_1",
+        "xci_path": "ip\\basic_project_xlconstant_0_1\\basic_project_xlconstant_0_1.xci",
+        "inst_hier_path": "xlconstant_1",
+        "has_run_ip_tcl": "true",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "100"
+          },
+          "CONST_WIDTH": {
+            "value": "10"
+          }
+        }
+      },
+      "xlconstant_2": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "ip_revision": "10",
+        "xci_name": "basic_project_xlconstant_0_2",
+        "xci_path": "ip\\basic_project_xlconstant_0_2\\basic_project_xlconstant_0_2.xci",
+        "inst_hier_path": "xlconstant_2",
+        "has_run_ip_tcl": "true",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "100"
+          },
+          "CONST_WIDTH": {
+            "value": "10"
+          }
+        }
+      }
+    },
+    "nets": {
+      "clk_wiz_0_clk_25": {
+        "ports": [
+          "clk_wiz_0/clk_25",
+          "video_timings_0/iClk",
+          "rgb2dvi_0/PixelClk",
+          "video_pattern_0/iClk"
+        ]
+      },
+      "clk_wiz_0_clk_250": {
+        "ports": [
+          "clk_wiz_0/clk_250",
+          "rgb2dvi_0/SerialClk"
+        ]
+      },
+      "iClk_1": {
+        "ports": [
+          "iClk",
+          "clk_wiz_0/clk_in1"
+        ]
+      },
+      "iRst_0_1": {
+        "ports": [
+          "iRst",
+          "video_timings_0/iRst",
+          "rgb2dvi_0/aRst",
+          "video_pattern_0/iRst"
+        ]
+      },
+      "rgb2dvi_0_TMDS_Clk_n": {
+        "ports": [
+          "rgb2dvi_0/TMDS_Clk_n",
+          "hdmi_tx_clk_n"
+        ]
+      },
+      "rgb2dvi_0_TMDS_Clk_p": {
+        "ports": [
+          "rgb2dvi_0/TMDS_Clk_p",
+          "hdmi_tx_clk_p"
+        ]
+      },
+      "rgb2dvi_0_TMDS_Data_n": {
+        "ports": [
+          "rgb2dvi_0/TMDS_Data_n",
+          "hdmi_tx_d_n"
+        ]
+      },
+      "rgb2dvi_0_TMDS_Data_p": {
+        "ports": [
+          "rgb2dvi_0/TMDS_Data_p",
+          "hdmi_tx_d_p"
+        ]
+      },
+      "video_pattern_0_oActive": {
+        "ports": [
+          "video_pattern_0/oActive",
+          "rgb2dvi_0/vid_pVDE"
+        ]
+      },
+      "video_pattern_0_oBlue": {
+        "ports": [
+          "video_pattern_0/oBlue",
+          "xlconcat_0/In1"
+        ]
+      },
+      "video_pattern_0_oGreen": {
+        "ports": [
+          "video_pattern_0/oGreen",
+          "xlconcat_0/In0"
+        ]
+      },
+      "video_pattern_0_oRed": {
+        "ports": [
+          "video_pattern_0/oRed",
+          "xlconcat_0/In2"
+        ]
+      },
+      "video_timings_0_oCountH": {
+        "ports": [
+          "video_timings_0/oCountH",
+          "video_pattern_0/iCountH"
+        ]
+      },
+      "video_timings_0_oCountV": {
+        "ports": [
+          "video_timings_0/oCountV",
+          "video_pattern_0/iCountV"
+        ]
+      },
+      "video_timings_0_oHS": {
+        "ports": [
+          "video_timings_0/oHS",
+          "rgb2dvi_0/vid_pHSync"
+        ]
+      },
+      "video_timings_0_oVS": {
+        "ports": [
+          "video_timings_0/oVS",
+          "rgb2dvi_0/vid_pVSync"
+        ]
+      },
+      "xlconcat_0_dout": {
+        "ports": [
+          "xlconcat_0/dout",
+          "rgb2dvi_0/vid_pData"
+        ]
+      },
+      "xlconstant_0_dout": {
+        "ports": [
+          "xlconstant_0/dout",
+          "video_pattern_0/iShapeX"
+        ]
+      },
+      "xlconstant_1_dout": {
+        "ports": [
+          "xlconstant_1/dout",
+          "video_pattern_0/iShapeSize"
+        ]
+      },
+      "xlconstant_2_dout": {
+        "ports": [
+          "xlconstant_2/dout",
+          "video_pattern_0/iShapeY"
+        ]
+      }
+    }
+  }
+}

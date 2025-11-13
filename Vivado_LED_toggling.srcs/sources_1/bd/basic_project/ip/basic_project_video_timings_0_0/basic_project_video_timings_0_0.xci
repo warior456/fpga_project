@@ -1,0 +1,74 @@
+{
+  "schema": "xilinx.com:schema:json_instance:1.0",
+  "ip_inst": {
+    "xci_name": "basic_project_video_timings_0_0",
+    "cell_name": "video_timings_0",
+    "component_reference": "xilinx.com:module_ref:video_timings:1.0",
+    "ip_revision": "1",
+    "gen_directory": "../../../../../../Vivado_LED_toggling.gen/sources_1/bd/basic_project/ip/basic_project_video_timings_0_0",
+    "parameters": {
+      "component_parameters": {
+        "WIDTH": [ { "value": "640", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "H_FP": [ { "value": "16", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "H_PW": [ { "value": "96", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "H_BP": [ { "value": "48", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "H_TOT": [ { "value": "800", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "H_bits": [ { "value": "10", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "HEIGHT": [ { "value": "480", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "V_FP": [ { "value": "10", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "V_PW": [ { "value": "2", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "V_BP": [ { "value": "33", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "V_TOT": [ { "value": "525", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "V_bits": [ { "value": "10", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "Component_Name": [ { "value": "basic_project_video_timings_0_0", "resolve_type": "user", "usage": "all" } ]
+      },
+      "model_parameters": {
+        "WIDTH": [ { "value": "640", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "H_FP": [ { "value": "16", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "H_PW": [ { "value": "96", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "H_BP": [ { "value": "48", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "H_TOT": [ { "value": "800", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "H_bits": [ { "value": "10", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "HEIGHT": [ { "value": "480", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "V_FP": [ { "value": "10", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "V_PW": [ { "value": "2", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "V_BP": [ { "value": "33", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "V_TOT": [ { "value": "525", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "V_bits": [ { "value": "10", "resolve_type": "generated", "format": "long", "usage": "all" } ]
+      },
+      "project_parameters": {
+        "ARCHITECTURE": [ { "value": "zynq" } ],
+        "BASE_BOARD_PART": [ { "value": "tul.com.tw:pynq-z2:part0:1.0" } ],
+        "BOARD_CONNECTIONS": [ { "value": "" } ],
+        "DEVICE": [ { "value": "xc7z020" } ],
+        "PACKAGE": [ { "value": "clg400" } ],
+        "PREFHDL": [ { "value": "VERILOG" } ],
+        "SILICON_REVISION": [ { "value": "" } ],
+        "SIMULATOR_LANGUAGE": [ { "value": "MIXED" } ],
+        "SPEEDGRADE": [ { "value": "-1" } ],
+        "STATIC_POWER": [ { "value": "" } ],
+        "TEMPERATURE_GRADE": [ { "value": "" } ]
+      },
+      "runtime_parameters": {
+        "IPCONTEXT": [ { "value": "IP_Integrator" } ],
+        "IPREVISION": [ { "value": "1" } ],
+        "MANAGED": [ { "value": "TRUE" } ],
+        "OUTPUTDIR": [ { "value": "../../../../../../Vivado_LED_toggling.gen/sources_1/bd/basic_project/ip/basic_project_video_timings_0_0" } ],
+        "SELECTEDSIMMODEL": [ { "value": "" } ],
+        "SHAREDDIR": [ { "value": "../../ipshared" } ],
+        "SWVERSION": [ { "value": "2025.1" } ],
+        "SYNTHESISFLOW": [ { "value": "OOC_HIERARCHICAL" } ]
+      }
+    },
+    "boundary": {
+      "ports": {
+        "iClk": [ { "direction": "in" } ],
+        "iRst": [ { "direction": "in" } ],
+        "oCountH": [ { "direction": "out", "size_left": "9", "size_right": "0" } ],
+        "oCountV": [ { "direction": "out", "size_left": "9", "size_right": "0" } ],
+        "oHS": [ { "direction": "out" } ],
+        "oVS": [ { "direction": "out" } ]
+      }
+    }
+  }
+}

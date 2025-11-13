@@ -1,0 +1,63 @@
+{
+  "schema": "xilinx.com:schema:json_instance:1.0",
+  "ip_inst": {
+    "xci_name": "basic_project_video_pattern_0_0",
+    "cell_name": "video_pattern_0",
+    "component_reference": "xilinx.com:module_ref:video_pattern:1.0",
+    "ip_revision": "1",
+    "gen_directory": "../../../../../../Vivado_LED_toggling.gen/sources_1/bd/basic_project/ip/basic_project_video_pattern_0_0",
+    "parameters": {
+      "component_parameters": {
+        "H_ACTIVE": [ { "value": "640", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "V_ACTIVE": [ { "value": "480", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "H_BITS": [ { "value": "10", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "V_BITS": [ { "value": "10", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "Component_Name": [ { "value": "basic_project_video_pattern_0_0", "resolve_type": "user", "usage": "all" } ]
+      },
+      "model_parameters": {
+        "H_ACTIVE": [ { "value": "640", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "V_ACTIVE": [ { "value": "480", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "H_BITS": [ { "value": "10", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "V_BITS": [ { "value": "10", "resolve_type": "generated", "format": "long", "usage": "all" } ]
+      },
+      "project_parameters": {
+        "ARCHITECTURE": [ { "value": "zynq" } ],
+        "BASE_BOARD_PART": [ { "value": "tul.com.tw:pynq-z2:part0:1.0" } ],
+        "BOARD_CONNECTIONS": [ { "value": "" } ],
+        "DEVICE": [ { "value": "xc7z020" } ],
+        "PACKAGE": [ { "value": "clg400" } ],
+        "PREFHDL": [ { "value": "VERILOG" } ],
+        "SILICON_REVISION": [ { "value": "" } ],
+        "SIMULATOR_LANGUAGE": [ { "value": "MIXED" } ],
+        "SPEEDGRADE": [ { "value": "-1" } ],
+        "STATIC_POWER": [ { "value": "" } ],
+        "TEMPERATURE_GRADE": [ { "value": "" } ]
+      },
+      "runtime_parameters": {
+        "IPCONTEXT": [ { "value": "IP_Integrator" } ],
+        "IPREVISION": [ { "value": "1" } ],
+        "MANAGED": [ { "value": "TRUE" } ],
+        "OUTPUTDIR": [ { "value": "../../../../../../Vivado_LED_toggling.gen/sources_1/bd/basic_project/ip/basic_project_video_pattern_0_0" } ],
+        "SELECTEDSIMMODEL": [ { "value": "" } ],
+        "SHAREDDIR": [ { "value": "../../ipshared" } ],
+        "SWVERSION": [ { "value": "2025.1" } ],
+        "SYNTHESISFLOW": [ { "value": "OOC_HIERARCHICAL" } ]
+      }
+    },
+    "boundary": {
+      "ports": {
+        "iClk": [ { "direction": "in" } ],
+        "iRst": [ { "direction": "in" } ],
+        "iCountH": [ { "direction": "in", "size_left": "9", "size_right": "0" } ],
+        "iCountV": [ { "direction": "in", "size_left": "9", "size_right": "0" } ],
+        "iShapeX": [ { "direction": "in", "size_left": "9", "size_right": "0" } ],
+        "iShapeY": [ { "direction": "in", "size_left": "9", "size_right": "0" } ],
+        "iShapeSize": [ { "direction": "in", "size_left": "9", "size_right": "0" } ],
+        "oRed": [ { "direction": "out", "size_left": "7", "size_right": "0" } ],
+        "oGreen": [ { "direction": "out", "size_left": "7", "size_right": "0" } ],
+        "oBlue": [ { "direction": "out", "size_left": "7", "size_right": "0" } ],
+        "oActive": [ { "direction": "out" } ]
+      }
+    }
+  }
+}

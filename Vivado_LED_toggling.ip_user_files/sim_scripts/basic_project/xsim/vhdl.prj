@@ -1,0 +1,12 @@
+vhdl xil_defaultlib  \
+"../../../../Vivado_LED_toggling.gen/sources_1/bd/basic_project/ipshared/d57c/src/ClockGen.vhd" \
+"../../../../Vivado_LED_toggling.gen/sources_1/bd/basic_project/ipshared/d57c/src/SyncAsync.vhd" \
+"../../../../Vivado_LED_toggling.gen/sources_1/bd/basic_project/ipshared/d57c/src/SyncAsyncReset.vhd" \
+"../../../../Vivado_LED_toggling.gen/sources_1/bd/basic_project/ipshared/d57c/src/DVI_Constants.vhd" \
+"../../../../Vivado_LED_toggling.gen/sources_1/bd/basic_project/ipshared/d57c/src/OutputSERDES.vhd" \
+"../../../../Vivado_LED_toggling.gen/sources_1/bd/basic_project/ipshared/d57c/src/TMDS_Encoder.vhd" \
+"../../../../Vivado_LED_toggling.gen/sources_1/bd/basic_project/ipshared/d57c/src/rgb2dvi.vhd" \
+"../../../bd/basic_project/ip/basic_project_rgb2dvi_0_0/sim/basic_project_rgb2dvi_0_0.vhd" \
+
+# Do not sort compile order
+nosort
