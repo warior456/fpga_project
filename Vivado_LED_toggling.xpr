@@ -4,7 +4,7 @@
 <!-- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.                   -->
 <!-- Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.   -->
 
-<Project Product="Vivado" Version="7" Minor="70" Path="C:/labosDigOnt/final_vivado_project/Vivado_LED_toggling.xpr">
+<Project Product="Vivado" Version="7" Minor="70" Path="C:/labosDigOnt/fpga_project/Vivado_LED_toggling.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="2ea9b17120244984905deb6ad8de4672"/>
@@ -104,22 +104,28 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../lab2/lab2.srcs/sources_1/new/counter.v">
+      <File Path="$PSRCDIR/sources_1/imports/new/counter.v">
         <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../lab2/lab2.srcs/sources_1/new/counter.v"/>
+          <Attr Name="ImportTime" Val="1760644350"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../lab2/lab2.srcs/sources_1/new/timer_1s.v">
+      <File Path="$PSRCDIR/sources_1/imports/new/timer_1s.v">
         <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../lab2/lab2.srcs/sources_1/new/timer_1s.v"/>
+          <Attr Name="ImportTime" Val="1763026347"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../lab2/lab2.srcs/sources_1/new/toggle.v">
+      <File Path="$PSRCDIR/sources_1/imports/new/toggle.v">
         <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../lab2/lab2.srcs/sources_1/new/toggle.v"/>
+          <Attr Name="ImportTime" Val="1760605034"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -344,9 +350,7 @@
     </Run>
     <Run Id="design_1_toggle_0_0_synth_1" Type="Ft3:Synth" SrcSet="design_1_toggle_0_0" Part="xc7z020clg400-1" ConstrsSet="design_1_toggle_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_1_toggle_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_1_toggle_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/design_1_toggle_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -356,9 +360,7 @@
     </Run>
     <Run Id="timer_LED_toggling_design_clk_wiz_0_0_synth_1" Type="Ft3:Synth" SrcSet="timer_LED_toggling_design_clk_wiz_0_0" Part="xc7z020clg400-1" ConstrsSet="timer_LED_toggling_design_clk_wiz_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/timer_LED_toggling_design_clk_wiz_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_clk_wiz_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_clk_wiz_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -368,9 +370,7 @@
     </Run>
     <Run Id="timer_LED_toggling_design_Debounce_Switch_0_0_synth_1" Type="Ft3:Synth" SrcSet="timer_LED_toggling_design_Debounce_Switch_0_0" Part="xc7z020clg400-1" ConstrsSet="timer_LED_toggling_design_Debounce_Switch_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/timer_LED_toggling_design_Debounce_Switch_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -380,9 +380,7 @@
     </Run>
     <Run Id="timer_LED_toggling_design_Debounce_Switch_0_2_synth_1" Type="Ft3:Synth" SrcSet="timer_LED_toggling_design_Debounce_Switch_0_2" Part="xc7z020clg400-1" ConstrsSet="timer_LED_toggling_design_Debounce_Switch_0_2" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/timer_LED_toggling_design_Debounce_Switch_0_2_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_2_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_2_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -392,9 +390,7 @@
     </Run>
     <Run Id="timer_LED_toggling_design_Debounce_Switch_0_3_synth_1" Type="Ft3:Synth" SrcSet="timer_LED_toggling_design_Debounce_Switch_0_3" Part="xc7z020clg400-1" ConstrsSet="timer_LED_toggling_design_Debounce_Switch_0_3" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/timer_LED_toggling_design_Debounce_Switch_0_3_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_3_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_3_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -404,9 +400,7 @@
     </Run>
     <Run Id="timer_LED_toggling_design_Debounce_Switch_0_4_synth_1" Type="Ft3:Synth" SrcSet="timer_LED_toggling_design_Debounce_Switch_0_4" Part="xc7z020clg400-1" ConstrsSet="timer_LED_toggling_design_Debounce_Switch_0_4" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/timer_LED_toggling_design_Debounce_Switch_0_4_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_4_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_4_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -416,9 +410,7 @@
     </Run>
     <Run Id="timer_LED_toggling_design_Debounce_Switch_1_0_synth_1" Type="Ft3:Synth" SrcSet="timer_LED_toggling_design_Debounce_Switch_1_0" Part="xc7z020clg400-1" ConstrsSet="timer_LED_toggling_design_Debounce_Switch_1_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/timer_LED_toggling_design_Debounce_Switch_1_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_1_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_1_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -428,9 +420,7 @@
     </Run>
     <Run Id="timer_LED_toggling_design_timer_LED_toggling_F_0_1_synth_1" Type="Ft3:Synth" SrcSet="timer_LED_toggling_design_timer_LED_toggling_F_0_1" Part="xc7z020clg400-1" ConstrsSet="timer_LED_toggling_design_timer_LED_toggling_F_0_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/timer_LED_toggling_design_timer_LED_toggling_F_0_1_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_timer_LED_toggling_F_0_1_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_timer_LED_toggling_F_0_1_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -475,9 +465,7 @@
     </Run>
     <Run Id="design_1_toggle_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="design_1_toggle_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_1_toggle_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_1_toggle_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/design_1_toggle_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -494,9 +482,7 @@
     </Run>
     <Run Id="timer_LED_toggling_design_clk_wiz_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="timer_LED_toggling_design_clk_wiz_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="timer_LED_toggling_design_clk_wiz_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_clk_wiz_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_clk_wiz_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -513,9 +499,7 @@
     </Run>
     <Run Id="timer_LED_toggling_design_Debounce_Switch_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="timer_LED_toggling_design_Debounce_Switch_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="timer_LED_toggling_design_Debounce_Switch_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -532,9 +516,7 @@
     </Run>
     <Run Id="timer_LED_toggling_design_Debounce_Switch_0_2_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="timer_LED_toggling_design_Debounce_Switch_0_2" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="timer_LED_toggling_design_Debounce_Switch_0_2_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_2_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_2_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -551,9 +533,7 @@
     </Run>
     <Run Id="timer_LED_toggling_design_Debounce_Switch_0_3_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="timer_LED_toggling_design_Debounce_Switch_0_3" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="timer_LED_toggling_design_Debounce_Switch_0_3_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_3_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_3_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -570,9 +550,7 @@
     </Run>
     <Run Id="timer_LED_toggling_design_Debounce_Switch_0_4_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="timer_LED_toggling_design_Debounce_Switch_0_4" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="timer_LED_toggling_design_Debounce_Switch_0_4_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_4_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_4_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -589,9 +567,7 @@
     </Run>
     <Run Id="timer_LED_toggling_design_Debounce_Switch_1_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="timer_LED_toggling_design_Debounce_Switch_1_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="timer_LED_toggling_design_Debounce_Switch_1_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_1_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_1_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -608,9 +584,7 @@
     </Run>
     <Run Id="timer_LED_toggling_design_timer_LED_toggling_F_0_1_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="timer_LED_toggling_design_timer_LED_toggling_F_0_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="timer_LED_toggling_design_timer_LED_toggling_F_0_1_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_timer_LED_toggling_F_0_1_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_timer_LED_toggling_F_0_1_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
