@@ -1,0 +1,215 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x595C6123F893D6B4",
+      "device": "xc7z020clg400-1",
+      "gen_directory": "../../../../Vivado_LED_toggling.gen/sources_1/bd/design_1",
+      "name": "design_1",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2025.1",
+      "validated": "true"
+    },
+    "design_tree": {
+      "clk_wiz_0": "",
+      "toggle_0": "",
+      "Debounce_Switch_0": ""
+    },
+    "ports": {
+      "iClk": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "design_1_clk_in1_0",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.000",
+            "value_src": "default"
+          }
+        }
+      },
+      "oLED": {
+        "direction": "O"
+      },
+      "iPush": {
+        "direction": "I"
+      },
+      "iRst": {
+        "type": "rst",
+        "direction": "I",
+        "parameters": {
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "POLARITY": {
+            "value": "ACTIVE_HIGH"
+          }
+        }
+      }
+    },
+    "components": {
+      "clk_wiz_0": {
+        "vlnv": "xilinx.com:ip:clk_wiz:6.0",
+        "ip_revision": "16",
+        "xci_name": "design_1_clk_wiz_0_0",
+        "xci_path": "ip\\design_1_clk_wiz_0_0\\design_1_clk_wiz_0_0.xci",
+        "inst_hier_path": "clk_wiz_0",
+        "has_run_ip_tcl": "true",
+        "parameters": {
+          "CLKIN1_JITTER_PS": {
+            "value": "80.0"
+          },
+          "CLKOUT1_JITTER": {
+            "value": "312.659"
+          },
+          "CLKOUT1_PHASE_ERROR": {
+            "value": "245.713"
+          },
+          "CLKOUT1_REQUESTED_OUT_FREQ": {
+            "value": "25"
+          },
+          "CLK_IN1_BOARD_INTERFACE": {
+            "value": "sys_clock"
+          },
+          "MMCM_CLKFBOUT_MULT_F": {
+            "value": "36.500"
+          },
+          "MMCM_CLKIN1_PERIOD": {
+            "value": "8.000"
+          },
+          "MMCM_CLKOUT0_DIVIDE_F": {
+            "value": "36.500"
+          },
+          "MMCM_DIVCLK_DIVIDE": {
+            "value": "5"
+          },
+          "USE_LOCKED": {
+            "value": "false"
+          },
+          "USE_RESET": {
+            "value": "false"
+          }
+        }
+      },
+      "toggle_0": {
+        "vlnv": "xilinx.com:module_ref:toggle:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_1_toggle_0_0",
+        "xci_path": "ip\\design_1_toggle_0_0\\design_1_toggle_0_0.xci",
+        "inst_hier_path": "toggle_0",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "toggle",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "iClk": {
+            "direction": "I",
+            "parameters": {
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "default_prop"
+              },
+              "PHASE": {
+                "value": "0.000",
+                "value_src": "default_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "design_1_clk_in1_0",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "iRst": {
+            "direction": "I"
+          },
+          "oToggle": {
+            "direction": "O"
+          }
+        }
+      },
+      "Debounce_Switch_0": {
+        "vlnv": "xilinx.com:module_ref:Debounce_Switch:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_1_Debounce_Switch_0_0",
+        "xci_path": "ip\\design_1_Debounce_Switch_0_0\\design_1_Debounce_Switch_0_0.xci",
+        "inst_hier_path": "Debounce_Switch_0",
+        "has_run_ip_tcl": "true",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "Debounce_Switch",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "i_Clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "FREQ_HZ": {
+                "value": "25000000",
+                "value_src": "ip_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "ip_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "/clk_wiz_0_clk_out1",
+                "value_src": "ip_prop"
+              }
+            }
+          },
+          "i_Switch": {
+            "direction": "I"
+          },
+          "o_Switch": {
+            "direction": "O"
+          }
+        }
+      }
+    },
+    "nets": {
+      "clk_in1_0_1": {
+        "ports": [
+          "iClk",
+          "clk_wiz_0/clk_in1",
+          "toggle_0/iClk"
+        ]
+      },
+      "clk_wiz_0_clk_out1": {
+        "ports": [
+          "clk_wiz_0/clk_out1",
+          "Debounce_Switch_0/i_Clk"
+        ]
+      },
+      "i_Switch_0_1": {
+        "ports": [
+          "iPush",
+          "Debounce_Switch_0/i_Switch"
+        ]
+      },
+      "toggle_0_oToggle": {
+        "ports": [
+          "toggle_0/oToggle",
+          "oLED"
+        ]
+      }
+    }
+  }
+}
