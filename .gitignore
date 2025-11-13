@@ -1,80 +1,126 @@
-# Vivado build and cache directories
+# ------------------------
+# Vivado: ignore outputs
+# ------------------------
+# Implementation / build folders (generated)
 *.runs/
-*.cache/
-*.hw/
-*.sim/
-*.ip_user_files/
-*.Xil/
-*.vivado/
+*_runs/
+*/implementation_runs/
 
-# Do not ignore block design, IP, or wrapper source files
-!*.bd
-!*.tcl
-!*.v
-!*.sv
-!*.vh
-!*.vhd
-!*.xml
-!*.xci
-!*.xcix
-!*.xsa
-!*.xpfm
-!*.coe
-!*.prj
-!*.xdc
-!*.csv
-!*.txt
-!*.md
-
-# Allow source and constraints directories
-!src/
-!sources/
-!constraints/
-!constraints/
-!*.srcs/
-!*.ip/
-!*.bd/
-
-# Ignore generated synthesis/simulation outputs
-*.wdb
-*.jou
-*.log
-*.pb
-*.str
+# Generated checkpoint/artifacts
 *.dcp
-*.rpt
-*.html
+*.bit
+*.bin
+*.ltx
+*.mcs
+*.mmi
+
+# Simulation & waveform outputs
+*.wdb
 *.vcd
 *.vvp
 *.vpf
-*.tcl.history
 
-# Generated implementation/checkpoint artifacts
-*.bit
-*.bin
-*.mmi
-*.ltx
+# Logs / journals / reports / temporary outputs
+*.jou
+*.log
+*.rpt
+*.str
+*.pb
+*.html
 
-# Vivado temporary and autosave files
-*.temp/
+# Vivado caches, temp, autosave and locks (safe to ignore)
+*.cache/
+*.Xil/
+*.vivado/
+*.data/
+*.gen/
 *.tmp
+*.temp/
 *.bak
 *.backup
 *.old
 *.autosave
+*.xpr.lock
 *.xpr.lck
 *.xpr.user
-*.xpr.lock
 
-# SDK / Vitis generated content
+# SDK / Vitis generated stuff (generated work area)
 *.sdk/
 *.ide/
 *.metadata/
 *.settings/
 *.bsp/
+*.xsa
+*.xpfm
 
-# Operating system files
+# OS files
 .DS_Store
 Thumbs.db
-ehthumbs.db
 desktop.ini
+ehthumbs.db
+
+# ------------------------
+# Explicitly include files/folders Vivado needs
+# (negations below ensure these are tracked)
+# ------------------------
+
+# Project metadata and top-level files
+!/*.xpr
+!/*.tcl
+!/*.prj
+
+# Source directories and files (ensure .srcs and siblings are tracked)
+!/.srcs/
+!/**/.srcs/
+!/.srcs/**
+
+# Block designs, wrappers and IP metadata
+!/**/bd/
+!/**/bd/**
+!/*.bd
+!**/*.bd
+!/*.xdc
+!**/*.xdc
+!/*.xci
+!**/*.xci
+!/*.xcix
+!**/*.xcix
+!/*.xml
+!**/*.xml
+!/*.coe
+!**/*.coe
+
+# HDL sources and headers (ensure Verilog/SystemVerilog/VHDL tracked)
+!/*.v
+!/*.sv
+!/*.vh
+!/*.vhd
+!**/*.v
+!**/*.sv
+!**/*.vh
+!**/*.vhd
+
+# IP user files (track IP packaging sources and local IP srcs)
+!/.ip_user_files/
+!/**/.ip_user_files/
+!/.ip_user_files/**
+
+# Keep constraints, sources and typical project dirs
+!/**/sources*/
+!/**/constraints*/
+!/**/ip*/
+!/**/sim*/
+!/**/hw*/
+!/**/srcs/
+
+# text docs, scripts, and small useful files
+!/*.md
+!/*.txt
+!/*.csv
+
+# ------------------------
+# When merging projects from different machines:
+# If you want to avoid committing large built outputs while keeping IP sources:
+#   - Keep ip_user_files/ and .srcs/ tracked (they contain .xci, .bd, wrapper HDL)
+#   - Continue ignoring generated .runs/, .cache/ and final bitstreams (above)
+# ------------------------

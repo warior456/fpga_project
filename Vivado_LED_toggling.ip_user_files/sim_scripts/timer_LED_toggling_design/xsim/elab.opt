@@ -1,0 +1,1 @@
+--incr --debug typical --relax --mt 2  -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot timer_LED_toggling_design xil_defaultlib.timer_LED_toggling_design xil_defaultlib.glbl -log elaborate.log
