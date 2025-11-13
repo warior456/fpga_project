@@ -1,82 +1,80 @@
-# Vivado generated folders
+# Vivado build and cache directories
 *.runs/
 *.cache/
 *.hw/
-*.ip_user_files/
 *.sim/
-*.srcs/sources_1/ipshared/
-*.srcs/sources_1/bd/*/hdl/
-*.srcs/sources_1/bd/*/ip/
-*.srcs/sources_1/bd/*/ipshared/
-*.srcs/sources_1/bd/*/ui/
+*.ip_user_files/
+*.Xil/
+*.vivado/
 
-# Simulation output
+# Do not ignore block design, IP, or wrapper source files
+!*.bd
+!*.tcl
+!*.v
+!*.sv
+!*.vh
+!*.vhd
+!*.xml
+!*.xci
+!*.xcix
+!*.xsa
+!*.xpfm
+!*.coe
+!*.prj
+!*.xdc
+!*.csv
+!*.txt
+!*.md
+
+# Allow source and constraints directories
+!src/
+!sources/
+!constraints/
+!constraints/
+!*.srcs/
+!*.ip/
+!*.bd/
+
+# Ignore generated synthesis/simulation outputs
 *.wdb
 *.jou
 *.log
 *.pb
 *.str
+*.dcp
+*.rpt
+*.html
 *.vcd
 *.vvp
 *.vpf
 *.tcl.history
 
-# Vivado database and journal files
-*.Xil/
-*.vivado/
-*.cache/
-*.data/
-*.gen/
-*.hbs
-*.dmp
+# Generated implementation/checkpoint artifacts
+*.bit
+*.bin
+*.mmi
+*.ltx
 
-# Checkpoint and temporary files
-*.runs/
+# Vivado temporary and autosave files
 *.temp/
 *.tmp
 *.bak
 *.backup
 *.old
-*.log
-*.xpr.lock
-*.xpr.user
+*.autosave
 *.xpr.lck
+*.xpr.user
+*.xpr.lock
 
-# Generated bitstreams and reports
-*.bit
-*.bin
-*.mmi
-*.rpt
-*.html
-*.xml
-*.csv
-
-# SDK / Vitis generated files
+# SDK / Vitis generated content
 *.sdk/
 *.ide/
 *.metadata/
 *.settings/
 *.bsp/
-*.xsa
-*.xpfm
 
 # Operating system files
 .DS_Store
 Thumbs.db
 ehthumbs.db
 desktop.ini
-
-# Optional: ignore Vivado autosave files
-*.autosave
-
-# Keep these important files
-!*.xpr
-!*.xdc
-!*.v
-!*.sv
-!*.vh
-!*.vhd
-!*.tcl
-!*.csv
-!*.txt
-!*.md
