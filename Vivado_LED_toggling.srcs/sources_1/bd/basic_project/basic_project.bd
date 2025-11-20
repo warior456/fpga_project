@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xF19331F039076DA6",
+      "boundary_crc": "0xF41F65B8EE6C1623",
       "device": "xc7z020clg400-1",
       "gen_directory": "../../../../Vivado_LED_toggling.gen/sources_1/bd/basic_project",
       "name": "basic_project",
@@ -16,9 +16,7 @@
       "rgb2dvi_0": "",
       "xlconcat_0": "",
       "clk_wiz_0": "",
-      "xlconstant_0": "",
-      "xlconstant_1": "",
-      "xlconstant_2": ""
+      "FSM_basicProject_0": ""
     },
     "ports": {
       "iRst": {
@@ -29,7 +27,7 @@
         "direction": "I",
         "parameters": {
           "CLK_DOMAIN": {
-            "value": "basic_project_clk_in1_0",
+            "value": "basic_project_iClk",
             "value_src": "default"
           },
           "FREQ_HZ": {
@@ -103,6 +101,18 @@
         "direction": "O",
         "left": "2",
         "right": "0"
+      },
+      "iPushDown": {
+        "direction": "I"
+      },
+      "iPushUp": {
+        "direction": "I"
+      },
+      "iPushLeft": {
+        "direction": "I"
+      },
+      "iPushRight": {
+        "direction": "I"
       }
     },
     "components": {
@@ -334,62 +344,95 @@
           }
         }
       },
-      "xlconstant_0": {
-        "vlnv": "xilinx.com:ip:xlconstant:1.1",
-        "ip_revision": "10",
-        "xci_name": "basic_project_xlconstant_0_0",
-        "xci_path": "ip\\basic_project_xlconstant_0_0\\basic_project_xlconstant_0_0.xci",
-        "inst_hier_path": "xlconstant_0",
+      "FSM_basicProject_0": {
+        "vlnv": "xilinx.com:module_ref:FSM_basicProject:1.0",
+        "ip_revision": "1",
+        "xci_name": "basic_project_FSM_basicProject_0_0",
+        "xci_path": "ip\\basic_project_FSM_basicProject_0_0\\basic_project_FSM_basicProject_0_0.xci",
+        "inst_hier_path": "FSM_basicProject_0",
         "has_run_ip_tcl": "true",
-        "parameters": {
-          "CONST_VAL": {
-            "value": "100"
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "FSM_basicProject",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "iClk": {
+            "direction": "I",
+            "parameters": {
+              "FREQ_HZ": {
+                "value": "25000000",
+                "value_src": "ip_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "ip_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "/clk_wiz_0_clk_out1",
+                "value_src": "ip_prop"
+              }
+            }
           },
-          "CONST_WIDTH": {
-            "value": "10"
-          }
-        }
-      },
-      "xlconstant_1": {
-        "vlnv": "xilinx.com:ip:xlconstant:1.1",
-        "ip_revision": "10",
-        "xci_name": "basic_project_xlconstant_0_1",
-        "xci_path": "ip\\basic_project_xlconstant_0_1\\basic_project_xlconstant_0_1.xci",
-        "inst_hier_path": "xlconstant_1",
-        "has_run_ip_tcl": "true",
-        "parameters": {
-          "CONST_VAL": {
-            "value": "100"
+          "iRst": {
+            "direction": "I"
           },
-          "CONST_WIDTH": {
-            "value": "10"
-          }
-        }
-      },
-      "xlconstant_2": {
-        "vlnv": "xilinx.com:ip:xlconstant:1.1",
-        "ip_revision": "10",
-        "xci_name": "basic_project_xlconstant_0_2",
-        "xci_path": "ip\\basic_project_xlconstant_0_2\\basic_project_xlconstant_0_2.xci",
-        "inst_hier_path": "xlconstant_2",
-        "has_run_ip_tcl": "true",
-        "parameters": {
-          "CONST_VAL": {
-            "value": "100"
+          "iDown": {
+            "direction": "I"
           },
-          "CONST_WIDTH": {
-            "value": "10"
+          "iUp": {
+            "direction": "I"
+          },
+          "iLeft": {
+            "direction": "I"
+          },
+          "iRight": {
+            "direction": "I"
+          },
+          "oShapeX": {
+            "direction": "O",
+            "left": "9",
+            "right": "0"
+          },
+          "oShapeY": {
+            "direction": "O",
+            "left": "9",
+            "right": "0"
+          },
+          "oShapSize": {
+            "direction": "O",
+            "left": "9",
+            "right": "0"
           }
         }
       }
     },
     "nets": {
+      "FSM_basicProject_0_oShapSize": {
+        "ports": [
+          "FSM_basicProject_0/oShapSize",
+          "video_pattern_0/iShapeSize"
+        ]
+      },
+      "FSM_basicProject_0_oShapeX": {
+        "ports": [
+          "FSM_basicProject_0/oShapeX",
+          "video_pattern_0/iShapeX"
+        ]
+      },
+      "FSM_basicProject_0_oShapeY": {
+        "ports": [
+          "FSM_basicProject_0/oShapeY",
+          "video_pattern_0/iShapeY"
+        ]
+      },
       "clk_wiz_0_clk_25": {
         "ports": [
           "clk_wiz_0/clk_25",
           "video_timings_0/iClk",
           "rgb2dvi_0/PixelClk",
-          "video_pattern_0/iClk"
+          "video_pattern_0/iClk",
+          "FSM_basicProject_0/iClk"
         ]
       },
       "clk_wiz_0_clk_250": {
@@ -404,12 +447,37 @@
           "clk_wiz_0/clk_in1"
         ]
       },
+      "iDown_0_1": {
+        "ports": [
+          "iPushDown",
+          "FSM_basicProject_0/iDown"
+        ]
+      },
+      "iLeft_0_1": {
+        "ports": [
+          "iPushLeft",
+          "FSM_basicProject_0/iLeft"
+        ]
+      },
+      "iRight_0_1": {
+        "ports": [
+          "iPushRight",
+          "FSM_basicProject_0/iRight"
+        ]
+      },
       "iRst_0_1": {
         "ports": [
           "iRst",
           "video_timings_0/iRst",
           "rgb2dvi_0/aRst",
-          "video_pattern_0/iRst"
+          "video_pattern_0/iRst",
+          "FSM_basicProject_0/iRst"
+        ]
+      },
+      "iUp_0_1": {
+        "ports": [
+          "iPushUp",
+          "FSM_basicProject_0/iUp"
         ]
       },
       "rgb2dvi_0_TMDS_Clk_n": {
@@ -488,24 +556,6 @@
         "ports": [
           "xlconcat_0/dout",
           "rgb2dvi_0/vid_pData"
-        ]
-      },
-      "xlconstant_0_dout": {
-        "ports": [
-          "xlconstant_0/dout",
-          "video_pattern_0/iShapeX"
-        ]
-      },
-      "xlconstant_1_dout": {
-        "ports": [
-          "xlconstant_1/dout",
-          "video_pattern_0/iShapeSize"
-        ]
-      },
-      "xlconstant_2_dout": {
-        "ports": [
-          "xlconstant_2/dout",
-          "video_pattern_0/iShapeY"
         ]
       }
     }
