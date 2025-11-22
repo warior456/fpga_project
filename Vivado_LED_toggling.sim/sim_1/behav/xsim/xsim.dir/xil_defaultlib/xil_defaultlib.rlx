@@ -1,7 +1,9 @@
 0.7
-2020.1
-May 27 2020
-20:09:33
-D:/Teaching/Courses/2021_DDC/Labs/Lab4/Vivado_LED_toggling/Vivado_LED_toggling.sim/sim_1/behav/xsim/glbl.v,1590624368,verilog,,,,glbl,,,,,,,,
-D:/Teaching/Courses/2021_DDC/Labs/Lab4/Vivado_LED_toggling/Vivado_LED_toggling.srcs/sim_1/new/LED_toggling_FSM_TB.v,1636475714,verilog,,,,LED_toggling_FSM_TB,,,,,,,,
-D:/Teaching/Courses/2021_DDC/Labs/Lab4/Vivado_LED_toggling/Vivado_LED_toggling.srcs/sources_1/new/LED_toggling_FSM.v,1636475414,verilog,,D:/Teaching/Courses/2021_DDC/Labs/Lab4/Vivado_LED_toggling/Vivado_LED_toggling.srcs/sim_1/new/LED_toggling_FSM_TB.v,,LED_toggling_FSM,,,,,,,,
+2020.2
+May 22 2025
+00:13:55
+C:/Users/Jorbe/Vivado_project/fpga_project/Vivado_LED_toggling.sim/sim_1/behav/xsim/glbl.v,1763030034,verilog,,,,glbl,,,,,,,,
+C:/Users/Jorbe/Vivado_project/fpga_project/Vivado_LED_toggling.srcs/sim_1/new/FMS_Basicproject_TB.v,1763816471,verilog,,,,FMS_Basicproject_TB,,,../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef;../../../../Vivado_LED_toggling.gen/sources_1/bd/basic_project/ipshared/a9be;../../../../Vivado_LED_toggling.gen/sources_1/bd/design_1/ipshared/a9be;../../../../Vivado_LED_toggling.gen/sources_1/bd/timer_LED_toggling_design/ipshared/a9be,,,,,
+C:/Users/Jorbe/Vivado_project/fpga_project/Vivado_LED_toggling.srcs/sim_1/new/LED_toggling_FSM_TB.v,1763030034,verilog,,,,LED_toggling_FSM_TB,,,../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef;../../../../Vivado_LED_toggling.gen/sources_1/bd/basic_project/ipshared/a9be;../../../../Vivado_LED_toggling.gen/sources_1/bd/design_1/ipshared/a9be;../../../../Vivado_LED_toggling.gen/sources_1/bd/timer_LED_toggling_design/ipshared/a9be,,,,,
+C:/Users/Jorbe/Vivado_project/fpga_project/Vivado_LED_toggling.srcs/sources_1/new/FSM_basicProject.v,1763818369,verilog,,C:/Users/Jorbe/Vivado_project/fpga_project/Vivado_LED_toggling.srcs/sim_1/new/FMS_Basicproject_TB.v,,FSM_basicProject,,,../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef;../../../../Vivado_LED_toggling.gen/sources_1/bd/basic_project/ipshared/a9be;../../../../Vivado_LED_toggling.gen/sources_1/bd/design_1/ipshared/a9be;../../../../Vivado_LED_toggling.gen/sources_1/bd/timer_LED_toggling_design/ipshared/a9be,,,,,
+C:/Users/Jorbe/Vivado_project/fpga_project/Vivado_LED_toggling.srcs/sources_1/new/LED_toggling_FSM.v,1763030034,verilog,,C:/Users/Jorbe/Vivado_project/fpga_project/Vivado_LED_toggling.srcs/sim_1/new/LED_toggling_FSM_TB.v,,LED_toggling_FSM,,,../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef;../../../../Vivado_LED_toggling.gen/sources_1/bd/basic_project/ipshared/a9be;../../../../Vivado_LED_toggling.gen/sources_1/bd/design_1/ipshared/a9be;../../../../Vivado_LED_toggling.gen/sources_1/bd/timer_LED_toggling_design/ipshared/a9be,,,,,

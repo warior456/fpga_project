@@ -2,10 +2,10 @@
 -- Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
--- Date        : Thu Nov 13 12:19:31 2025
--- Host        : laptop-MATTEO running 64-bit major release  (build 9200)
+-- Date        : Thu Nov 20 14:36:42 2025
+-- Host        : Jorbenzijnpc running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
---               c:/labosDigOnt/fpga_project/Vivado_LED_toggling.gen/sources_1/bd/basic_project/ip/basic_project_video_timings_0_0/basic_project_video_timings_0_0_sim_netlist.vhdl
+--               c:/Users/Jorbe/Vivado_project/fpga_project/Vivado_LED_toggling.gen/sources_1/bd/basic_project/ip/basic_project_video_timings_0_0/basic_project_video_timings_0_0_sim_netlist.vhdl
 -- Design      : basic_project_video_timings_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
