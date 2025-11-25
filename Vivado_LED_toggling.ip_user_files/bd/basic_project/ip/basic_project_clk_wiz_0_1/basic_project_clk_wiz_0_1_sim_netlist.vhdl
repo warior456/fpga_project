@@ -2,10 +2,10 @@
 -- Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
--- Date        : Thu Nov 20 14:36:42 2025
--- Host        : Jorbenzijnpc running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               c:/Users/Jorbe/Vivado_project/fpga_project/Vivado_LED_toggling.gen/sources_1/bd/basic_project/ip/basic_project_clk_wiz_0_1/basic_project_clk_wiz_0_1_sim_netlist.vhdl
+-- Date        : Thu Nov 13 12:40:24 2025
+-- Host        : laptop-MATTEO running 64-bit major release  (build 9200)
+-- Command     : write_vhdl -force -mode funcsim -rename_top basic_project_clk_wiz_0_1 -prefix
+--               basic_project_clk_wiz_0_1_ basic_project_clk_wiz_0_1_sim_netlist.vhdl
 -- Design      : basic_project_clk_wiz_0_1
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -15,15 +15,15 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity basic_project_clk_wiz_0_1_clk_wiz is
+entity basic_project_clk_wiz_0_1_basic_project_clk_wiz_0_1_clk_wiz is
   port (
     clk_25 : out STD_LOGIC;
     clk_250 : out STD_LOGIC;
     clk_in1 : in STD_LOGIC
   );
-end basic_project_clk_wiz_0_1_clk_wiz;
+end basic_project_clk_wiz_0_1_basic_project_clk_wiz_0_1_clk_wiz;
 
-architecture STRUCTURE of basic_project_clk_wiz_0_1_clk_wiz is
+architecture STRUCTURE of basic_project_clk_wiz_0_1_basic_project_clk_wiz_0_1_clk_wiz is
   signal clk_250_basic_project_clk_wiz_0_1 : STD_LOGIC;
   signal clk_25_basic_project_clk_wiz_0_1 : STD_LOGIC;
   signal clk_in1_basic_project_clk_wiz_0_1 : STD_LOGIC;
@@ -184,7 +184,7 @@ end basic_project_clk_wiz_0_1;
 
 architecture STRUCTURE of basic_project_clk_wiz_0_1 is
 begin
-inst: entity work.basic_project_clk_wiz_0_1_clk_wiz
+inst: entity work.basic_project_clk_wiz_0_1_basic_project_clk_wiz_0_1_clk_wiz
      port map (
       clk_25 => clk_25,
       clk_250 => clk_250,

@@ -4,12 +4,10 @@ vlib questa_lib/msim
 vlib questa_lib/msim/xpm
 vlib questa_lib/msim/xil_defaultlib
 vlib questa_lib/msim/xlconcat_v2_1_7
-vlib questa_lib/msim/xlconstant_v1_1_10
 
 vmap xpm questa_lib/msim/xpm
 vmap xil_defaultlib questa_lib/msim/xil_defaultlib
 vmap xlconcat_v2_1_7 questa_lib/msim/xlconcat_v2_1_7
-vmap xlconstant_v1_1_10 questa_lib/msim/xlconstant_v1_1_10
 
 vlog -work xpm  -incr -mfcu  -sv "+incdir+../../../../Vivado_LED_toggling.gen/sources_1/bd/basic_project/ipshared/a9be" "+incdir+../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef" \
 "C:/Xilinx/2025.1/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv" \
@@ -38,14 +36,7 @@ vlog -work xil_defaultlib  -incr -mfcu  "+incdir+../../../../Vivado_LED_toggling
 "../../../bd/basic_project/ip/basic_project_xlconcat_0_0/sim/basic_project_xlconcat_0_0.v" \
 "../../../bd/basic_project/ip/basic_project_clk_wiz_0_1/basic_project_clk_wiz_0_1_clk_wiz.v" \
 "../../../bd/basic_project/ip/basic_project_clk_wiz_0_1/basic_project_clk_wiz_0_1.v" \
-
-vlog -work xlconstant_v1_1_10  -incr -mfcu  "+incdir+../../../../Vivado_LED_toggling.gen/sources_1/bd/basic_project/ipshared/a9be" "+incdir+../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef" \
-"../../../../Vivado_LED_toggling.srcs/sources_1/bd/basic_project/ipshared/a165/hdl/xlconstant_v1_1_vl_rfs.v" \
-
-vlog -work xil_defaultlib  -incr -mfcu  "+incdir+../../../../Vivado_LED_toggling.gen/sources_1/bd/basic_project/ipshared/a9be" "+incdir+../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef" \
-"../../../bd/basic_project/ip/basic_project_xlconstant_0_0/sim/basic_project_xlconstant_0_0.v" \
-"../../../bd/basic_project/ip/basic_project_xlconstant_0_1/sim/basic_project_xlconstant_0_1.v" \
-"../../../bd/basic_project/ip/basic_project_xlconstant_0_2/sim/basic_project_xlconstant_0_2.v" \
+"../../../bd/basic_project/ip/basic_project_FSM_basicProject_0_0/sim/basic_project_FSM_basicProject_0_0.v" \
 "../../../bd/basic_project/sim/basic_project.v" \
 
 vlog -work xil_defaultlib \
