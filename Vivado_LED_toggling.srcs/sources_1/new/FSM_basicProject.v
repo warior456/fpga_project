@@ -12,7 +12,7 @@ module FSM_basicProject
     reg [9:0] rShapeY_current, rShapeY_next;
     reg memX,memY;
     
-    localparam LIM = 20;
+    localparam LIM = 1000000;
     localparam N = $clog2((LIM - 1));
    wire [N-1:0] w_CntOut;
 
