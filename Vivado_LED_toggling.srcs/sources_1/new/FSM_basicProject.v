@@ -1,27 +1,33 @@
 `timescale 1ns / 1ps
 
-module FSM_basicProject(
+module FSM_basicProject
+
+
+(
         input wire iClk, iRst, iDown, iUp, iLeft, iRight,
         output wire [9 : 0] oShapeX, oShapeY, oShapSize
+
     );
-    reg [9:0] rShapeX_current, rShapeX_next;
+    reg [9:0] rShapeX_current, rShapeX_next, wShapSize;
     reg [9:0] rShapeY_current, rShapeY_next;
     reg memX,memY;
-    localparam CLK_FREQ = 25000000;
-    localparam N = $clog2((CLK_FREQ - 1)/15);
-    wire [N-1:0] w_CntOut;
+    
+    localparam LIM = 20;
+    localparam N = $clog2((LIM - 1));
+   wire [N-1:0] w_CntOut;
 
-//Timer#(.CLK_FREQ(CLK_FREQ),.SECONDS(0.05))
-//          timer_50ms_inst(.iClk(iClk),.iRst(iRst),
-//                      .oQ(w_timer));
+counter#(.LIM(LIM))Inst_counter
+(.iClk(iClk),.iRst(iRst),.iEn(1),.oQ(w_CntOut));
 
 
-    always @(posedge  iClk) begin
+    always @(posedge  iClk) 
+    begin
         if(iRst == 1) begin
-            rShapeX_current <= 10'd0;
-            rShapeY_current <= 10'd0;
-            rShapeX_next<= 10'd0;
-            rShapeY_next<= 10'd0;
+            rShapeX_current <= 10'd10;
+            rShapeY_current <= 10'd10;
+            rShapeX_next<= 10'd10;
+            rShapeY_next<= 10'd10;
+            wShapSize <= 10'd60;
             memX <= 0;
             memY <= 0;
         end
@@ -31,7 +37,7 @@ module FSM_basicProject(
             rShapeY_current <= rShapeY_next;
         end
         
-            if (w_CntOut == 0) begin
+            if (w_CntOut == LIM - 1) begin
             memX <= 0;
             memY <= 0;
             end
@@ -61,5 +67,6 @@ end
 
     assign oShapeX = rShapeX_current;
     assign oShapeY = rShapeY_current;
-    assign oShapSize = 10'd60;
+    assign oShapSize = wShapSize;
+    
 endmodule

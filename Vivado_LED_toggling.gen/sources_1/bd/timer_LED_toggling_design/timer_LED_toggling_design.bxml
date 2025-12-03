@@ -2,9 +2,9 @@
 <Root MajorVersion="0" MinorVersion="43">
   <CompositeFile CompositeFileTopName="timer_LED_toggling_design" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="RESET" Timestamp="1764780602"/>
+    <Generation Name="SYNTHESIS" State="STALE" Timestamp="1764789090"/>
     <Generation Name="SIMULATION" State="RESET" Timestamp="1764780602"/>
-    <Generation Name="IMPLEMENTATION" State="RESET" Timestamp="1764780602"/>
+    <Generation Name="IMPLEMENTATION" State="STALE" Timestamp="1764789090"/>
     <Generation Name="HW_HANDOFF" State="RESET" Timestamp="1764780602"/>
     <FileCollection Name="SOURCES" Type="SOURCES"/>
   </CompositeFile>
