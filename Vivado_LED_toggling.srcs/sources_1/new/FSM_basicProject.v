@@ -11,14 +11,17 @@ module FSM_basicProject(
     localparam N = $clog2((CLK_FREQ - 1)/15);
     wire [N-1:0] w_CntOut;
 
-    counter#(.LIM(CLK_FREQ))
-           counter_inst(.iClk(iClk),.iRst(iRst),
-                        .oQ(w_CntOut),.iEn(1));
+timer_n_s#(.CLK_FREQ(CLK_FREQ),.SECONDS(0.05))
+             timer_50ms_inst(.iClk(iClk),.iRst(iRst),
+                             .oQ(w_timer));
+
 
     always @(posedge  iClk) begin
         if(iRst == 1) begin
             rShapeX_current <= 10'd0;
             rShapeY_current <= 10'd0;
+            rShapeX_next<= 10'd0;
+            rShapeY_next<= 10'd0;
             memX <= 0;
             memY <= 0;
         end
@@ -27,7 +30,15 @@ module FSM_basicProject(
             rShapeX_current <= rShapeX_next;
             rShapeY_current <= rShapeY_next;
         end
-
+        
+            if (w_CntOut == 0) begin
+            memX <= 0;
+            memY <= 0;
+            end
+            
+        end
+        
+always @(*) begin
         if(iUp && rShapeY_current != 10'd0 && memY == 0) begin
             rShapeY_next <= rShapeY_current - 10'd1;
             memY <= 1;
@@ -36,9 +47,6 @@ module FSM_basicProject(
             rShapeY_next <= rShapeY_current + 10'd1;
             memY <= 1;
         end
-        else
-            rShapeY_next <= rShapeY_current;
-
 
         if(iLeft && rShapeX_current != 10'd0 && memX == 0) begin
             rShapeX_next <= rShapeX_current - 10'd1;
@@ -48,22 +56,8 @@ module FSM_basicProject(
             rShapeX_next <= rShapeX_current + 10'd1;
             memX <= 1;
         end
-        else
-            rShapeX_next <= rShapeX_current;
-
-
-        if (w_CntOut == 0) begin
-            memX <= 0;
-            memY <= 0;
-        end
-
-
-    end
-
-
-
-
-
+         
+end
 
     assign oShapeX = rShapeX_current;
     assign oShapeY = rShapeY_current;
