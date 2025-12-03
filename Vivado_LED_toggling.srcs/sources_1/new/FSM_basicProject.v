@@ -11,9 +11,9 @@ module FSM_basicProject(
     localparam N = $clog2((CLK_FREQ - 1)/15);
     wire [N-1:0] w_CntOut;
 
-timer_n_s#(.CLK_FREQ(CLK_FREQ),.SECONDS(0.05))
-             timer_50ms_inst(.iClk(iClk),.iRst(iRst),
-                             .oQ(w_timer));
+//Timer#(.CLK_FREQ(CLK_FREQ),.SECONDS(0.05))
+//          timer_50ms_inst(.iClk(iClk),.iRst(iRst),
+//                      .oQ(w_timer));
 
 
     always @(posedge  iClk) begin
