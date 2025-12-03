@@ -2,7 +2,7 @@
 //Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
-//Date        : Mon Nov 24 20:52:21 2025
+//Date        : Wed Dec  3 18:02:13 2025
 //Host        : laptop-MATTEO running 64-bit major release  (build 9200)
 //Command     : generate_target basic_project.bd
 //Design      : basic_project
@@ -21,7 +21,11 @@ module basic_project
     iPushLeft,
     iPushRight,
     iPushUp,
-    iRst);
+    iRst,
+    oLEDDown,
+    oLEDLeft,
+    oLEDRight,
+    oLEDUp);
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.HDMI_TX_CLK_N CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.HDMI_TX_CLK_N, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) output hdmi_tx_clk_n;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.HDMI_TX_CLK_P CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.HDMI_TX_CLK_P, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) output hdmi_tx_clk_p;
   output [2:0]hdmi_tx_d_n;
@@ -32,6 +36,10 @@ module basic_project
   input iPushRight;
   input iPushUp;
   input iRst;
+  output oLEDDown;
+  output oLEDLeft;
+  output oLEDRight;
+  output oLEDUp;
 
   wire [9:0]FSM_basicProject_0_oShapSize;
   wire [9:0]FSM_basicProject_0_oShapeX;
@@ -48,6 +56,10 @@ module basic_project
   wire iPushRight;
   wire iPushUp;
   wire iRst;
+  wire oLEDDown;
+  wire oLEDLeft;
+  wire oLEDRight;
+  wire oLEDUp;
   wire video_pattern_0_oActive;
   wire [7:0]video_pattern_0_oBlue;
   wire [7:0]video_pattern_0_oGreen;
@@ -65,6 +77,10 @@ module basic_project
         .iRight(iPushRight),
         .iRst(iRst),
         .iUp(iPushUp),
+        .oLEDDown(oLEDDown),
+        .oLEDLeft(oLEDLeft),
+        .oLEDRight(oLEDRight),
+        .oLEDUp(oLEDUp),
         .oShapSize(FSM_basicProject_0_oShapSize),
         .oShapeX(FSM_basicProject_0_oShapeX),
         .oShapeY(FSM_basicProject_0_oShapeY));

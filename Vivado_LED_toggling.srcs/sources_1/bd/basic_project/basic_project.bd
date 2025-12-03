@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xF41F65B8EE6C1623",
+      "boundary_crc": "0x2EA38805AD53147F",
       "device": "xc7z020clg400-1",
       "gen_directory": "../../../../Vivado_LED_toggling.gen/sources_1/bd/basic_project",
       "name": "basic_project",
@@ -113,6 +113,18 @@
       },
       "iPushRight": {
         "direction": "I"
+      },
+      "oLEDUp": {
+        "direction": "O"
+      },
+      "oLEDDown": {
+        "direction": "O"
+      },
+      "oLEDLeft": {
+        "direction": "O"
+      },
+      "oLEDRight": {
+        "direction": "O"
       }
     },
     "components": {
@@ -403,11 +415,47 @@
             "direction": "O",
             "left": "9",
             "right": "0"
+          },
+          "oLEDUp": {
+            "direction": "O"
+          },
+          "oLEDDown": {
+            "direction": "O"
+          },
+          "oLEDLeft": {
+            "direction": "O"
+          },
+          "oLEDRight": {
+            "direction": "O"
           }
         }
       }
     },
     "nets": {
+      "FSM_basicProject_0_oLEDDown": {
+        "ports": [
+          "FSM_basicProject_0/oLEDDown",
+          "oLEDDown"
+        ]
+      },
+      "FSM_basicProject_0_oLEDLeft": {
+        "ports": [
+          "FSM_basicProject_0/oLEDLeft",
+          "oLEDLeft"
+        ]
+      },
+      "FSM_basicProject_0_oLEDRight": {
+        "ports": [
+          "FSM_basicProject_0/oLEDRight",
+          "oLEDRight"
+        ]
+      },
+      "FSM_basicProject_0_oLEDUp": {
+        "ports": [
+          "FSM_basicProject_0/oLEDUp",
+          "oLEDUp"
+        ]
+      },
       "FSM_basicProject_0_oShapSize": {
         "ports": [
           "FSM_basicProject_0/oShapSize",

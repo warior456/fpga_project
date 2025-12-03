@@ -27,12 +27,12 @@ module timer_1s#(
     input wire iClk, iRst,
     output wire oQ
     );
-    localparam N = $clog2(CLK_FREQ-1);
+    localparam N = $clog2((CLK_FREQ/2)-1);
     
     wire [N-1:0] wCntOut;
     
     counter #(.LIM(CLK_FREQ/2)) 
-    counter_inst (.iClk(iClk), .iRst(iRst), .oQ(wCntOut));
+    counter_inst (.iClk(iClk),.iEn(1), .iRst(iRst), .oQ(wCntOut));
     
     assign oQ = (wCntOut == (CLK_FREQ/2)-1) ? 1 : 0;
     
