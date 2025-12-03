@@ -1,52 +1,60 @@
 {
    "ActiveEmotionalView":"Default View",
-   "Default View_ScaleFactor":"1.46361",
-   "Default View_TopLeft":"165,164",
+   "Default View_ScaleFactor":"0.64663",
+   "Default View_TopLeft":"-119,-8",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.8.0 2024-04-26 e1825d835c VDI=44 GEI=38 GUI=JA:21.0
 #  -string -flagsOSRD
-preplace port port-id_iRst -pg 1 -lvl 0 -x 0 -y 100 -defaultsOSRD
-preplace port port-id_iClk -pg 1 -lvl 0 -x 0 -y 180 -defaultsOSRD
-preplace port port-id_hdmi_tx_clk_p -pg 1 -lvl 6 -x 1440 -y 270 -defaultsOSRD
-preplace port port-id_hdmi_tx_clk_n -pg 1 -lvl 6 -x 1440 -y 300 -defaultsOSRD
-preplace port port-id_iPushDown -pg 1 -lvl 0 -x 0 -y 320 -defaultsOSRD
-preplace port port-id_iPushUp -pg 1 -lvl 0 -x 0 -y 350 -defaultsOSRD
-preplace port port-id_iPushLeft -pg 1 -lvl 0 -x 0 -y 380 -defaultsOSRD
-preplace port port-id_iPushRight -pg 1 -lvl 0 -x 0 -y 410 -defaultsOSRD
-preplace portBus hdmi_tx_d_p -pg 1 -lvl 6 -x 1440 -y 330 -defaultsOSRD
-preplace portBus hdmi_tx_d_n -pg 1 -lvl 6 -x 1440 -y 360 -defaultsOSRD
-preplace inst video_timings_0 -pg 1 -lvl 2 -x 360 -y 90 -defaultsOSRD
-preplace inst video_pattern_0 -pg 1 -lvl 3 -x 690 -y 310 -defaultsOSRD
-preplace inst rgb2dvi_0 -pg 1 -lvl 5 -x 1260 -y 310 -defaultsOSRD
-preplace inst xlconcat_0 -pg 1 -lvl 4 -x 960 -y 260 -defaultsOSRD
-preplace inst clk_wiz_0 -pg 1 -lvl 1 -x 110 -y 180 -defaultsOSRD
-preplace inst FSM_basicProject_0 -pg 1 -lvl 2 -x 360 -y 350 -defaultsOSRD
-preplace netloc FSM_basicProject_0_oShapSize 1 2 1 N 370
-preplace netloc FSM_basicProject_0_oShapeX 1 2 1 N 330
-preplace netloc FSM_basicProject_0_oShapeY 1 2 1 N 350
-preplace netloc clk_wiz_0_clk_25 1 1 4 240 240 520 430 NJ 430 1090J
-preplace netloc clk_wiz_0_clk_250 1 1 4 230J 180 NJ 180 NJ 180 1060
-preplace netloc iClk_1 1 0 1 NJ 180
-preplace netloc iDown_0_1 1 0 2 NJ 320 200J
-preplace netloc iLeft_0_1 1 0 2 NJ 380 NJ
-preplace netloc iRight_0_1 1 0 2 NJ 410 240J
-preplace netloc iRst_0_1 1 0 5 NJ 100 220 460 540 440 NJ 440 1080J
-preplace netloc iUp_0_1 1 0 2 NJ 350 200J
-preplace netloc rgb2dvi_0_TMDS_Clk_n 1 5 1 1420J 300n
-preplace netloc rgb2dvi_0_TMDS_Clk_p 1 5 1 1420J 270n
-preplace netloc rgb2dvi_0_TMDS_Data_n 1 5 1 1420J 350n
-preplace netloc rgb2dvi_0_TMDS_Data_p 1 5 1 NJ 330
-preplace netloc video_pattern_0_oActive 1 3 2 N 340 1070J
-preplace netloc video_pattern_0_oBlue 1 3 1 840 260n
-preplace netloc video_pattern_0_oGreen 1 3 1 830 240n
-preplace netloc video_pattern_0_oRed 1 3 1 N 280
-preplace netloc video_timings_0_oCountH 1 2 1 550 60n
-preplace netloc video_timings_0_oCountV 1 2 1 530 80n
-preplace netloc video_timings_0_oHS 1 2 3 NJ 100 NJ 100 1080
-preplace netloc video_timings_0_oVS 1 2 3 NJ 120 NJ 120 1070
-preplace netloc xlconcat_0_dout 1 4 1 N 260
-levelinfo -pg 1 0 110 360 690 960 1260 1440
-pagesize -pg 1 -db -bbox -sgen -120 0 1610 470
+preplace port port-id_iRst -pg 1 -lvl 0 -x 0 -y 240 -defaultsOSRD
+preplace port port-id_iClk -pg 1 -lvl 0 -x 0 -y 330 -defaultsOSRD
+preplace port port-id_hdmi_tx_clk_p -pg 1 -lvl 6 -x 1390 -y 240 -defaultsOSRD
+preplace port port-id_hdmi_tx_clk_n -pg 1 -lvl 6 -x 1390 -y 270 -defaultsOSRD
+preplace port port-id_iPushDown -pg 1 -lvl 0 -x 0 -y 510 -defaultsOSRD
+preplace port port-id_iPushUp -pg 1 -lvl 0 -x 0 -y 540 -defaultsOSRD
+preplace port port-id_iPushLeft -pg 1 -lvl 0 -x 0 -y 570 -defaultsOSRD
+preplace port port-id_iPushRight -pg 1 -lvl 0 -x 0 -y 600 -defaultsOSRD
+preplace port port-id_oLEDRight -pg 1 -lvl 6 -x 1390 -y 610 -defaultsOSRD
+preplace port port-id_oLEDLeft -pg 1 -lvl 6 -x 1390 -y 580 -defaultsOSRD
+preplace port port-id_oLEDUp -pg 1 -lvl 6 -x 1390 -y 520 -defaultsOSRD
+preplace port port-id_oLEDDown -pg 1 -lvl 6 -x 1390 -y 550 -defaultsOSRD
+preplace portBus hdmi_tx_d_p -pg 1 -lvl 6 -x 1390 -y 300 -defaultsOSRD
+preplace portBus hdmi_tx_d_n -pg 1 -lvl 6 -x 1390 -y 330 -defaultsOSRD
+preplace inst video_timings_0 -pg 1 -lvl 2 -x 320 -y 230 -defaultsOSRD
+preplace inst video_pattern_0 -pg 1 -lvl 3 -x 630 -y 120 -defaultsOSRD
+preplace inst rgb2dvi_0 -pg 1 -lvl 5 -x 1180 -y 270 -defaultsOSRD
+preplace inst xlconcat_0 -pg 1 -lvl 4 -x 900 -y 130 -defaultsOSRD
+preplace inst clk_wiz_0 -pg 1 -lvl 1 -x 110 -y 330 -defaultsOSRD
+preplace inst FSM_basicProject_0 -pg 1 -lvl 5 -x 1180 -y 540 -defaultsOSRD
+preplace netloc FSM_basicProject_0_oShapSize 1 2 4 480 250 790J 30 NJ 30 1360
+preplace netloc FSM_basicProject_0_oShapeX 1 2 4 490 240 800J 40 NJ 40 1340
+preplace netloc FSM_basicProject_0_oShapeY 1 2 4 470 270 NJ 270 1000J 140 1350
+preplace netloc clk_wiz_0_clk_25 1 1 4 210 320 430 320 NJ 320 1020
+preplace netloc clk_wiz_0_clk_250 1 1 4 NJ 340 NJ 340 NJ 340 N
+preplace netloc iClk_1 1 0 1 NJ 330
+preplace netloc iDown_0_1 1 0 5 NJ 510 NJ 510 NJ 510 NJ 510 1000J
+preplace netloc iLeft_0_1 1 0 5 NJ 570 NJ 570 NJ 570 NJ 570 NJ
+preplace netloc iRight_0_1 1 0 5 NJ 600 NJ 600 NJ 600 NJ 600 1000J
+preplace netloc iRst_0_1 1 0 5 NJ 240 200 140 450 290 NJ 290 1010
+preplace netloc iUp_0_1 1 0 5 NJ 540 NJ 540 NJ 540 NJ 540 1020J
+preplace netloc rgb2dvi_0_TMDS_Clk_n 1 5 1 NJ 270
+preplace netloc rgb2dvi_0_TMDS_Clk_p 1 5 1 1370J 240n
+preplace netloc rgb2dvi_0_TMDS_Data_n 1 5 1 1370J 310n
+preplace netloc rgb2dvi_0_TMDS_Data_p 1 5 1 1370J 290n
+preplace netloc video_pattern_0_oActive 1 3 2 770 50 1020J
+preplace netloc video_pattern_0_oBlue 1 3 1 N 130
+preplace netloc video_pattern_0_oGreen 1 3 1 N 110
+preplace netloc video_pattern_0_oRed 1 3 1 780 90n
+preplace netloc video_timings_0_oCountH 1 2 1 440 100n
+preplace netloc video_timings_0_oCountV 1 2 1 460 120n
+preplace netloc video_timings_0_oHS 1 2 3 440 280 NJ 280 1010J
+preplace netloc video_timings_0_oVS 1 2 3 N 260 NJ 260 NJ
+preplace netloc xlconcat_0_dout 1 4 1 1010 130n
+preplace netloc FSM_basicProject_0_oLEDRight 1 5 1 1370J 600n
+preplace netloc FSM_basicProject_0_oLEDLeft 1 5 1 NJ 580
+preplace netloc FSM_basicProject_0_oLEDUp 1 5 1 1370J 520n
+preplace netloc FSM_basicProject_0_oLEDDown 1 5 1 1350J 550n
+levelinfo -pg 1 0 110 320 630 900 1180 1390
+pagesize -pg 1 -db -bbox -sgen -120 0 1550 660
 "
 }
 0

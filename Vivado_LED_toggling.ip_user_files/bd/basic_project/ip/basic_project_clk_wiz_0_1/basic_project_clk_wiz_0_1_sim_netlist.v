@@ -2,10 +2,10 @@
 // Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
-// Date        : Thu Nov 20 14:36:42 2025
-// Host        : Jorbenzijnpc running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim
-//               c:/Users/Jorbe/Vivado_project/fpga_project/Vivado_LED_toggling.gen/sources_1/bd/basic_project/ip/basic_project_clk_wiz_0_1/basic_project_clk_wiz_0_1_sim_netlist.v
+// Date        : Thu Nov 13 12:40:24 2025
+// Host        : laptop-MATTEO running 64-bit major release  (build 9200)
+// Command     : write_verilog -force -mode funcsim -rename_top basic_project_clk_wiz_0_1 -prefix
+//               basic_project_clk_wiz_0_1_ basic_project_clk_wiz_0_1_sim_netlist.v
 // Design      : basic_project_clk_wiz_0_1
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -26,13 +26,13 @@ module basic_project_clk_wiz_0_1
   wire clk_250;
   (* IBUF_LOW_PWR *) (* RTL_KEEP = "yes" *) wire clk_in1;
 
-  basic_project_clk_wiz_0_1_clk_wiz inst
+  basic_project_clk_wiz_0_1_basic_project_clk_wiz_0_1_clk_wiz inst
        (.clk_25(clk_25),
         .clk_250(clk_250),
         .clk_in1(clk_in1));
 endmodule
 
-module basic_project_clk_wiz_0_1_clk_wiz
+module basic_project_clk_wiz_0_1_basic_project_clk_wiz_0_1_clk_wiz
    (clk_25,
     clk_250,
     clk_in1);

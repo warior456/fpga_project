@@ -5,7 +5,8 @@ module FSM_basicProject
 
 (
         input wire iClk, iRst, iDown, iUp, iLeft, iRight,
-        output wire [9 : 0] oShapeX, oShapeY, oShapSize
+        output wire [9 : 0] oShapeX, oShapeY, oShapSize,
+        output wire oLEDUp, oLEDDown, oLEDLeft, oLEDRight
 
     );
     reg [9:0] rShapeX_current, rShapeX_next, wShapSize;
@@ -18,6 +19,18 @@ module FSM_basicProject
 
 counter#(.LIM(LIM))Inst_counter
 (.iClk(iClk),.iRst(iRst),.iEn(1),.oQ(w_CntOut));
+
+    TIMER_LED_toggling_FSM timer_LED_toggling_FSM_up(
+                               .iClk(iClk), .iRst(iRst), .iPush(iUp), .oLED(oLEDUp));
+
+    TIMER_LED_toggling_FSM timer_LED_toggling_FSM_down(
+                               .iClk(iClk), .iRst(iRst), .iPush(iDown), .oLED(oLEDDown));
+
+    TIMER_LED_toggling_FSM timer_LED_toggling_FSM_left(
+                               .iClk(iClk), .iRst(iRst), .iPush(iLeft), .oLED(oLEDLeft));
+
+    TIMER_LED_toggling_FSM timer_LED_toggling_FSM_right(
+                               .iClk(iClk), .iRst(iRst), .iPush(iRight), .oLED(oLEDRight));
 
 
     always @(posedge  iClk) 
@@ -42,9 +55,8 @@ counter#(.LIM(LIM))Inst_counter
             memY <= 0;
             end
             
-        end
-        
-always @(*) begin
+            
+            
         if(iUp && rShapeY_current != 10'd0 && memY == 0) begin
             rShapeY_next <= rShapeY_current - 10'd1;
             memY <= 1;
@@ -62,8 +74,9 @@ always @(*) begin
             rShapeX_next <= rShapeX_current + 10'd1;
             memX <= 1;
         end
-         
-end
+        end
+        
+
 
     assign oShapeX = rShapeX_current;
     assign oShapeY = rShapeY_current;
