@@ -223,17 +223,17 @@
             "left": "9",
             "right": "0"
           },
-          "iShapeX": {
+          "iBallX": {
             "direction": "I",
             "left": "9",
             "right": "0"
           },
-          "iShapeY": {
+          "iBallY": {
             "direction": "I",
             "left": "9",
             "right": "0"
           },
-          "iShapeSize": {
+          "iPaddleX": {
             "direction": "I",
             "left": "9",
             "right": "0"
@@ -470,19 +470,19 @@
       "FSM_basicProject_0_oShapSize": {
         "ports": [
           "FSM_basicProject_0/oXPaddle",
-          "video_pattern_0/iShapeSize"
+          "video_pattern_0/iPaddleX"
         ]
       },
       "FSM_basicProject_0_oShapeX": {
         "ports": [
           "FSM_basicProject_0/oXball",
-          "video_pattern_0/iShapeX"
+          "video_pattern_0/iBallX"
         ]
       },
       "FSM_basicProject_0_oShapeY": {
         "ports": [
           "FSM_basicProject_0/oYBall",
-          "video_pattern_0/iShapeY"
+          "video_pattern_0/iBallY"
         ]
       },
       "clk_wiz_0_clk_25": {

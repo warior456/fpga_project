@@ -30,7 +30,8 @@ module video_pattern#(
         input wire iRst,
         input wire [H_BITS-1:0] iCountH,
         input wire [V_BITS-1:0] iCountV,
-        input wire [9:0] iShapeX, iShapeY, iShapeSize,
+        input wire [9:0] iBallX, iBallY,
+        input wire [9:0] iPaddleX,
         input wire [27:0] iWalls,
         output reg [7:0] oRed,
         output reg [7:0] oGreen,
@@ -40,6 +41,7 @@ module video_pattern#(
     localparam WALL_WIDTH = 80;
     localparam WALL_HEIGHT = 40;
     localparam PADDING = 40;
+    localparam BALL_SIZE = 40;
 
     wire [6:0] wWalls [3:0];
     integer i;
@@ -62,24 +64,28 @@ module video_pattern#(
             oRed <= 8'd100;
             oGreen <= 8'd0;
             oBlue <= 8'd100;
-            if(iCountH >= iShapeX && iCountH < (iShapeX + iShapeSize)
-                    && iCountV >= iShapeY && iCountV < (iShapeY + iShapeSize)
+            if(iCountH >= iBallX && iCountH < (iBallX + BALL_SIZE)
+                    && iCountV >= iBallY && iCountV < (iBallY + BALL_SIZE)
               ) begin
                 oRed <= 8'd255;
                 oGreen <= 8'd0;
                 oBlue <= 8'd0;
             end
             if(iCountH > PADDING && iCountV > PADDING && iCountH < PADDING+ 7*WALL_WIDTH && iCountV < PADDING+ 4*WALL_HEIGHT ) begin
-              oBlue <= 8'd255;
+                oBlue <= 8'd255;
                 for (i = 1; i <= 7; i = i+1) begin
                     for(j = 1; j <= 4; j = j+1) begin
-                        if((wWalls[i][j] ==1) && (iCountH > PADDING+ i*WALL_WIDTH +1 && iCountV > PADDING+ j*WALL_HEIGHT +1) && (iCountH < PADDING+ i*WALL_WIDTH -1 && iCountV < PADDING+ j*WALL_HEIGHT -1 )) begin
-                          oRed <= 8'd000;
-                          oBlue <= 8'd000;
+                        if((wWalls[j-1][i-1] == 1) &&
+                                (iCountH >= PADDING + ((i-1)*WALL_WIDTH) + 1) &&
+                                (iCountH <  PADDING + (i*WALL_WIDTH) - 1)      &&
+                                (iCountV >= PADDING + ((j-1)*WALL_HEIGHT) + 1) &&
+                                (iCountV <  PADDING + (j*WALL_HEIGHT) - 1)) begin
+                            oRed <= 8'd000;
+                            oBlue <= 8'd000;
                         end
                     end
                 end
-                
+
             end
         end
         else begin //non active region
