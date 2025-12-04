@@ -12,7 +12,7 @@ module FSM_basicProject
 // registermaken om de posisties van de bal en paddle
 
     reg[9:0] rXball, rYBall;
-    reg[9:0] rXPaddle:
+    reg[9:0] rXPaddle;
     reg rClkTraag;
     
 

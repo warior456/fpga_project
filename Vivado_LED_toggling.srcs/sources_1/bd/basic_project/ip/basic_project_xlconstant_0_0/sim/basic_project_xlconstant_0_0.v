@@ -47,58 +47,22 @@
 // DO NOT MODIFY THIS FILE.
 
 
-// IP VLNV: xilinx.com:module_ref:video_pattern:1.0
-// IP Revision: 1
+// IP VLNV: xilinx.com:ip:xlconstant:1.1
+// IP Revision: 10
 
 `timescale 1ns/1ps
 
-(* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
-module basic_project_video_pattern_0_0 (
-  iClk,
-  iRst,
-  iCountH,
-  iCountV,
-  iShapeX,
-  iShapeY,
-  iShapeSize,
-  iWalls,
-  oRed,
-  oGreen,
-  oBlue,
-  oActive
+module basic_project_xlconstant_0_0 (
+  dout
 );
 
-input wire iClk;
-input wire iRst;
-input wire [9 : 0] iCountH;
-input wire [9 : 0] iCountV;
-input wire [9 : 0] iShapeX;
-input wire [9 : 0] iShapeY;
-input wire [9 : 0] iShapeSize;
-input wire [27 : 0] iWalls;
-output wire [7 : 0] oRed;
-output wire [7 : 0] oGreen;
-output wire [7 : 0] oBlue;
-output wire oActive;
+output wire [27 : 0] dout;
 
-  video_pattern #(
-    .H_ACTIVE(640),
-    .V_ACTIVE(480),
-    .H_BITS(10),
-    .V_BITS(10)
+  xlconstant_v1_1_10_xlconstant #(
+    .CONST_WIDTH(28),
+    .CONST_VAL(28'H00000A5)
   ) inst (
-    .iClk(iClk),
-    .iRst(iRst),
-    .iCountH(iCountH),
-    .iCountV(iCountV),
-    .iShapeX(iShapeX),
-    .iShapeY(iShapeY),
-    .iShapeSize(iShapeSize),
-    .iWalls(iWalls),
-    .oRed(oRed),
-    .oGreen(oGreen),
-    .oBlue(oBlue),
-    .oActive(oActive)
+    .dout(dout)
   );
 endmodule

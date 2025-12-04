@@ -47,58 +47,23 @@
 // DO NOT MODIFY THIS FILE.
 
 
-// IP VLNV: xilinx.com:module_ref:video_pattern:1.0
-// IP Revision: 1
+#ifndef _basic_project_xlconstant_0_0_CPP_
+#define _basic_project_xlconstant_0_0_CPP_
 
-`timescale 1ns/1ps
+#include "basic_project_xlconstant_0_0.h"
 
-(* IP_DEFINITION_SOURCE = "module_ref" *)
-(* DowngradeIPIdentifiedWarnings = "yes" *)
-module basic_project_video_pattern_0_0 (
-  iClk,
-  iRst,
-  iCountH,
-  iCountV,
-  iShapeX,
-  iShapeY,
-  iShapeSize,
-  iWalls,
-  oRed,
-  oGreen,
-  oBlue,
-  oActive
-);
+basic_project_xlconstant_0_0::basic_project_xlconstant_0_0 (sc_core::sc_module_name name) :sc_module(name), mod("mod"), dout("dout") {
+    mod.dout(dout);
+}
+#ifdef MTI_SYSTEMC
+SC_MODULE_EXPORT(basic_project_xlconstant_0_0);
+#endif
 
-input wire iClk;
-input wire iRst;
-input wire [9 : 0] iCountH;
-input wire [9 : 0] iCountV;
-input wire [9 : 0] iShapeX;
-input wire [9 : 0] iShapeY;
-input wire [9 : 0] iShapeSize;
-input wire [27 : 0] iWalls;
-output wire [7 : 0] oRed;
-output wire [7 : 0] oGreen;
-output wire [7 : 0] oBlue;
-output wire oActive;
+#ifdef XM_SYSTEMC
+XMSC_MODULE_EXPORT(basic_project_xlconstant_0_0);
+#endif
 
-  video_pattern #(
-    .H_ACTIVE(640),
-    .V_ACTIVE(480),
-    .H_BITS(10),
-    .V_BITS(10)
-  ) inst (
-    .iClk(iClk),
-    .iRst(iRst),
-    .iCountH(iCountH),
-    .iCountV(iCountV),
-    .iShapeX(iShapeX),
-    .iShapeY(iShapeY),
-    .iShapeSize(iShapeSize),
-    .iWalls(iWalls),
-    .oRed(oRed),
-    .oGreen(oGreen),
-    .oBlue(oBlue),
-    .oActive(oActive)
-  );
-endmodule
+#ifdef RIVIERA
+SC_MODULE_EXPORT(basic_project_xlconstant_0_0);
+#endif
+#endif

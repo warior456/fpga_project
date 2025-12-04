@@ -2,7 +2,7 @@
 //Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
-//Date        : Thu Dec  4 10:51:48 2025
+//Date        : Thu Dec  4 12:53:21 2025
 //Host        : laptop-MATTEO running 64-bit major release  (build 9200)
 //Command     : generate_target basic_project.bd
 //Design      : basic_project
@@ -10,7 +10,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "basic_project,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=basic_project,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=6,numReposBlks=6,numNonXlnxBlks=1,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=3,numPkgbdBlks=0,bdsource=USER,synth_mode=Hierarchical}" *) (* HW_HANDOFF = "basic_project.hwdef" *) 
+(* CORE_GENERATION_INFO = "basic_project,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=basic_project,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=7,numReposBlks=7,numNonXlnxBlks=1,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=3,numPkgbdBlks=0,bdsource=USER,synth_mode=Hierarchical}" *) (* HW_HANDOFF = "basic_project.hwdef" *) 
 module basic_project
    (hdmi_tx_clk_n,
     hdmi_tx_clk_p,
@@ -69,6 +69,7 @@ module basic_project
   wire video_timings_0_oHS;
   wire video_timings_0_oVS;
   wire [23:0]xlconcat_0_dout;
+  wire [27:0]xlconstant_0_dout;
 
   basic_project_FSM_basicProject_0_0 FSM_basicProject_0
        (.iClk(clk_wiz_0_clk_25),
@@ -108,6 +109,7 @@ module basic_project
         .iShapeSize(FSM_basicProject_0_oShapSize),
         .iShapeX(FSM_basicProject_0_oShapeX),
         .iShapeY(FSM_basicProject_0_oShapeY),
+        .iWalls(xlconstant_0_dout),
         .oActive(video_pattern_0_oActive),
         .oBlue(video_pattern_0_oBlue),
         .oGreen(video_pattern_0_oGreen),
@@ -124,4 +126,6 @@ module basic_project
         .In1(video_pattern_0_oBlue),
         .In2(video_pattern_0_oRed),
         .dout(xlconcat_0_dout));
+  basic_project_xlconstant_0_0 xlconstant_0
+       (.dout(xlconstant_0_dout));
 endmodule
