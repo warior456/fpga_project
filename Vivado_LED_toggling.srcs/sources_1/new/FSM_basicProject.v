@@ -12,13 +12,18 @@ module FSM_basicProject
     reg [9:0] rShapeX_current, rShapeX_next, wShapSize;
     reg [9:0] rShapeY_current, rShapeY_next;
     reg memX,memY;
-
+    localparam CLK_FREQ = 25_000_000;
     localparam LIM = 1000000;
     localparam N = $clog2((LIM - 1));
-    wire [N-1:0] w_CntOut;
+    wire w_timer;
+    
+    // counter#(.LIM(LIM))Inst_counter
+    //        (.iClk(iClk),.iRst(iRst),.iEn(1),.oQ(w_timer));
 
-    counter#(.LIM(LIM))Inst_counter
-           (.iClk(iClk),.iRst(iRst),.iEn(1),.oQ(w_CntOut));
+
+    timer_n_s#(.CLK_FREQ(CLK_FREQ),.SECONDS(0.025))
+             timer_50ms_inst(.iClk(iClk),.iRst(iRst),
+                             .oQ(w_timer));
 
     TIMER_LED_toggling_FSM timer_LED_toggling_FSM_up(
                                .iClk(iClk), .iRst(iRst), .iPush(iUp), .oLED(oLEDUp));
@@ -35,10 +40,10 @@ module FSM_basicProject
 
     always @(posedge  iClk) begin
         if(iRst == 1) begin
-            rShapeX_current <= 10'd10;
-            rShapeY_current <= 10'd10;
-            rShapeX_next<= 10'd10;
-            rShapeY_next<= 10'd10;
+            rShapeX_current <= 10'd290;
+            rShapeY_current <= 10'd210;
+            rShapeX_next<= 10'd290;
+            rShapeY_next<= 10'd210;
             wShapSize <= 10'd60;
             memX <= 0;
             memY <= 0;
@@ -49,7 +54,7 @@ module FSM_basicProject
             rShapeY_current <= rShapeY_next;
         end
 
-        if (w_CntOut == LIM - 1) begin
+        if (w_timer == 1) begin
             memX <= 0;
             memY <= 0;
         end
