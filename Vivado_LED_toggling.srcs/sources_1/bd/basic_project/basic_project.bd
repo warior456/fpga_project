@@ -114,16 +114,16 @@
       "iPushRight": {
         "direction": "I"
       },
-      "oLEDUp": {
-        "direction": "O"
-      },
-      "oLEDDown": {
+      "oLEDRight": {
         "direction": "O"
       },
       "oLEDLeft": {
         "direction": "O"
       },
-      "oLEDRight": {
+      "oLEDUp": {
+        "direction": "O"
+      },
+      "oLEDDown": {
         "direction": "O"
       }
     },
