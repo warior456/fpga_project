@@ -41,11 +41,13 @@ module video_pattern#(
     localparam WALL_WIDTH = 80;
     localparam WALL_HEIGHT = 40;
     localparam PADDING = 40;
-    localparam BALL_SIZE = 40;
+    localparam BALL_RADIUS = 20;
 
     wire [6:0] wWalls [3:0];
     integer i;
     integer j;
+    integer x_dist;
+    integer y_dist;
 
     assign wWalls[0] = iWalls[6:0];
     assign wWalls[1] = iWalls[13:7];
@@ -64,13 +66,21 @@ module video_pattern#(
             oRed <= 8'd100;
             oGreen <= 8'd0;
             oBlue <= 8'd100;
-            if(iCountH >= iBallX && iCountH < (iBallX + BALL_SIZE)
-                    && iCountV >= iBallY && iCountV < (iBallY + BALL_SIZE)
+            if(iCountH >= iBallX && iCountH < (iBallX + 2*BALL_RADIUS) //ball
+                    && iCountV >= iBallY && iCountV < (iBallY + 2*BALL_RADIUS)
               ) begin
-                oRed <= 8'd255;
-                oGreen <= 8'd0;
-                oBlue <= 8'd0;
+                x_dist = iCountH - (iBallX + BALL_RADIUS);
+                y_dist = iCountV - (iBallY + BALL_RADIUS);
+
+                if(x_dist*x_dist + y_dist*y_dist <= BALL_RADIUS * BALL_RADIUS) begin
+                    oRed <= 8'd255;
+                    oGreen <= 8'd0;
+                    oBlue <= 8'd0;
+                end
+
             end
+
+            //wall grid
             if(iCountH > PADDING && iCountV > PADDING && iCountH < PADDING+ 7*WALL_WIDTH && iCountV < PADDING+ 4*WALL_HEIGHT ) begin
                 oBlue <= 8'd255;
                 for (i = 1; i <= 7; i = i+1) begin
@@ -85,8 +95,8 @@ module video_pattern#(
                         end
                     end
                 end
-
             end
+
         end
         else begin //non active region
             oRed <= 8'd0;

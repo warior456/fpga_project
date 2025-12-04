@@ -4,20 +4,27 @@ module FSM_basicProject
 
 
     (
-        input wire iClk, iRst, iDown, iUp, iLeft, iRight,
+        input wire iClk, iRst, iDown, iUp, iLeft, iRight, iClkTraag,
         output wire [27 : 0] oWalls,
-        output wire [9:0] oXball,oYBall,
+        output wire [9:0] oXBall,oYBall,
         output wire [9:0] oXPaddle
     );
-// registermaken om de posisties van de bal en paddle
+    // registermaken om de posisties van de bal en paddle
 
-    reg[9:0] rXball, rYBall;
+    reg[9:0] rXBall, rYBall;
     reg[9:0] rXPaddle;
-    reg rClkTraag;
-    
 
-   
-//Staten voor de bewegings FSM aanmaken
+    assign oXBall = rXBall;
+    assign oYBall = rYBall;
+
+    // counter insts
+
+    counter#(.LIM(268_435_456) )
+           counter_test_inst(.iClk(iClk),.iRst(iRst),.iEn(iClkTraag),
+                             .oQ(oWalls));
+
+
+    //Staten voor de bewegings FSM aanmaken
     localparam sInit    = 4'b0000;
     localparam sIdle    = 4'b0001;
 
@@ -39,7 +46,7 @@ module FSM_basicProject
     localparam sDL2     = 4'b1110;
     localparam sDL3     = 4'b1111;
 
-// parameters voor collision maken
+    // parameters voor collision maken
     localparam Init = 3'b000;
     localparam CNo  = 3'b001;
     localparam CUp  = 3'b010;
@@ -49,20 +56,18 @@ module FSM_basicProject
 
     reg[4:0] rFSMB_current, rFSMB_next;
     reg[2:0] rCollision;
-// next position logica bewegings FSM
+    // next position logica bewegings FSM
     always @(posedge  iClk) begin
-        if(iRst == 1)
-            begin
-                 rFSMB_current <= sInit;
-            end
-        else 
-            begin
-              rFSMB_current <= rFSMB_next;  
-            end    
+        if(iRst == 1) begin
+            rFSMB_current <= sInit;
+        end
+        else begin
+            rFSMB_current <= rFSMB_next;
+        end
     end
 
-//
-// bewegings logica voor de bewegings FSM    
+    //
+    // bewegings logica voor de bewegings FSM
     always @(*) begin
         case (rFSMB_current)
             sInit:
@@ -71,19 +76,19 @@ module FSM_basicProject
             sIdle:
                 rFSMB_next <= sU;
 
-                
+
             sU:
                 if(rCollision == CUp)
                     rFSMB_next <= sD;
-                else 
+                else
                     rFSMB_next <= sU;
-// beweging rechts omhoog
+            // beweging rechts omhoog
             sUR1:
                 if(rCollision == CUp)
                     rFSMB_next <= sDR1;
                 else if(rCollision == CLeft)
                     rFSMB_next <= sUL1;
-                else 
+                else
                     rFSMB_next <= sUR1;
 
             sUR2:
@@ -91,7 +96,7 @@ module FSM_basicProject
                     rFSMB_next <= sDR2;
                 else if(rCollision == CLeft)
                     rFSMB_next <= sUL2;
-                else 
+                else
                     rFSMB_next <= sUR2;
 
             sUR3:
@@ -99,21 +104,21 @@ module FSM_basicProject
                     rFSMB_next <= sDR3;
                 else if(rCollision == CLeft)
                     rFSMB_next <= sUL3;
-                else 
+                else
                     rFSMB_next <= sUR3;
-//beweeging beneden
+            //beweeging beneden
             sD:
-            if(rCollision == CDown)
+                if(rCollision == CDown)
                     rFSMB_next <= sU;
-            else 
+                else
                     rFSMB_next <= sD;
-// beweging rechts benenden
+            // beweging rechts benenden
             sDR1:
                 if(rCollision == CDown)
                     rFSMB_next <= sUR1;
                 else if(rCollision == CRight)
                     rFSMB_next <= sDL1;
-                else 
+                else
                     rFSMB_next <= sDR1;
 
             sDR2:
@@ -121,7 +126,7 @@ module FSM_basicProject
                     rFSMB_next <= sUR2;
                 else if(rCollision == CRight)
                     rFSMB_next <= sDL2;
-                else 
+                else
                     rFSMB_next <= sDR2;
 
             sDR3:
@@ -129,144 +134,133 @@ module FSM_basicProject
                     rFSMB_next <= sUR3;
                 else if(rCollision == CRight)
                     rFSMB_next <= sDL3;
-                else 
+                else
                     rFSMB_next <= sDR3;
-// beweging links omhoog
+            // beweging links omhoog
             sUL1:
                 if(rCollision == CUp)
                     rFSMB_next <= sDL1;
                 else if(rCollision == CLeft)
                     rFSMB_next <= sUR1;
-                else 
+                else
                     rFSMB_next <= sUL1;
 
             sUL2:
-                 if(rCollision == CUp)
+                if(rCollision == CUp)
                     rFSMB_next <= sDL2;
                 else if(rCollision == CLeft)
                     rFSMB_next <= sUR2;
-                else 
+                else
                     rFSMB_next <= sUL2;
             sUL3:
                 if(rCollision == CUp)
                     rFSMB_next <= sDL3;
                 else if(rCollision == CLeft)
                     rFSMB_next <= sUR3;
-                else 
+                else
                     rFSMB_next <= sUL3;
-//beweging links omlaag
+            //beweging links omlaag
             sDL1:
                 if(rCollision == CDown)
                     rFSMB_next <= sUL1;
                 else if(rCollision == CLeft)
                     rFSMB_next <= sDR1;
-                else 
+                else
                     rFSMB_next <= sDL1;
             sDL2:
-                 if(rCollision == CDown)
+                if(rCollision == CDown)
                     rFSMB_next <= sUL2;
                 else if(rCollision == CLeft)
                     rFSMB_next <= sDR2;
-                else 
+                else
                     rFSMB_next <= sDL2;
 
             sDL3:
-                 if(rCollision == CDown)
+                if(rCollision == CDown)
                     rFSMB_next <= sUL3;
                 else if(rCollision == CLeft)
                     rFSMB_next <= sDR3;
-                else 
+                else
                     rFSMB_next <= sDL3;
 
-           
+
 
             default:
                 rFSMB_next <= sIdle;
         endcase
     end
-//
-//logica voor updating possittie ball
-    always @(posedge rClkTraag) begin
-            if(rFSMB_current == sInit)
-            begin
-                rXball <= 10'd0; 
-                rYBall <= 10'd0;   
-            end
+    //
+    //logica voor updating positie ball
+    always @(posedge iClk ) begin
 
-            if(rFSMB_current == sU) 
-            begin
-                rXball <= rXball + 10'd0; 
+        if (rFSMB_current == sInit) begin//dit moet met states ma idk hoe
+            rXBall <= 10'd320; // Center X
+            rYBall <= 10'd240; // Center Y
+        end
+        
+        // movement
+        else if (iClkTraag == 1'b1) begin
+            if(rFSMB_current == sU) begin
+                rXBall <= rXBall + 10'd0;
                 rYBall <= rYBall - 10'd2;
             end
-             if(rFSMB_current == sD) 
-            begin
-                rXball <= rXball + 10'd0; 
+            if(rFSMB_current == sD) begin
+                rXBall <= rXBall + 10'd0;
                 rYBall <= rYBall + 10'd2;
             end
-        //beweging rechts omhoog
-            if(rFSMB_current == sUR1) 
-            begin
-                rXball <= rXball + 10'd1; 
+            //beweging rechts omhoog
+            if(rFSMB_current == sUR1) begin
+                rXBall <= rXBall + 10'd1;
                 rYBall <= rYBall - 10'd2;
             end
-             if(rFSMB_current == sUR2) 
-            begin
-                rXball <= rXball + 10'd2; 
+            if(rFSMB_current == sUR2) begin
+                rXBall <= rXBall + 10'd2;
                 rYBall <= rYBall - 10'd2;
             end
-            if(rFSMB_current == sUR3) 
-            begin
-                rXball <= rXball + 10'd2; 
+            if(rFSMB_current == sUR3) begin
+                rXBall <= rXBall + 10'd2;
                 rYBall <= rYBall - 10'd1;
             end
-        //beweging rechts omlaag
-            if(rFSMB_current == sDR1) 
-            begin
-                rXball <= rXball + 10'd1; 
+            //beweging rechts omlaag
+            if(rFSMB_current == sDR1) begin
+                rXBall <= rXBall + 10'd1;
                 rYBall <= rYBall + 10'd2;
             end
-             if(rFSMB_current == sDR2) 
-            begin
-                rXball <= rXball + 10'd2; 
+            if(rFSMB_current == sDR2) begin
+                rXBall <= rXBall + 10'd2;
                 rYBall <= rYBall + 10'd2;
             end
-            if(rFSMB_current == sDR3) 
-            begin
-                rXball <= rXball + 10'd2; 
+            if(rFSMB_current == sDR3) begin
+                rXBall <= rXBall + 10'd2;
                 rYBall <= rYBall + 10'd1;
             end
-        //beweging links omhoog
-            if(rFSMB_current == sUL1) 
-            begin
-                rXball <= rXball - 10'd1; 
+            //beweging links omhoog
+            if(rFSMB_current == sUL1) begin
+                rXBall <= rXBall - 10'd1;
                 rYBall <= rYBall - 10'd2;
             end
-             if(rFSMB_current == sUL2) 
-            begin
-                rXball <= rXball - 10'd2; 
+            if(rFSMB_current == sUL2) begin
+                rXBall <= rXBall - 10'd2;
                 rYBall <= rYBall - 10'd2;
             end
-            if(rFSMB_current == sUL3) 
-            begin
-                rXball <= rXball - 10'd2; 
+            if(rFSMB_current == sUL3) begin
+                rXBall <= rXBall - 10'd2;
                 rYBall <= rYBall - 10'd1;
             end
-        //beweging links omlaag
-            if(rFSMB_current == sDL1) 
-            begin
-                rXball <= rXball - 10'd1; 
+            //beweging links omlaag
+            if(rFSMB_current == sDL1) begin
+                rXBall <= rXBall - 10'd1;
                 rYBall <= rYBall + 10'd2;
             end
-             if(rFSMB_current == sDL2) 
-            begin
-                rXball <= rXball - 10'd2; 
+            if(rFSMB_current == sDL2) begin
+                rXBall <= rXBall - 10'd2;
                 rYBall <= rYBall + 10'd2;
             end
-            if(rFSMB_current == sDL3) 
-            begin
-                rXball <= rXball - 10'd2; 
+            if(rFSMB_current == sDL3) begin
+                rXBall <= rXBall - 10'd2;
                 rYBall <= rYBall + 10'd1;
             end
+        end
     end
 
 

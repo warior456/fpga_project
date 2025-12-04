@@ -16,8 +16,7 @@
       "rgb2dvi_0": "",
       "xlconcat_0": "",
       "clk_wiz_0": "",
-      "FSM_basicProject_0": "",
-      "xlconstant_0": ""
+      "FSM_basicProject_0": ""
     },
     "ports": {
       "iRst": {
@@ -176,6 +175,9 @@
             "direction": "O"
           },
           "oVS": {
+            "direction": "O"
+          },
+          "oEndFrame": {
             "direction": "O"
           }
         }
@@ -407,12 +409,15 @@
           "iRight": {
             "direction": "I"
           },
+          "iClkTraag": {
+            "direction": "I"
+          },
           "oWalls": {
             "direction": "O",
             "left": "27",
             "right": "0"
           },
-          "oXball": {
+          "oXBall": {
             "direction": "O",
             "left": "9",
             "right": "0"
@@ -426,22 +431,6 @@
             "direction": "O",
             "left": "9",
             "right": "0"
-          }
-        }
-      },
-      "xlconstant_0": {
-        "vlnv": "xilinx.com:ip:xlconstant:1.1",
-        "ip_revision": "10",
-        "xci_name": "basic_project_xlconstant_0_0",
-        "xci_path": "ip\\basic_project_xlconstant_0_0\\basic_project_xlconstant_0_0.xci",
-        "inst_hier_path": "xlconstant_0",
-        "has_run_ip_tcl": "true",
-        "parameters": {
-          "CONST_VAL": {
-            "value": "165"
-          },
-          "CONST_WIDTH": {
-            "value": "28"
           }
         }
       }
@@ -462,24 +451,25 @@
           "oLEDRight"
         ]
       },
-      "FSM_basicProject_0_oLEDUp": {
-        "ports": [
-          "oLEDUp"
-        ]
-      },
       "FSM_basicProject_0_oShapSize": {
         "ports": [
           "FSM_basicProject_0/oXPaddle",
           "video_pattern_0/iPaddleX"
         ]
       },
-      "FSM_basicProject_0_oShapeX": {
+      "FSM_basicProject_0_oWalls": {
         "ports": [
-          "FSM_basicProject_0/oXball",
+          "FSM_basicProject_0/oWalls",
+          "video_pattern_0/iWalls"
+        ]
+      },
+      "FSM_basicProject_0_oXball": {
+        "ports": [
+          "FSM_basicProject_0/oXBall",
           "video_pattern_0/iBallX"
         ]
       },
-      "FSM_basicProject_0_oShapeY": {
+      "FSM_basicProject_0_oYBall": {
         "ports": [
           "FSM_basicProject_0/oYBall",
           "video_pattern_0/iBallY"
@@ -488,10 +478,10 @@
       "clk_wiz_0_clk_25": {
         "ports": [
           "clk_wiz_0/clk_25",
-          "video_timings_0/iClk",
           "rgb2dvi_0/PixelClk",
-          "FSM_basicProject_0/iClk",
-          "video_pattern_0/iClk"
+          "video_pattern_0/iClk",
+          "video_timings_0/iClk",
+          "FSM_basicProject_0/iClk"
         ]
       },
       "clk_wiz_0_clk_250": {
@@ -527,10 +517,10 @@
       "iRst_0_1": {
         "ports": [
           "iRst",
-          "video_timings_0/iRst",
           "rgb2dvi_0/aRst",
-          "FSM_basicProject_0/iRst",
-          "video_pattern_0/iRst"
+          "video_pattern_0/iRst",
+          "video_timings_0/iRst",
+          "FSM_basicProject_0/iRst"
         ]
       },
       "iUp_0_1": {
@@ -599,6 +589,13 @@
           "video_pattern_0/iCountV"
         ]
       },
+      "video_timings_0_oEndFrame": {
+        "ports": [
+          "video_timings_0/oEndFrame",
+          "oLEDUp",
+          "FSM_basicProject_0/iClkTraag"
+        ]
+      },
       "video_timings_0_oHS": {
         "ports": [
           "video_timings_0/oHS",
@@ -615,12 +612,6 @@
         "ports": [
           "xlconcat_0/dout",
           "rgb2dvi_0/vid_pData"
-        ]
-      },
-      "xlconstant_0_dout": {
-        "ports": [
-          "xlconstant_0/dout",
-          "video_pattern_0/iWalls"
         ]
       }
     }

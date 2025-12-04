@@ -2,7 +2,7 @@
 //Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
-//Date        : Thu Dec  4 12:53:21 2025
+//Date        : Thu Dec  4 19:22:54 2025
 //Host        : laptop-MATTEO running 64-bit major release  (build 9200)
 //Command     : generate_target basic_project.bd
 //Design      : basic_project
@@ -56,10 +56,6 @@ module basic_project
   wire iPushRight;
   wire iPushUp;
   wire iRst;
-  wire oLEDDown;
-  wire oLEDLeft;
-  wire oLEDRight;
-  wire oLEDUp;
   wire video_pattern_0_oActive;
   wire [7:0]video_pattern_0_oBlue;
   wire [7:0]video_pattern_0_oGreen;
@@ -78,13 +74,9 @@ module basic_project
         .iRight(iPushRight),
         .iRst(iRst),
         .iUp(iPushUp),
-        .oLEDDown(oLEDDown),
-        .oLEDLeft(oLEDLeft),
-        .oLEDRight(oLEDRight),
-        .oLEDUp(oLEDUp),
-        .oShapSize(FSM_basicProject_0_oShapSize),
-        .oShapeX(FSM_basicProject_0_oShapeX),
-        .oShapeY(FSM_basicProject_0_oShapeY));
+        .oXPaddle(FSM_basicProject_0_oShapSize),
+        .oXball(FSM_basicProject_0_oShapeX),
+        .oYBall(FSM_basicProject_0_oShapeY));
   basic_project_clk_wiz_0_1 clk_wiz_0
        (.clk_25(clk_wiz_0_clk_25),
         .clk_250(clk_wiz_0_clk_250),
@@ -102,13 +94,13 @@ module basic_project
         .vid_pVDE(video_pattern_0_oActive),
         .vid_pVSync(video_timings_0_oVS));
   basic_project_video_pattern_0_0 video_pattern_0
-       (.iClk(clk_wiz_0_clk_25),
+       (.iBallX(FSM_basicProject_0_oShapeX),
+        .iBallY(FSM_basicProject_0_oShapeY),
+        .iClk(clk_wiz_0_clk_25),
         .iCountH(video_timings_0_oCountH),
         .iCountV(video_timings_0_oCountV),
+        .iPaddleX(FSM_basicProject_0_oShapSize),
         .iRst(iRst),
-        .iShapeSize(FSM_basicProject_0_oShapSize),
-        .iShapeX(FSM_basicProject_0_oShapeX),
-        .iShapeY(FSM_basicProject_0_oShapeY),
         .iWalls(xlconstant_0_dout),
         .oActive(video_pattern_0_oActive),
         .oBlue(video_pattern_0_oBlue),

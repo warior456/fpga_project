@@ -59,9 +59,9 @@ module basic_project_video_pattern_0_0 (
   iRst,
   iCountH,
   iCountV,
-  iShapeX,
-  iShapeY,
-  iShapeSize,
+  iBallX,
+  iBallY,
+  iPaddleX,
   iWalls,
   oRed,
   oGreen,
@@ -73,9 +73,9 @@ input wire iClk;
 input wire iRst;
 input wire [9 : 0] iCountH;
 input wire [9 : 0] iCountV;
-input wire [9 : 0] iShapeX;
-input wire [9 : 0] iShapeY;
-input wire [9 : 0] iShapeSize;
+input wire [9 : 0] iBallX;
+input wire [9 : 0] iBallY;
+input wire [9 : 0] iPaddleX;
 input wire [27 : 0] iWalls;
 output wire [7 : 0] oRed;
 output wire [7 : 0] oGreen;
@@ -92,9 +92,9 @@ output wire oActive;
     .iRst(iRst),
     .iCountH(iCountH),
     .iCountV(iCountV),
-    .iShapeX(iShapeX),
-    .iShapeY(iShapeY),
-    .iShapeSize(iShapeSize),
+    .iBallX(iBallX),
+    .iBallY(iBallY),
+    .iPaddleX(iPaddleX),
     .iWalls(iWalls),
     .oRed(oRed),
     .oGreen(oGreen),

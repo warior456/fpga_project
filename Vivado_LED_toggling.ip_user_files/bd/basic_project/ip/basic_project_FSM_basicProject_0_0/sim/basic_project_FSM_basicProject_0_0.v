@@ -61,13 +61,10 @@ module basic_project_FSM_basicProject_0_0 (
   iUp,
   iLeft,
   iRight,
-  oShapeX,
-  oShapeY,
-  oShapSize,
-  oLEDUp,
-  oLEDDown,
-  oLEDLeft,
-  oLEDRight
+  oWalls,
+  oXball,
+  oYBall,
+  oXPaddle
 );
 
 input wire iClk;
@@ -76,13 +73,10 @@ input wire iDown;
 input wire iUp;
 input wire iLeft;
 input wire iRight;
-output wire [9 : 0] oShapeX;
-output wire [9 : 0] oShapeY;
-output wire [9 : 0] oShapSize;
-output wire oLEDUp;
-output wire oLEDDown;
-output wire oLEDLeft;
-output wire oLEDRight;
+output wire [27 : 0] oWalls;
+output wire [9 : 0] oXball;
+output wire [9 : 0] oYBall;
+output wire [9 : 0] oXPaddle;
 
   FSM_basicProject inst (
     .iClk(iClk),
@@ -91,12 +85,9 @@ output wire oLEDRight;
     .iUp(iUp),
     .iLeft(iLeft),
     .iRight(iRight),
-    .oShapeX(oShapeX),
-    .oShapeY(oShapeY),
-    .oShapSize(oShapSize),
-    .oLEDUp(oLEDUp),
-    .oLEDDown(oLEDDown),
-    .oLEDLeft(oLEDLeft),
-    .oLEDRight(oLEDRight)
+    .oWalls(oWalls),
+    .oXball(oXball),
+    .oYBall(oYBall),
+    .oXPaddle(oXPaddle)
   );
 endmodule
