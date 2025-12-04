@@ -55,28 +55,22 @@ module FSM_basicProject
             rShapeX_current <= 10'd290;
             rShapeY_current <= 10'd210;
             wShapSize <= 10'd60;
-            memX <= 0;
-            memY <= 0;
         end
 
         if(w_timer == 1) begin
             if(rFSM_current == sUp && rShapeY_current != 10'd0 ) begin
                 rShapeY_current <= rShapeY_current - 10'd1;
-                memY <= 1;
             end
 
             else if(rFSM_current == sDown && rShapeY_current != 10'd420 ) begin
                 rShapeY_current <= rShapeY_current + 10'd1;
-                memY <= 1;
             end
 
             if(rFSM_current ==  sLeft && rShapeX_current != 10'd0  ) begin
                 rShapeX_current <= rShapeX_current - 10'd1;
-                memX <= 1;
             end
             else if(rFSM_current == sRight && rShapeX_current != 10'd580) begin
                 rShapeX_current <= rShapeX_current + 10'd1;
-                memX <= 1;
             end
         end
     end
