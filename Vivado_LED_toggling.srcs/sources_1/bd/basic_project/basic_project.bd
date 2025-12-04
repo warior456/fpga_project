@@ -7,7 +7,8 @@
       "name": "basic_project",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
-      "tool_version": "2025.1"
+      "tool_version": "2025.1",
+      "validated": "true"
     },
     "design_tree": {
       "video_timings_0": "",
@@ -24,15 +25,73 @@
       },
       "iClk": {
         "type": "clk",
-        "direction": "I"
+        "direction": "I",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "basic_project_iClk",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "default"
+          }
+        }
       },
       "hdmi_tx_clk_p": {
         "type": "clk",
-        "direction": "O"
+        "direction": "O",
+        "parameters": {
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "default"
+          }
+        }
       },
       "hdmi_tx_clk_n": {
         "type": "clk",
-        "direction": "O"
+        "direction": "O",
+        "parameters": {
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "default"
+          }
+        }
       },
       "hdmi_tx_d_p": {
         "direction": "O",
@@ -135,7 +194,21 @@
         },
         "ports": {
           "iClk": {
-            "direction": "I"
+            "direction": "I",
+            "parameters": {
+              "FREQ_HZ": {
+                "value": "25000000",
+                "value_src": "ip_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "ip_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "/clk_wiz_0_clk_out1",
+                "value_src": "ip_prop"
+              }
+            }
           },
           "iRst": {
             "direction": "I"
@@ -334,32 +407,25 @@
           "iRight": {
             "direction": "I"
           },
-          "oShapeX": {
+          "oWalls": {
+            "direction": "O",
+            "left": "27",
+            "right": "0"
+          },
+          "oXball": {
             "direction": "O",
             "left": "9",
             "right": "0"
           },
-          "oShapeY": {
+          "oYBall": {
             "direction": "O",
             "left": "9",
             "right": "0"
           },
-          "oShapSize": {
+          "oXPaddle": {
             "direction": "O",
             "left": "9",
             "right": "0"
-          },
-          "oLEDUp": {
-            "direction": "O"
-          },
-          "oLEDDown": {
-            "direction": "O"
-          },
-          "oLEDLeft": {
-            "direction": "O"
-          },
-          "oLEDRight": {
-            "direction": "O"
           }
         }
       },
@@ -383,43 +449,39 @@
     "nets": {
       "FSM_basicProject_0_oLEDDown": {
         "ports": [
-          "FSM_basicProject_0/oLEDDown",
           "oLEDDown"
         ]
       },
       "FSM_basicProject_0_oLEDLeft": {
         "ports": [
-          "FSM_basicProject_0/oLEDLeft",
           "oLEDLeft"
         ]
       },
       "FSM_basicProject_0_oLEDRight": {
         "ports": [
-          "FSM_basicProject_0/oLEDRight",
           "oLEDRight"
         ]
       },
       "FSM_basicProject_0_oLEDUp": {
         "ports": [
-          "FSM_basicProject_0/oLEDUp",
           "oLEDUp"
         ]
       },
       "FSM_basicProject_0_oShapSize": {
         "ports": [
-          "FSM_basicProject_0/oShapSize",
+          "FSM_basicProject_0/oXPaddle",
           "video_pattern_0/iShapeSize"
         ]
       },
       "FSM_basicProject_0_oShapeX": {
         "ports": [
-          "FSM_basicProject_0/oShapeX",
+          "FSM_basicProject_0/oXball",
           "video_pattern_0/iShapeX"
         ]
       },
       "FSM_basicProject_0_oShapeY": {
         "ports": [
-          "FSM_basicProject_0/oShapeY",
+          "FSM_basicProject_0/oYBall",
           "video_pattern_0/iShapeY"
         ]
       },
