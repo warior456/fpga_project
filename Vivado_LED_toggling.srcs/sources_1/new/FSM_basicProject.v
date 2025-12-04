@@ -13,12 +13,15 @@ module FSM_basicProject
     reg [9:0] rShapeY_current, rShapeY_next;
     reg memX,memY;
     localparam CLK_FREQ = 25_000_000;
-    localparam LIM = 1000000;
-    localparam N = $clog2((LIM - 1));
     wire w_timer;
     
-    // counter#(.LIM(LIM))Inst_counter
-    //        (.iClk(iClk),.iRst(iRst),.iEn(1),.oQ(w_timer));
+    localparam sInit    = 3'b000;
+    localparam sIdle    = 3'b001;
+    localparam sUp      = 3'b010;
+    localparam sDown      = 3'b011;
+    localparam sRight      = 3'b100;
+    localparam sLeft      = 3'b101;
+  reg[2:0] rFSM_current, wFSM_next;
 
 
     timer_n_s#(.CLK_FREQ(CLK_FREQ),.SECONDS(0.025))
@@ -40,6 +43,21 @@ module FSM_basicProject
 
     always @(posedge  iClk) begin
         if(iRst == 1) begin
+            rFSM_current <= sInit;
+        end
+
+        else begin
+            rShapeX_current <= rShapeX_next;
+            rShapeY_current <= rShapeY_next;
+            rFSM_current <= wFSM_next;
+        end
+
+        if (w_timer == 1) begin
+            memX <= 0;
+            memY <= 0;
+        end
+        if(rFSM_current == sInit)
+        begin
             rShapeX_current <= 10'd290;
             rShapeY_current <= 10'd210;
             rShapeX_next<= 10'd290;
@@ -47,39 +65,68 @@ module FSM_basicProject
             wShapSize <= 10'd60;
             memX <= 0;
             memY <= 0;
-        end
-
-        else begin
-            rShapeX_current <= rShapeX_next;
-            rShapeY_current <= rShapeY_next;
-        end
-
-        if (w_timer == 1) begin
-            memX <= 0;
-            memY <= 0;
-        end
+            end
 
 
-
-        if(iUp && rShapeY_current != 10'd0 && memY == 0) begin
+        if(rFSM_current == sUp && rShapeY_current != 10'd0 && memY == 0) begin
             rShapeY_next <= rShapeY_current - 10'd1;
             memY <= 1;
         end
-        else if(iDown && rShapeY_current != 10'd420 && memY == 0) begin
+        
+        else if(rFSM_current == sDown && rShapeY_current != 10'd420 && memY == 0) begin
             rShapeY_next <= rShapeY_current + 10'd1;
             memY <= 1;
         end
 
-        if(iLeft && rShapeX_current != 10'd0 && memX == 0) begin
+        if(rFSM_current ==  sLeft && rShapeX_current != 10'd0 && memX == 0) begin
             rShapeX_next <= rShapeX_current - 10'd1;
             memX <= 1;
         end
-        else if(iRight && rShapeX_current != 10'd580&& memX == 0) begin
+        else if(rFSM_current == sRight && rShapeX_current != 10'd580&& memX == 0) begin
             rShapeX_next <= rShapeX_current + 10'd1;
             memX <= 1;
         end
     end
-
+    
+always @(*)
+  begin
+    case (rFSM_current)
+      sInit:    wFSM_next <= sIdle;
+      
+      sIdle:    if(iUp)
+                 wFSM_next<= sUp; 
+                 else if(iDown)
+                 wFSM_next<= sDown;
+                 else if(iRight)
+                 wFSM_next<= sRight;
+                 else if(iLeft)
+                 wFSM_next<= sLeft;    
+                 else   
+                 wFSM_next <= sIdle; 
+      sUp:  if(iUp)
+                 wFSM_next<= sUp;
+            else
+             wFSM_next <= sIdle;
+       
+     sDown: if(iDown)
+                 wFSM_next<= sDown;
+            else
+             wFSM_next <= sIdle;
+     
+     sLeft: if(iLeft)
+                 wFSM_next<= sLeft;
+            else
+             wFSM_next <= sIdle;
+     
+     sRight:    if(iRight)
+                 wFSM_next<= sRight;
+            else
+             wFSM_next <= sIdle;
+      
+      
+      default:  wFSM_next <= sInit;
+    endcase
+  end
 
 
     assign oShapeX = rShapeX_current;
