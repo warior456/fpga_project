@@ -8,7 +8,11 @@
     "gen_directory": "../../../../../../Vivado_LED_toggling.gen/sources_1/bd/basic_project/ip/basic_project_FSM_basicProject_0_0",
     "parameters": {
       "component_parameters": {
+        "Speed": [ { "value": "833333", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "Component_Name": [ { "value": "basic_project_FSM_basicProject_0_0", "resolve_type": "user", "usage": "all" } ]
+      },
+      "model_parameters": {
+        "Speed": [ { "value": "833333", "resolve_type": "generated", "format": "long", "usage": "all" } ]
       },
       "project_parameters": {
         "ARCHITECTURE": [ { "value": "zynq" } ],

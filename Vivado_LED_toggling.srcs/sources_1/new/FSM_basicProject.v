@@ -1,8 +1,8 @@
 `timescale 1ns / 1ps
 
-module FSM_basicProject
-
-
+module FSM_basicProject#(
+parameter Speed = 25000000/30
+)
     (
         input wire iClk, iRst, iDown, iUp, iLeft, iRight, iClkTraag,
         output wire [27 : 0] oWalls,
@@ -22,6 +22,8 @@ module FSM_basicProject
     counter#(.LIM(268_435_456) )
            counter_test_inst(.iClk(iClk),.iRst(iRst),.iEn(iClkTraag),
                              .oQ(oWalls));
+    timer_1s#(.CLK_FREQ(Speed))
+    timer_1s_inst (.iClk(iClk), .iRst(iRst), .oQ(w1));
 
 
     //Staten voor de bewegings FSM aanmaken
