@@ -1,7 +1,8 @@
 `timescale 1ns / 1ps
 
 module FSM_basicProject#(
-parameter Speed = 25000000/30
+parameter Speed = 25000000/30,
+parameter DiaBall = 20 // straal van de ball
 )
     (
         input wire iClk, iRst, iDown, iUp, iLeft, iRight, iClkTraag,
@@ -12,18 +13,24 @@ parameter Speed = 25000000/30
     // registermaken om de posisties van de bal en paddle
 
     reg[9:0] rXBall, rYBall;
+    reg[9:0] rXBallNext, rYBallNext;
     reg[9:0] rXPaddle;
-
+    reg[6:0] rWalls [3:0];
+   
     assign oXBall = rXBall;
     assign oYBall = rYBall;
 
+    assign oWalls[6:0] = rWalls[0];
+    assign oWalls[13:7]= rWalls[1];
+    assign oWalls[20:14] = rWalls[2];
+    assign oWalls[27:21] = rWalls[3];
     // counter insts
 
-    counter#(.LIM(268_435_456) )
-           counter_test_inst(.iClk(iClk),.iRst(iRst),.iEn(iClkTraag),
-                             .oQ(oWalls));
-    timer_1s#(.CLK_FREQ(Speed))
-    timer_1s_inst (.iClk(iClk), .iRst(iRst), .oQ(w1));
+ //   counter#(.LIM(268_435_456) )
+ //          counter_test_inst(.iClk(iClk),.iRst(iRst),.iEn(iClkTraag),
+ //                            .oQ(oWalls));
+ //   timer_1s#(.CLK_FREQ(Speed))
+ //   timer_1s_instBasic (.iClk(iClk), .iRst(iRst), .oQ(iClkTraag));
 
 
     //Staten voor de bewegings FSM aanmaken
@@ -198,6 +205,16 @@ parameter Speed = 25000000/30
         if (rFSMB_current == sInit) begin//dit moet met states ma idk hoe
             rXBall <= 10'd320; // Center X
             rYBall <= 10'd240; // Center Y
+
+            rXBallNext <= 10'd320;
+            rYBallNext <= 10'd240;
+            
+            rWalls[0] <= 8'b11111111;
+            rWalls[1] <= 8'b11111111;
+            rWalls[2] <= 8'b11111111;
+            rWalls[3] <= 8'b11111111;
+
+            rCollision <= CNo;
         end
         
         // movement
@@ -205,65 +222,155 @@ parameter Speed = 25000000/30
             if(rFSMB_current == sU) begin
                 rXBall <= rXBall + 10'd0;
                 rYBall <= rYBall - 10'd2;
+
+                rXBallNext <= rXBallNext + 10'd0;
+                rYBallNext <= rYBallNext - 10'd4;
             end
             if(rFSMB_current == sD) begin
                 rXBall <= rXBall + 10'd0;
                 rYBall <= rYBall + 10'd2;
+
+                rXBallNext <= rXBallNext + 10'd0;
+                rYBallNext <= rYBallNext + 10'd4;
             end
             //beweging rechts omhoog
             if(rFSMB_current == sUR1) begin
                 rXBall <= rXBall + 10'd1;
                 rYBall <= rYBall - 10'd2;
+
+                rXBallNext <= rXBallNext + 10'd2;
+                rYBallNext <= rYBallNext - 10'd4;
             end
             if(rFSMB_current == sUR2) begin
                 rXBall <= rXBall + 10'd2;
                 rYBall <= rYBall - 10'd2;
+
+                rXBallNext <= rXBallNext + 10'd4;
+                rYBallNext <= rYBallNext - 10'd4;
             end
             if(rFSMB_current == sUR3) begin
                 rXBall <= rXBall + 10'd2;
                 rYBall <= rYBall - 10'd1;
+
+                rXBallNext <= rXBallNext + 10'd4;
+                rYBallNext <= rYBallNext - 10'd2;
             end
             //beweging rechts omlaag
             if(rFSMB_current == sDR1) begin
                 rXBall <= rXBall + 10'd1;
                 rYBall <= rYBall + 10'd2;
+
+                rXBallNext <= rXBallNext + 10'd2;
+                rYBallNext <= rYBallNext + 10'd4;
             end
             if(rFSMB_current == sDR2) begin
                 rXBall <= rXBall + 10'd2;
                 rYBall <= rYBall + 10'd2;
+
+                rXBallNext <= rXBallNext + 10'd4;
+                rYBallNext <= rYBallNext + 10'd4;
             end
             if(rFSMB_current == sDR3) begin
                 rXBall <= rXBall + 10'd2;
                 rYBall <= rYBall + 10'd1;
+
+                rXBallNext <= rXBallNext + 10'd4;
+                rYBallNext <= rYBallNext + 10'd2;
             end
             //beweging links omhoog
             if(rFSMB_current == sUL1) begin
                 rXBall <= rXBall - 10'd1;
                 rYBall <= rYBall - 10'd2;
+
+                rXBallNext <= rXBallNext - 10'd2;
+                rYBallNext <= rYBallNext - 10'd4;
             end
             if(rFSMB_current == sUL2) begin
                 rXBall <= rXBall - 10'd2;
                 rYBall <= rYBall - 10'd2;
+
+                rXBallNext <= rXBallNext - 10'd4;
+                rYBallNext <= rYBallNext - 10'd4;
             end
             if(rFSMB_current == sUL3) begin
                 rXBall <= rXBall - 10'd2;
                 rYBall <= rYBall - 10'd1;
+
+                rXBallNext <= rXBallNext - 10'd4;
+                rYBallNext <= rYBallNext - 10'd2;
             end
             //beweging links omlaag
             if(rFSMB_current == sDL1) begin
                 rXBall <= rXBall - 10'd1;
                 rYBall <= rYBall + 10'd2;
+
+                rXBallNext <= rXBallNext - 10'd2;
+                rYBallNext <= rYBallNext + 10'd4;
             end
             if(rFSMB_current == sDL2) begin
                 rXBall <= rXBall - 10'd2;
                 rYBall <= rYBall + 10'd2;
+
+                rXBallNext <= rXBallNext - 10'd4;
+                rYBallNext <= rYBallNext + 10'd4;
             end
             if(rFSMB_current == sDL3) begin
                 rXBall <= rXBall - 10'd2;
                 rYBall <= rYBall + 10'd1;
+
+                rXBallNext <= rXBallNext - 10'd4;
+                rYBallNext <= rYBallNext + 10'd2;
             end
         end
     end
 
+    // colision detection
+    always @(*) begin
+        //Bovenrand scherm
+        if(rYBallNext - DiaBall <= 0)
+            rCollision <= CUp;
+        // Rechterrand scherm
+        else if(rXBallNext + DiaBall >= 640)
+            rCollision <= CLeft;
+        // Linkerrand scherm
+        else if (rXBallNext - DiaBall <= 0)
+            rCollision <= CRight;
+        
+        // Colison detection met murren
+        else if (rXBallNext + DiaBall >= 40 && rYBallNext + DiaBall >= 40 &&
+                 rXBallNext - DiaBall >= 600 && rYBallNext - DiaBall >= 200)
+            begin
+                //boven rand van de bal met een muur
+                if(rWalls[((rYBallNext - DiaBall-40)/40)][(rXBallNext-40)/80])
+                begin
+                    rCollision <= CUp;
+                    rWalls[((rYBallNext - DiaBall-40)/40)][(rXBallNext-40)/80] = 0;
+                end
+                //onderrand van de bal met een muur
+                else if(rWalls[(rYBallNext + DiaBall-40)/40][(rXBallNext-40)/80])
+                begin 
+                    rCollision <= CDown;
+                    rWalls[(rYBallNext + DiaBall-40)/40][(rXBallNext-40)/80] = 0;
+                end
+                // linkerrand van de bal met een muur
+                else if(rWalls[(rYBallNext -40)/40][(rXBallNext + DiaBall-40)/80])
+                begin 
+                    rCollision <= CLeft;
+                    rWalls[(rYBallNext -40)/40][(rXBallNext + DiaBall-40)/80] = 0;
+                end
+                // rechterrand van de bal met een muur
+                else if(rWalls[(rYBallNext -40)/40][(rXBallNext - DiaBall-40)/80])
+                begin 
+                    rCollision <= CLeft;
+                    rWalls[(rYBallNext -40)/40][(rXBallNext - DiaBall-40)/80] = 0;
+                end
+                // colision met de paddel
+            else 
+                    begin
+                      rCollision <=CNo; 
+                    end
+            end
+
+    end
 
 endmodule
