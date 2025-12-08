@@ -16,6 +16,7 @@ parameter DiaBall = 20 // straal van de ball
     reg[9:0] rXBallNext, rYBallNext;
     reg[9:0] rXPaddle;
     reg[6:0] rWalls [3:0];
+    reg mem;
    
     assign oXBall = rXBall;
     assign oYBall = rYBall;
@@ -78,6 +79,25 @@ parameter DiaBall = 20 // straal van de ball
     //
     // bewegings logica voor de bewegings FSM
     always @(*) begin
+        if(rYBallNext + DiaBall >= 430&& rYBallNext + DiaBall <= 440)begin
+                if(rXBallNext - rXPaddle <= 35 && rXBallNext - rXPaddle >= -35 )begin
+                    if(rXBallNext - rXPaddle >= 25)
+                        rFSMB_next <= sUL3;
+                    else if(rXBallNext - rXPaddle >= 15)
+                        rFSMB_next <= sUL2;
+                    else if(rXBallNext - rXPaddle >= 5)
+                        rFSMB_next <= sUL1;
+                    else if(rXBallNext - rXPaddle >= -5)
+                        rFSMB_next <= sU;
+                    else if(rXBallNext - rXPaddle >= -15)
+                        rFSMB_next <= sUR1;
+                    else if(rXBallNext - rXPaddle >= -25)
+                        rFSMB_next <= sUR2;
+                    else if(rXBallNext - rXPaddle >= -35)
+                        rFSMB_next <= sUR3;
+        end
+    end
+        else begin
         case (rFSMB_current)
             sInit:
                 rFSMB_next <= sIdle;
@@ -198,6 +218,7 @@ parameter DiaBall = 20 // straal van de ball
                 rFSMB_next <= sIdle;
         endcase
     end
+    end
     //
     //logica voor updating positie ball
     always @(posedge iClk ) begin
@@ -208,6 +229,7 @@ parameter DiaBall = 20 // straal van de ball
 
             rXBallNext <= 10'd320;
             rYBallNext <= 10'd240;
+            rXPaddle <= 10'd 240;
             
             rWalls[0] <= 8'b11111111;
             rWalls[1] <= 8'b11111111;
@@ -219,6 +241,14 @@ parameter DiaBall = 20 // straal van de ball
         
         // movement
         else if (iClkTraag == 1'b1) begin
+            
+            rXBallNext <= rXBall;
+            rYBallNext  <= rYBall;
+            mem = 0;
+        end
+        else if (iClkTraag == 01'b0 && mem == 0) begin
+            
+            
             if(rFSMB_current == sU) begin
                 rXBall <= rXBall + 10'd0;
                 rYBall <= rYBall - 10'd2;
@@ -321,6 +351,14 @@ parameter DiaBall = 20 // straal van de ball
                 rXBallNext <= rXBallNext - 10'd4;
                 rYBallNext <= rYBallNext + 10'd2;
             end
+
+            if(iLeft) begin
+                rXPaddle <= rXPaddle - 10'd2;
+            end
+            if(iRight) begin
+                rXPaddle <= rXPaddle + 10'd2;
+            end
+            mem = 1;
         end
     end
 
@@ -359,18 +397,20 @@ parameter DiaBall = 20 // straal van de ball
                     rWalls[(rYBallNext -40)/40][(rXBallNext + DiaBall-40)/80] = 0;
                 end
                 // rechterrand van de bal met een muur
-                else if(rWalls[(rYBallNext -40)/40][(rXBallNext - DiaBall-40)/80])
+                else if(rWalls[(rYBallNext -40)/40][(rXBallNext  - DiaBall-40)/80])
                 begin 
                     rCollision <= CLeft;
                     rWalls[(rYBallNext -40)/40][(rXBallNext - DiaBall-40)/80] = 0;
                 end
                 // colision met de paddel
+
+                
+            end
             else 
                     begin
                       rCollision <=CNo; 
                     end
-            end
+        end
 
-    end
 
 endmodule
