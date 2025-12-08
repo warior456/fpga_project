@@ -352,10 +352,10 @@ parameter DiaBall = 20 // straal van de ball
                 rYBallNext <= rYBallNext + 10'd2;
             end
 
-            if(iLeft) begin
+            if(iLeft&& rXPaddle > 35) begin
                 rXPaddle <= rXPaddle - 10'd2;
             end
-            if(iRight) begin
+            if(iRight&& rXPaddle < 605) begin
                 rXPaddle <= rXPaddle + 10'd2;
             end
             mem = 1;
