@@ -79,8 +79,8 @@ module FSM_basicProject#(
     wire [3:0] gridY_Bottom = (ballBottom - 40) / 40;
 
     // Boolean checks for being inside the grid area
-    wire inGridY_Top    = (ballTop >= 40 && ballTop < 198);
-    wire inGridY_Bottom = (ballBottom >= 40 && ballBottom < 198);
+    wire inGridY_Top    = (ballTop >= 40 && ballTop < 200);
+    wire inGridY_Bottom = (ballBottom >= 40 && ballBottom < 200);
     wire inGridX_Left   = (ballLeft >= 40 && ballLeft < 600);
     wire inGridX_Right  = (ballRight >= 40 && ballRight < 600);
 
@@ -166,7 +166,7 @@ module FSM_basicProject#(
         // 3. NEXT STATE LOGIC (Reaction to Collision)
 
         if (rCollision == CPaddle) begin
-            // Positive Diff = Ball is on the RIGHT side of paddle -> Bounce RIGHT
+        
             if (wDiff >= 25)
                 rFSMB_next = sUpRight3;    // Sharp Right
             else if (wDiff >= 15)
