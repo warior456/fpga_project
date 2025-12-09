@@ -60,7 +60,8 @@ module basic_project_video_timings_0_0 (
   oCountH,
   oCountV,
   oHS,
-  oVS
+  oVS,
+  oEndFrame
 );
 
 input wire iClk;
@@ -69,6 +70,7 @@ output wire [9 : 0] oCountH;
 output wire [9 : 0] oCountV;
 output wire oHS;
 output wire oVS;
+output wire oEndFrame;
 
   video_timings #(
     .WIDTH(640),
@@ -89,6 +91,7 @@ output wire oVS;
     .oCountH(oCountH),
     .oCountV(oCountV),
     .oHS(oHS),
-    .oVS(oVS)
+    .oVS(oVS),
+    .oEndFrame(oEndFrame)
   );
 endmodule

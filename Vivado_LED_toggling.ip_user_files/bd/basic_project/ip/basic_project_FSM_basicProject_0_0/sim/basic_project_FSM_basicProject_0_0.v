@@ -61,10 +61,12 @@ module basic_project_FSM_basicProject_0_0 (
   iUp,
   iLeft,
   iRight,
+  iClkTraag,
   oWalls,
-  oXball,
+  oXBall,
   oYBall,
-  oXPaddle
+  oXPaddle,
+  oPaddleSize
 );
 
 input wire iClk;
@@ -73,21 +75,28 @@ input wire iDown;
 input wire iUp;
 input wire iLeft;
 input wire iRight;
+input wire iClkTraag;
 output wire [27 : 0] oWalls;
-output wire [9 : 0] oXball;
+output wire [9 : 0] oXBall;
 output wire [9 : 0] oYBall;
 output wire [9 : 0] oXPaddle;
+output wire [9 : 0] oPaddleSize;
 
-  FSM_basicProject inst (
+  FSM_basicProject #(
+    .Speed(833333),
+    .BallRadius(10)
+  ) inst (
     .iClk(iClk),
     .iRst(iRst),
     .iDown(iDown),
     .iUp(iUp),
     .iLeft(iLeft),
     .iRight(iRight),
+    .iClkTraag(iClkTraag),
     .oWalls(oWalls),
-    .oXball(oXball),
+    .oXBall(oXBall),
     .oYBall(oYBall),
-    .oXPaddle(oXPaddle)
+    .oXPaddle(oXPaddle),
+    .oPaddleSize(oPaddleSize)
   );
 endmodule

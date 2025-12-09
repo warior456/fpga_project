@@ -31,7 +31,7 @@ module video_pattern#(
         input wire [H_BITS-1:0] iCountH,
         input wire [V_BITS-1:0] iCountV,
         input wire [9:0] iBallX, iBallY,
-        input wire [9:0] iPaddleX,
+        input wire [9:0] iPaddleX, iPaddleSize,
         input wire [27:0] iWalls,
         output reg [7:0] oRed,
         output reg [7:0] oGreen,
@@ -41,7 +41,7 @@ module video_pattern#(
     localparam WALL_WIDTH = 80;
     localparam WALL_HEIGHT = 40;
     localparam PADDING = 40;
-    localparam BALL_RADIUS = 20;
+    localparam BALL_RADIUS = 10;
 
     wire [6:0] wWalls [3:0];
     integer i;
@@ -66,11 +66,13 @@ module video_pattern#(
             oRed <= 8'd100;
             oGreen <= 8'd0;
             oBlue <= 8'd100;
-            if(iCountH >= iBallX && iCountH < (iBallX + 2*BALL_RADIUS) //ball
-                    && iCountV >= iBallY && iCountV < (iBallY + 2*BALL_RADIUS)
+
+            //ball
+            if(iCountH >= iBallX - BALL_RADIUS && iCountH <= (iBallX + BALL_RADIUS) 
+                    && iCountV >= iBallY - BALL_RADIUS && iCountV <= (iBallY + BALL_RADIUS)
               ) begin
-                x_dist = iCountH - (iBallX + BALL_RADIUS);
-                y_dist = iCountV - (iBallY + BALL_RADIUS);
+                x_dist = iCountH - iBallX;
+                y_dist = iCountV - iBallY;
 
                 if(x_dist*x_dist + y_dist*y_dist <= BALL_RADIUS * BALL_RADIUS) begin
                     oRed <= 8'd255;
@@ -78,6 +80,15 @@ module video_pattern#(
                     oBlue <= 8'd0;
                 end
 
+            end
+
+            //paddle
+            if(iCountH >= iPaddleX - iPaddleSize/2 && iCountH < (iPaddleX + iPaddleSize/2)
+                    && iCountV >= 430 && iCountV <= 439
+              ) begin
+                oRed <= 8'd0;
+                oGreen <= 8'd255;
+                oBlue <= 8'd0;
             end
 
             //wall grid
@@ -92,6 +103,7 @@ module video_pattern#(
                                 (iCountV <  PADDING + (j*WALL_HEIGHT) - 1)) begin
                             oRed <= 8'd000;
                             oBlue <= 8'd000;
+                            oGreen <= 8'd000;
                         end
                     end
                 end

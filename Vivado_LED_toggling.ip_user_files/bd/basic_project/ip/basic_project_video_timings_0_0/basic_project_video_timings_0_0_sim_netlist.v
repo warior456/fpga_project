@@ -2,7 +2,7 @@
 // Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
-// Date        : Thu Nov 13 12:19:31 2025
+// Date        : Thu Dec  4 22:29:24 2025
 // Host        : laptop-MATTEO running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               c:/labosDigOnt/fpga_project/Vivado_LED_toggling.gen/sources_1/bd/basic_project/ip/basic_project_video_timings_0_0/basic_project_video_timings_0_0_sim_netlist.v
@@ -22,40 +22,52 @@ module basic_project_video_timings_0_0
     oCountH,
     oCountV,
     oHS,
-    oVS);
+    oVS,
+    oEndFrame);
   input iClk;
   input iRst;
   output [9:0]oCountH;
   output [9:0]oCountV;
   output oHS;
   output oVS;
+  output oEndFrame;
 
   wire iClk;
   wire iRst;
   wire [9:0]oCountH;
   wire [9:0]oCountV;
+  wire oEndFrame;
   wire oHS;
   wire oVS;
 
   basic_project_video_timings_0_0_video_timings inst
-       (.Q(oCountH),
+       (.Q(oCountV),
         .iClk(iClk),
         .iRst(iRst),
+        .oEndFrame(oEndFrame),
         .oHS(oHS),
         .oVS(oVS),
-        .\r_CntCurr_reg[9] (oCountV));
+        .\r_CntCurr_reg[9] (oCountH));
 endmodule
 
 (* ORIG_REF_NAME = "counter" *) 
 module basic_project_video_timings_0_0_counter
-   (Q,
-    E,
+   (oEndFrame,
+    Q,
     oHS,
+    E,
+    oEndFrame_0,
+    oEndFrame_1,
+    oEndFrame_2,
     iClk,
     iRst);
+  output oEndFrame;
   output [9:0]Q;
-  output [0:0]E;
   output oHS;
+  output [0:0]E;
+  input oEndFrame_0;
+  input oEndFrame_1;
+  input [1:0]oEndFrame_2;
   input iClk;
   input iRst;
 
@@ -63,10 +75,45 @@ module basic_project_video_timings_0_0_counter
   wire [9:0]Q;
   wire iClk;
   wire iRst;
+  wire oEndFrame;
+  wire oEndFrame_0;
+  wire oEndFrame_1;
+  wire [1:0]oEndFrame_2;
+  wire oEndFrame_INST_0_i_1_n_0;
+  wire oEndFrame_INST_0_i_3_n_0;
   wire oHS;
   wire [9:0]r_CntCurr;
   wire \r_CntCurr[9]_i_2_n_0 ;
 
+  LUT6 #(
+    .INIT(64'h0000000000008000)) 
+    oEndFrame_INST_0
+       (.I0(oEndFrame_INST_0_i_1_n_0),
+        .I1(oEndFrame_0),
+        .I2(oEndFrame_INST_0_i_3_n_0),
+        .I3(Q[9]),
+        .I4(Q[8]),
+        .I5(oEndFrame_1),
+        .O(oEndFrame));
+  LUT6 #(
+    .INIT(64'h0000000200000000)) 
+    oEndFrame_INST_0_i_1
+       (.I0(Q[7]),
+        .I1(Q[6]),
+        .I2(Q[4]),
+        .I3(Q[5]),
+        .I4(oEndFrame_2[1]),
+        .I5(oEndFrame_2[0]),
+        .O(oEndFrame_INST_0_i_1_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  LUT4 #(
+    .INIT(16'h0004)) 
+    oEndFrame_INST_0_i_3
+       (.I0(Q[1]),
+        .I1(Q[0]),
+        .I2(Q[3]),
+        .I3(Q[2]),
+        .O(oEndFrame_INST_0_i_3_n_0));
   LUT6 #(
     .INIT(64'hFFFF81FFFFFFFFFF)) 
     oHS_INST_0
@@ -77,7 +124,6 @@ module basic_project_video_timings_0_0_counter
         .I4(Q[8]),
         .I5(Q[9]),
         .O(oHS));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT1 #(
     .INIT(2'h1)) 
     \r_CntCurr[0]_i_1 
@@ -90,7 +136,7 @@ module basic_project_video_timings_0_0_counter
        (.I0(Q[0]),
         .I1(Q[1]),
         .O(r_CntCurr[1]));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT3 #(
     .INIT(8'h78)) 
     \r_CntCurr[2]_i_1 
@@ -119,7 +165,7 @@ module basic_project_video_timings_0_0_counter
         .O(r_CntCurr[4]));
   LUT6 #(
     .INIT(64'hAAAAAAAA55515555)) 
-    \r_CntCurr[5]_i_1 
+    \r_CntCurr[5]_i_1__0 
        (.I0(\r_CntCurr[9]_i_2_n_0 ),
         .I1(Q[8]),
         .I2(Q[7]),
@@ -155,8 +201,18 @@ module basic_project_video_timings_0_0_counter
         .I5(\r_CntCurr[9]_i_2_n_0 ),
         .O(r_CntCurr[8]));
   LUT6 #(
-    .INIT(64'h0000000000040000)) 
+    .INIT(64'hFF00FF007F80EF00)) 
     \r_CntCurr[9]_i_1 
+       (.I0(Q[6]),
+        .I1(Q[7]),
+        .I2(Q[8]),
+        .I3(Q[9]),
+        .I4(Q[5]),
+        .I5(\r_CntCurr[9]_i_2_n_0 ),
+        .O(r_CntCurr[9]));
+  LUT6 #(
+    .INIT(64'h0000000000040000)) 
+    \r_CntCurr[9]_i_1__0 
        (.I0(Q[5]),
         .I1(Q[9]),
         .I2(Q[6]),
@@ -164,16 +220,6 @@ module basic_project_video_timings_0_0_counter
         .I4(Q[8]),
         .I5(\r_CntCurr[9]_i_2_n_0 ),
         .O(E));
-  LUT6 #(
-    .INIT(64'hC6CCCCCCCCCCCCC4)) 
-    \r_CntCurr[9]_i_1__0 
-       (.I0(Q[8]),
-        .I1(Q[9]),
-        .I2(\r_CntCurr[9]_i_2_n_0 ),
-        .I3(Q[5]),
-        .I4(Q[7]),
-        .I5(Q[6]),
-        .O(r_CntCurr[9]));
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT5 #(
     .INIT(32'h7FFFFFFF)) 
@@ -248,13 +294,17 @@ endmodule
 
 (* ORIG_REF_NAME = "counter" *) 
 module basic_project_video_timings_0_0_counter__parameterized0
-   (Q,
+   (\r_CntCurr_reg[6]_0 ,
+    Q,
     oVS,
+    \r_CntCurr_reg[4]_0 ,
     E,
     iClk,
     iRst);
+  output \r_CntCurr_reg[6]_0 ;
   output [9:0]Q;
   output oVS;
+  output \r_CntCurr_reg[4]_0 ;
   input [0:0]E;
   input iClk;
   input iRst;
@@ -266,79 +316,84 @@ module basic_project_video_timings_0_0_counter__parameterized0
   wire oVS;
   wire oVS_INST_0_i_1_n_0;
   wire [9:0]r_CntCurr;
-  wire \r_CntCurr[3]_i_2_n_0 ;
   wire \r_CntCurr[8]_i_2_n_0 ;
   wire \r_CntCurr[9]_i_3_n_0 ;
   wire \r_CntCurr[9]_i_4_n_0 ;
   wire \r_CntCurr[9]_i_5_n_0 ;
+  wire \r_CntCurr_reg[4]_0 ;
+  wire \r_CntCurr_reg[6]_0 ;
 
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
-  LUT4 #(
-    .INIT(16'hFFDF)) 
+  LUT6 #(
+    .INIT(64'h0000000000080000)) 
+    oEndFrame_INST_0_i_2
+       (.I0(Q[6]),
+        .I1(Q[7]),
+        .I2(Q[2]),
+        .I3(Q[3]),
+        .I4(Q[8]),
+        .I5(Q[9]),
+        .O(\r_CntCurr_reg[6]_0 ));
+  LUT2 #(
+    .INIT(4'hB)) 
+    oEndFrame_INST_0_i_4
+       (.I0(Q[4]),
+        .I1(Q[5]),
+        .O(\r_CntCurr_reg[4]_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFDFFFFF)) 
     oVS_INST_0
        (.I0(Q[1]),
         .I1(Q[2]),
-        .I2(Q[3]),
-        .I3(oVS_INST_0_i_1_n_0),
+        .I2(Q[5]),
+        .I3(Q[4]),
+        .I4(Q[3]),
+        .I5(oVS_INST_0_i_1_n_0),
         .O(oVS));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFBFFFFFFF)) 
+  LUT4 #(
+    .INIT(16'hFF7F)) 
     oVS_INST_0_i_1
-       (.I0(Q[9]),
-        .I1(Q[8]),
-        .I2(Q[6]),
-        .I3(Q[7]),
-        .I4(Q[5]),
-        .I5(Q[4]),
+       (.I0(Q[7]),
+        .I1(Q[6]),
+        .I2(Q[8]),
+        .I3(Q[9]),
         .O(oVS_INST_0_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
-  LUT5 #(
-    .INIT(32'h00FF00BF)) 
+  LUT6 #(
+    .INIT(64'h0000FFFF0000DFFF)) 
     \r_CntCurr[0]_i_1__0 
-       (.I0(\r_CntCurr[3]_i_2_n_0 ),
-        .I1(Q[3]),
-        .I2(Q[2]),
-        .I3(Q[0]),
-        .I4(Q[1]),
+       (.I0(Q[9]),
+        .I1(\r_CntCurr[9]_i_5_n_0 ),
+        .I2(Q[3]),
+        .I3(Q[2]),
+        .I4(Q[0]),
+        .I5(Q[1]),
         .O(r_CntCurr[0]));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \r_CntCurr[1]_i_1__0 
        (.I0(Q[0]),
         .I1(Q[1]),
         .O(r_CntCurr[1]));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
-  LUT5 #(
-    .INIT(32'h33CCCCC4)) 
+  LUT6 #(
+    .INIT(64'h3333CCCCCCCCC4CC)) 
     \r_CntCurr[2]_i_1__0 
        (.I0(Q[3]),
         .I1(Q[2]),
-        .I2(\r_CntCurr[3]_i_2_n_0 ),
-        .I3(Q[1]),
-        .I4(Q[0]),
+        .I2(\r_CntCurr[9]_i_5_n_0 ),
+        .I3(Q[9]),
+        .I4(Q[1]),
+        .I5(Q[0]),
         .O(r_CntCurr[2]));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
-  LUT5 #(
-    .INIT(32'h66CCCCC4)) 
+  LUT6 #(
+    .INIT(64'h6666CCCCCCCCC4CC)) 
     \r_CntCurr[3]_i_1__0 
        (.I0(Q[2]),
         .I1(Q[3]),
-        .I2(\r_CntCurr[3]_i_2_n_0 ),
-        .I3(Q[1]),
-        .I4(Q[0]),
+        .I2(\r_CntCurr[9]_i_5_n_0 ),
+        .I3(Q[9]),
+        .I4(Q[1]),
+        .I5(Q[0]),
         .O(r_CntCurr[3]));
-  LUT6 #(
-    .INIT(64'hFFFFFFFEFFFFFFFF)) 
-    \r_CntCurr[3]_i_2 
-       (.I0(Q[5]),
-        .I1(Q[6]),
-        .I2(Q[8]),
-        .I3(Q[7]),
-        .I4(Q[4]),
-        .I5(Q[9]),
-        .O(\r_CntCurr[3]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT5 #(
     .INIT(32'h7FFF8000)) 
     \r_CntCurr[4]_i_1__0 
@@ -349,14 +404,14 @@ module basic_project_video_timings_0_0_counter__parameterized0
         .I4(Q[4]),
         .O(r_CntCurr[4]));
   LUT6 #(
-    .INIT(64'h7FFFFFFF80000000)) 
-    \r_CntCurr[5]_i_1__0 
+    .INIT(64'h6CCCCCCCCCCCCCCC)) 
+    \r_CntCurr[5]_i_1 
        (.I0(Q[4]),
-        .I1(Q[1]),
-        .I2(Q[0]),
-        .I3(Q[3]),
-        .I4(Q[2]),
-        .I5(Q[5]),
+        .I1(Q[5]),
+        .I2(Q[1]),
+        .I3(Q[0]),
+        .I4(Q[3]),
+        .I5(Q[2]),
         .O(r_CntCurr[5]));
   (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT4 #(
@@ -387,7 +442,7 @@ module basic_project_video_timings_0_0_counter__parameterized0
         .I4(Q[7]),
         .I5(Q[8]),
         .O(r_CntCurr[8]));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT4 #(
     .INIT(16'h7FFF)) 
     \r_CntCurr[8]_i_2 
@@ -416,7 +471,6 @@ module basic_project_video_timings_0_0_counter__parameterized0
         .I3(Q[6]),
         .I4(Q[8]),
         .O(\r_CntCurr[9]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT2 #(
     .INIT(4'h7)) 
     \r_CntCurr[9]_i_4 
@@ -499,14 +553,16 @@ endmodule
 module basic_project_video_timings_0_0_video_timings
    (Q,
     \r_CntCurr_reg[9] ,
-    oHS,
+    oEndFrame,
     oVS,
+    oHS,
     iClk,
     iRst);
   output [9:0]Q;
   output [9:0]\r_CntCurr_reg[9] ;
-  output oHS;
+  output oEndFrame;
   output oVS;
+  output oHS;
   input iClk;
   input iRst;
 
@@ -514,22 +570,31 @@ module basic_project_video_timings_0_0_video_timings
   wire iClk;
   wire iEn0;
   wire iRst;
+  wire oEndFrame;
   wire oHS;
   wire oVS;
   wire [9:0]\r_CntCurr_reg[9] ;
+  wire vertical_counter_inst_n_0;
+  wire vertical_counter_inst_n_12;
 
   basic_project_video_timings_0_0_counter horizontal_counter_inst
-       (.E(iEn0),
-        .Q(Q),
-        .iClk(iClk),
-        .iRst(iRst),
-        .oHS(oHS));
-  basic_project_video_timings_0_0_counter__parameterized0 vertical_counter_inst
        (.E(iEn0),
         .Q(\r_CntCurr_reg[9] ),
         .iClk(iClk),
         .iRst(iRst),
-        .oVS(oVS));
+        .oEndFrame(oEndFrame),
+        .oEndFrame_0(vertical_counter_inst_n_0),
+        .oEndFrame_1(vertical_counter_inst_n_12),
+        .oEndFrame_2(Q[1:0]),
+        .oHS(oHS));
+  basic_project_video_timings_0_0_counter__parameterized0 vertical_counter_inst
+       (.E(iEn0),
+        .Q(Q),
+        .iClk(iClk),
+        .iRst(iRst),
+        .oVS(oVS),
+        .\r_CntCurr_reg[4]_0 (vertical_counter_inst_n_12),
+        .\r_CntCurr_reg[6]_0 (vertical_counter_inst_n_0));
 endmodule
 `ifndef GLBL
 `define GLBL

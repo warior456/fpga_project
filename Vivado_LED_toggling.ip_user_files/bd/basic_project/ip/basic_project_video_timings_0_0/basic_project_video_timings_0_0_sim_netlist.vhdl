@@ -2,7 +2,7 @@
 -- Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
--- Date        : Thu Nov 13 12:19:31 2025
+-- Date        : Thu Dec  4 22:29:24 2025
 -- Host        : laptop-MATTEO running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               c:/labosDigOnt/fpga_project/Vivado_LED_toggling.gen/sources_1/bd/basic_project/ip/basic_project_video_timings_0_0/basic_project_video_timings_0_0_sim_netlist.vhdl
@@ -17,9 +17,13 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity basic_project_video_timings_0_0_counter is
   port (
+    oEndFrame : out STD_LOGIC;
     Q : out STD_LOGIC_VECTOR ( 9 downto 0 );
-    E : out STD_LOGIC_VECTOR ( 0 to 0 );
     oHS : out STD_LOGIC;
+    E : out STD_LOGIC_VECTOR ( 0 to 0 );
+    oEndFrame_0 : in STD_LOGIC;
+    oEndFrame_1 : in STD_LOGIC;
+    oEndFrame_2 : in STD_LOGIC_VECTOR ( 1 downto 0 );
     iClk : in STD_LOGIC;
     iRst : in STD_LOGIC
   );
@@ -29,12 +33,14 @@ end basic_project_video_timings_0_0_counter;
 
 architecture STRUCTURE of basic_project_video_timings_0_0_counter is
   signal \^q\ : STD_LOGIC_VECTOR ( 9 downto 0 );
+  signal oEndFrame_INST_0_i_1_n_0 : STD_LOGIC;
+  signal oEndFrame_INST_0_i_3_n_0 : STD_LOGIC;
   signal r_CntCurr : STD_LOGIC_VECTOR ( 9 downto 0 );
   signal \r_CntCurr[9]_i_2_n_0\ : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \r_CntCurr[0]_i_1\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of oEndFrame_INST_0_i_3 : label is "soft_lutpair1";
   attribute SOFT_HLUTNM of \r_CntCurr[1]_i_1\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \r_CntCurr[2]_i_1\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \r_CntCurr[2]_i_1\ : label is "soft_lutpair3";
   attribute SOFT_HLUTNM of \r_CntCurr[3]_i_1\ : label is "soft_lutpair1";
   attribute SOFT_HLUTNM of \r_CntCurr[4]_i_1\ : label is "soft_lutpair0";
   attribute SOFT_HLUTNM of \r_CntCurr[6]_i_1\ : label is "soft_lutpair2";
@@ -42,6 +48,43 @@ architecture STRUCTURE of basic_project_video_timings_0_0_counter is
   attribute SOFT_HLUTNM of \r_CntCurr[9]_i_2\ : label is "soft_lutpair0";
 begin
   Q(9 downto 0) <= \^q\(9 downto 0);
+oEndFrame_INST_0: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"0000000000008000"
+    )
+        port map (
+      I0 => oEndFrame_INST_0_i_1_n_0,
+      I1 => oEndFrame_0,
+      I2 => oEndFrame_INST_0_i_3_n_0,
+      I3 => \^q\(9),
+      I4 => \^q\(8),
+      I5 => oEndFrame_1,
+      O => oEndFrame
+    );
+oEndFrame_INST_0_i_1: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"0000000200000000"
+    )
+        port map (
+      I0 => \^q\(7),
+      I1 => \^q\(6),
+      I2 => \^q\(4),
+      I3 => \^q\(5),
+      I4 => oEndFrame_2(1),
+      I5 => oEndFrame_2(0),
+      O => oEndFrame_INST_0_i_1_n_0
+    );
+oEndFrame_INST_0_i_3: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"0004"
+    )
+        port map (
+      I0 => \^q\(1),
+      I1 => \^q\(0),
+      I2 => \^q\(3),
+      I3 => \^q\(2),
+      O => oEndFrame_INST_0_i_3_n_0
+    );
 oHS_INST_0: unisim.vcomponents.LUT6
     generic map(
       INIT => X"FFFF81FFFFFFFFFF"
@@ -105,7 +148,7 @@ oHS_INST_0: unisim.vcomponents.LUT6
       I4 => \^q\(4),
       O => r_CntCurr(4)
     );
-\r_CntCurr[5]_i_1\: unisim.vcomponents.LUT6
+\r_CntCurr[5]_i_1__0\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"AAAAAAAA55515555"
     )
@@ -154,6 +197,19 @@ oHS_INST_0: unisim.vcomponents.LUT6
     );
 \r_CntCurr[9]_i_1\: unisim.vcomponents.LUT6
     generic map(
+      INIT => X"FF00FF007F80EF00"
+    )
+        port map (
+      I0 => \^q\(6),
+      I1 => \^q\(7),
+      I2 => \^q\(8),
+      I3 => \^q\(9),
+      I4 => \^q\(5),
+      I5 => \r_CntCurr[9]_i_2_n_0\,
+      O => r_CntCurr(9)
+    );
+\r_CntCurr[9]_i_1__0\: unisim.vcomponents.LUT6
+    generic map(
       INIT => X"0000000000040000"
     )
         port map (
@@ -164,19 +220,6 @@ oHS_INST_0: unisim.vcomponents.LUT6
       I4 => \^q\(8),
       I5 => \r_CntCurr[9]_i_2_n_0\,
       O => E(0)
-    );
-\r_CntCurr[9]_i_1__0\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"C6CCCCCCCCCCCCC4"
-    )
-        port map (
-      I0 => \^q\(8),
-      I1 => \^q\(9),
-      I2 => \r_CntCurr[9]_i_2_n_0\,
-      I3 => \^q\(5),
-      I4 => \^q\(7),
-      I5 => \^q\(6),
-      O => r_CntCurr(9)
     );
 \r_CntCurr[9]_i_2\: unisim.vcomponents.LUT5
     generic map(
@@ -277,8 +320,10 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity \basic_project_video_timings_0_0_counter__parameterized0\ is
   port (
+    \r_CntCurr_reg[6]_0\ : out STD_LOGIC;
     Q : out STD_LOGIC_VECTOR ( 9 downto 0 );
     oVS : out STD_LOGIC;
+    \r_CntCurr_reg[4]_0\ : out STD_LOGIC;
     E : in STD_LOGIC_VECTOR ( 0 to 0 );
     iClk : in STD_LOGIC;
     iRst : in STD_LOGIC
@@ -291,60 +336,76 @@ architecture STRUCTURE of \basic_project_video_timings_0_0_counter__parameterize
   signal \^q\ : STD_LOGIC_VECTOR ( 9 downto 0 );
   signal oVS_INST_0_i_1_n_0 : STD_LOGIC;
   signal r_CntCurr : STD_LOGIC_VECTOR ( 9 downto 0 );
-  signal \r_CntCurr[3]_i_2_n_0\ : STD_LOGIC;
   signal \r_CntCurr[8]_i_2_n_0\ : STD_LOGIC;
   signal \r_CntCurr[9]_i_3_n_0\ : STD_LOGIC;
   signal \r_CntCurr[9]_i_4_n_0\ : STD_LOGIC;
   signal \r_CntCurr[9]_i_5_n_0\ : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of oVS_INST_0 : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \r_CntCurr[0]_i_1__0\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \r_CntCurr[1]_i_1__0\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \r_CntCurr[2]_i_1__0\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \r_CntCurr[3]_i_1__0\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \r_CntCurr[4]_i_1__0\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \r_CntCurr[4]_i_1__0\ : label is "soft_lutpair6";
   attribute SOFT_HLUTNM of \r_CntCurr[6]_i_1__0\ : label is "soft_lutpair4";
   attribute SOFT_HLUTNM of \r_CntCurr[7]_i_1__0\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \r_CntCurr[8]_i_2\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \r_CntCurr[8]_i_2\ : label is "soft_lutpair6";
   attribute SOFT_HLUTNM of \r_CntCurr[9]_i_3\ : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \r_CntCurr[9]_i_4\ : label is "soft_lutpair8";
   attribute SOFT_HLUTNM of \r_CntCurr[9]_i_5\ : label is "soft_lutpair5";
 begin
   Q(9 downto 0) <= \^q\(9 downto 0);
-oVS_INST_0: unisim.vcomponents.LUT4
+oEndFrame_INST_0_i_2: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFDF"
+      INIT => X"0000000000080000"
+    )
+        port map (
+      I0 => \^q\(6),
+      I1 => \^q\(7),
+      I2 => \^q\(2),
+      I3 => \^q\(3),
+      I4 => \^q\(8),
+      I5 => \^q\(9),
+      O => \r_CntCurr_reg[6]_0\
+    );
+oEndFrame_INST_0_i_4: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"B"
+    )
+        port map (
+      I0 => \^q\(4),
+      I1 => \^q\(5),
+      O => \r_CntCurr_reg[4]_0\
+    );
+oVS_INST_0: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"FFFFFFFFFFDFFFFF"
     )
         port map (
       I0 => \^q\(1),
       I1 => \^q\(2),
-      I2 => \^q\(3),
-      I3 => oVS_INST_0_i_1_n_0,
+      I2 => \^q\(5),
+      I3 => \^q\(4),
+      I4 => \^q\(3),
+      I5 => oVS_INST_0_i_1_n_0,
       O => oVS
     );
-oVS_INST_0_i_1: unisim.vcomponents.LUT6
+oVS_INST_0_i_1: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FFFFFFFFBFFFFFFF"
+      INIT => X"FF7F"
+    )
+        port map (
+      I0 => \^q\(7),
+      I1 => \^q\(6),
+      I2 => \^q\(8),
+      I3 => \^q\(9),
+      O => oVS_INST_0_i_1_n_0
+    );
+\r_CntCurr[0]_i_1__0\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"0000FFFF0000DFFF"
     )
         port map (
       I0 => \^q\(9),
-      I1 => \^q\(8),
-      I2 => \^q\(6),
-      I3 => \^q\(7),
-      I4 => \^q\(5),
-      I5 => \^q\(4),
-      O => oVS_INST_0_i_1_n_0
-    );
-\r_CntCurr[0]_i_1__0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"00FF00BF"
-    )
-        port map (
-      I0 => \r_CntCurr[3]_i_2_n_0\,
-      I1 => \^q\(3),
-      I2 => \^q\(2),
-      I3 => \^q\(0),
-      I4 => \^q\(1),
+      I1 => \r_CntCurr[9]_i_5_n_0\,
+      I2 => \^q\(3),
+      I3 => \^q\(2),
+      I4 => \^q\(0),
+      I5 => \^q\(1),
       O => r_CntCurr(0)
     );
 \r_CntCurr[1]_i_1__0\: unisim.vcomponents.LUT2
@@ -356,42 +417,31 @@ oVS_INST_0_i_1: unisim.vcomponents.LUT6
       I1 => \^q\(1),
       O => r_CntCurr(1)
     );
-\r_CntCurr[2]_i_1__0\: unisim.vcomponents.LUT5
+\r_CntCurr[2]_i_1__0\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"33CCCCC4"
+      INIT => X"3333CCCCCCCCC4CC"
     )
         port map (
       I0 => \^q\(3),
       I1 => \^q\(2),
-      I2 => \r_CntCurr[3]_i_2_n_0\,
-      I3 => \^q\(1),
-      I4 => \^q\(0),
+      I2 => \r_CntCurr[9]_i_5_n_0\,
+      I3 => \^q\(9),
+      I4 => \^q\(1),
+      I5 => \^q\(0),
       O => r_CntCurr(2)
     );
-\r_CntCurr[3]_i_1__0\: unisim.vcomponents.LUT5
+\r_CntCurr[3]_i_1__0\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"66CCCCC4"
+      INIT => X"6666CCCCCCCCC4CC"
     )
         port map (
       I0 => \^q\(2),
       I1 => \^q\(3),
-      I2 => \r_CntCurr[3]_i_2_n_0\,
-      I3 => \^q\(1),
-      I4 => \^q\(0),
+      I2 => \r_CntCurr[9]_i_5_n_0\,
+      I3 => \^q\(9),
+      I4 => \^q\(1),
+      I5 => \^q\(0),
       O => r_CntCurr(3)
-    );
-\r_CntCurr[3]_i_2\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"FFFFFFFEFFFFFFFF"
-    )
-        port map (
-      I0 => \^q\(5),
-      I1 => \^q\(6),
-      I2 => \^q\(8),
-      I3 => \^q\(7),
-      I4 => \^q\(4),
-      I5 => \^q\(9),
-      O => \r_CntCurr[3]_i_2_n_0\
     );
 \r_CntCurr[4]_i_1__0\: unisim.vcomponents.LUT5
     generic map(
@@ -405,17 +455,17 @@ oVS_INST_0_i_1: unisim.vcomponents.LUT6
       I4 => \^q\(4),
       O => r_CntCurr(4)
     );
-\r_CntCurr[5]_i_1__0\: unisim.vcomponents.LUT6
+\r_CntCurr[5]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"7FFFFFFF80000000"
+      INIT => X"6CCCCCCCCCCCCCCC"
     )
         port map (
       I0 => \^q\(4),
-      I1 => \^q\(1),
-      I2 => \^q\(0),
-      I3 => \^q\(3),
-      I4 => \^q\(2),
-      I5 => \^q\(5),
+      I1 => \^q\(5),
+      I2 => \^q\(1),
+      I3 => \^q\(0),
+      I4 => \^q\(3),
+      I5 => \^q\(2),
       O => r_CntCurr(5)
     );
 \r_CntCurr[6]_i_1__0\: unisim.vcomponents.LUT4
@@ -600,8 +650,9 @@ entity basic_project_video_timings_0_0_video_timings is
   port (
     Q : out STD_LOGIC_VECTOR ( 9 downto 0 );
     \r_CntCurr_reg[9]\ : out STD_LOGIC_VECTOR ( 9 downto 0 );
-    oHS : out STD_LOGIC;
+    oEndFrame : out STD_LOGIC;
     oVS : out STD_LOGIC;
+    oHS : out STD_LOGIC;
     iClk : in STD_LOGIC;
     iRst : in STD_LOGIC
   );
@@ -610,23 +661,33 @@ entity basic_project_video_timings_0_0_video_timings is
 end basic_project_video_timings_0_0_video_timings;
 
 architecture STRUCTURE of basic_project_video_timings_0_0_video_timings is
+  signal \^q\ : STD_LOGIC_VECTOR ( 9 downto 0 );
   signal iEn0 : STD_LOGIC;
+  signal vertical_counter_inst_n_0 : STD_LOGIC;
+  signal vertical_counter_inst_n_12 : STD_LOGIC;
 begin
+  Q(9 downto 0) <= \^q\(9 downto 0);
 horizontal_counter_inst: entity work.basic_project_video_timings_0_0_counter
-     port map (
-      E(0) => iEn0,
-      Q(9 downto 0) => Q(9 downto 0),
-      iClk => iClk,
-      iRst => iRst,
-      oHS => oHS
-    );
-vertical_counter_inst: entity work.\basic_project_video_timings_0_0_counter__parameterized0\
      port map (
       E(0) => iEn0,
       Q(9 downto 0) => \r_CntCurr_reg[9]\(9 downto 0),
       iClk => iClk,
       iRst => iRst,
-      oVS => oVS
+      oEndFrame => oEndFrame,
+      oEndFrame_0 => vertical_counter_inst_n_0,
+      oEndFrame_1 => vertical_counter_inst_n_12,
+      oEndFrame_2(1 downto 0) => \^q\(1 downto 0),
+      oHS => oHS
+    );
+vertical_counter_inst: entity work.\basic_project_video_timings_0_0_counter__parameterized0\
+     port map (
+      E(0) => iEn0,
+      Q(9 downto 0) => \^q\(9 downto 0),
+      iClk => iClk,
+      iRst => iRst,
+      oVS => oVS,
+      \r_CntCurr_reg[4]_0\ => vertical_counter_inst_n_12,
+      \r_CntCurr_reg[6]_0\ => vertical_counter_inst_n_0
     );
 end STRUCTURE;
 library IEEE;
@@ -640,7 +701,8 @@ entity basic_project_video_timings_0_0 is
     oCountH : out STD_LOGIC_VECTOR ( 9 downto 0 );
     oCountV : out STD_LOGIC_VECTOR ( 9 downto 0 );
     oHS : out STD_LOGIC;
-    oVS : out STD_LOGIC
+    oVS : out STD_LOGIC;
+    oEndFrame : out STD_LOGIC
   );
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of basic_project_video_timings_0_0 : entity is true;
@@ -658,11 +720,12 @@ architecture STRUCTURE of basic_project_video_timings_0_0 is
 begin
 inst: entity work.basic_project_video_timings_0_0_video_timings
      port map (
-      Q(9 downto 0) => oCountH(9 downto 0),
+      Q(9 downto 0) => oCountV(9 downto 0),
       iClk => iClk,
       iRst => iRst,
+      oEndFrame => oEndFrame,
       oHS => oHS,
       oVS => oVS,
-      \r_CntCurr_reg[9]\(9 downto 0) => oCountV(9 downto 0)
+      \r_CntCurr_reg[9]\(9 downto 0) => oCountH(9 downto 0)
     );
 end STRUCTURE;

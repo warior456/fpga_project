@@ -62,6 +62,7 @@ module basic_project_video_pattern_0_0 (
   iBallX,
   iBallY,
   iPaddleX,
+  iPaddleSize,
   iWalls,
   oRed,
   oGreen,
@@ -76,6 +77,7 @@ input wire [9 : 0] iCountV;
 input wire [9 : 0] iBallX;
 input wire [9 : 0] iBallY;
 input wire [9 : 0] iPaddleX;
+input wire [9 : 0] iPaddleSize;
 input wire [27 : 0] iWalls;
 output wire [7 : 0] oRed;
 output wire [7 : 0] oGreen;
@@ -95,6 +97,7 @@ output wire oActive;
     .iBallX(iBallX),
     .iBallY(iBallY),
     .iPaddleX(iPaddleX),
+    .iPaddleSize(iPaddleSize),
     .iWalls(iWalls),
     .oRed(oRed),
     .oGreen(oGreen),

@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x2EA38805AD53147F",
+      "boundary_crc": "0xAB246E1B08425F59",
       "device": "xc7z020clg400-1",
       "gen_directory": "../../../../Vivado_LED_toggling.gen/sources_1/bd/basic_project",
       "name": "basic_project",
@@ -102,7 +102,7 @@
         "left": "2",
         "right": "0"
       },
-      "iPushDown": {
+      "iDown": {
         "direction": "I"
       },
       "iPushUp": {
@@ -125,6 +125,9 @@
       },
       "oLEDDown": {
         "direction": "O"
+      },
+      "iSoftRst": {
+        "direction": "I"
       }
     },
     "components": {
@@ -236,6 +239,11 @@
             "right": "0"
           },
           "iPaddleX": {
+            "direction": "I",
+            "left": "9",
+            "right": "0"
+          },
+          "iPaddleSize": {
             "direction": "I",
             "left": "9",
             "right": "0"
@@ -431,6 +439,11 @@
             "direction": "O",
             "left": "9",
             "right": "0"
+          },
+          "oPaddleSize": {
+            "direction": "O",
+            "left": "9",
+            "right": "0"
           }
         }
       }
@@ -449,6 +462,12 @@
       "FSM_basicProject_0_oLEDRight": {
         "ports": [
           "oLEDRight"
+        ]
+      },
+      "FSM_basicProject_0_oPaddleSize1": {
+        "ports": [
+          "FSM_basicProject_0/oPaddleSize",
+          "video_pattern_0/iPaddleSize"
         ]
       },
       "FSM_basicProject_0_oShapSize": {
@@ -479,8 +498,8 @@
         "ports": [
           "clk_wiz_0/clk_25",
           "rgb2dvi_0/PixelClk",
-          "video_pattern_0/iClk",
           "video_timings_0/iClk",
+          "video_pattern_0/iClk",
           "FSM_basicProject_0/iClk"
         ]
       },
@@ -498,7 +517,7 @@
       },
       "iDown_0_1": {
         "ports": [
-          "iPushDown",
+          "iDown",
           "FSM_basicProject_0/iDown"
         ]
       },
@@ -518,8 +537,13 @@
         "ports": [
           "iRst",
           "rgb2dvi_0/aRst",
-          "video_pattern_0/iRst",
           "video_timings_0/iRst",
+          "video_pattern_0/iRst"
+        ]
+      },
+      "iRst_0_2": {
+        "ports": [
+          "iSoftRst",
           "FSM_basicProject_0/iRst"
         ]
       },
