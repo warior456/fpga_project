@@ -59,9 +59,12 @@ module FSM_basicProject#(
     reg[4:0] rFSMB_current, rFSMB_next;
     reg[2:0] rCollision;
 
-    // --- HELPER WIRES FOR GRID CALCULATION ---
-    // These ensure the destruction logic and collision logic use the EXACT same index
-    // Grid Offset X = 40, Width = 80. Grid Offset Y = 40, Height = 40.
+    // helpvariableen.
+
+    wire signed [11:0] wDiff;
+
+    // Calculate difference: cast to signed to prevent unsigned underflow/wrapping
+    assign wDiff = $signed({1'b0, rXBall}) - $signed({1'b0, rXPaddle});
 
     // Check points relative to ball center
     wire [9:0] ballTop    = rYBall - BallRadius;
@@ -76,8 +79,8 @@ module FSM_basicProject#(
     wire [3:0] gridY_Bottom = (ballBottom - 40) / 40;
 
     // Boolean checks for being inside the grid area
-    wire inGridY_Top    = (ballTop >= 40 && ballTop < 200);
-    wire inGridY_Bottom = (ballBottom >= 40 && ballBottom < 200);
+    wire inGridY_Top    = (ballTop >= 40 && ballTop < 198);
+    wire inGridY_Bottom = (ballBottom >= 40 && ballBottom < 198);
     wire inGridX_Left   = (ballLeft >= 40 && ballLeft < 600);
     wire inGridX_Right  = (ballRight >= 40 && ballRight < 600);
 
@@ -110,7 +113,7 @@ module FSM_basicProject#(
 
             // Paddle Y is approx 430. Check if Ball Bottom hits Paddle Top
             if(ballBottom >= 430 && ballBottom <= 445) begin
-                if(rXBall >= rXPaddle - 40 && rXBall <= rXPaddle + 40) begin
+                if(rXBall + BallRadius >= rXPaddle - 35 && rXBall -BallRadius <= rXPaddle + 35) begin
                     rCollision = CPaddle; // We hit the paddle
                 end
             end
@@ -128,7 +131,7 @@ module FSM_basicProject#(
         // Only check walls if we haven't already hit screen or paddle
         if (rCollision == CNo) begin
             // Hit Block Above (Moving Up)
-            if (movingUp && inGridY_Top && inGridX_Left /*using center/left roughly*/ && rWalls[gridY_Top][(rXBall-40)/80]) begin
+            if (movingUp && inGridY_Top && inGridX_Left && rWalls[gridY_Top][(rXBall-40)/80]) begin
                 // Check if actually moving up
                 if (rFSMB_current == sUp || rFSMB_current == sUpLeft1 || rFSMB_current == sUpLeft2 || rFSMB_current == sUpLeft3 ||
                         rFSMB_current == sUpRight1 || rFSMB_current == sUpRight2 || rFSMB_current == sUpRight3)
@@ -155,26 +158,29 @@ module FSM_basicProject#(
                         rFSMB_current == sDownRight1 || rFSMB_current == sDownRight2 || rFSMB_current == sDownRight3)
                     rCollision = CRight;
             end
+            else begin
+                rCollision = CNo;
+            end
         end
 
         // 3. NEXT STATE LOGIC (Reaction to Collision)
 
         if (rCollision == CPaddle) begin
-            // Paddle Bounce Angle Logic
-            if(rXBall - rXPaddle >= 25)
-                rFSMB_next = sUpLeft3;
-            else if(rXBall - rXPaddle >= 15)
-                rFSMB_next = sUpLeft2;
-            else if(rXBall - rXPaddle >= 5)
-                rFSMB_next = sUpLeft1;
-            else if(rXBall - rXPaddle >= -5)
+            // Positive Diff = Ball is on the RIGHT side of paddle -> Bounce RIGHT
+            if (wDiff >= 25)
+                rFSMB_next = sUpRight3;    // Sharp Right
+            else if (wDiff >= 15)
+                rFSMB_next = sUpRight2;    // Mid Right
+            else if (wDiff >= 5)
+                rFSMB_next = sUpRight1;    // Soft Right
+            else if (wDiff >= -5)
                 rFSMB_next = sUp;
-            else if(rXBall - rXPaddle >= -15)
-                rFSMB_next = sUpRight1;
-            else if(rXBall - rXPaddle >= -25)
-                rFSMB_next = sUpRight2;
+            else if (wDiff >= -15)
+                rFSMB_next = sUpLeft1;     // Soft Left
+            else if (wDiff >= -25)
+                rFSMB_next = sUpLeft2;     // Mid Left
             else
-                rFSMB_next = sUpRight3;
+                rFSMB_next = sUpLeft3;     // Sharp Left (Covers everything < -25)
         end
         else begin
             case (rFSMB_current)
@@ -272,7 +278,7 @@ module FSM_basicProject#(
         end
     end
 
- 
+
     // Sequentieele Logica
     // Position Update & Wall Destruction
     always @(posedge iClk) begin
@@ -358,9 +364,9 @@ module FSM_basicProject#(
             endcase
 
             // Update Paddle Position
-            if(iLeft && rXPaddle > 40)
+            if(iLeft && rXPaddle > 4)
                 rXPaddle <= rXPaddle - 4;
-            if(iRight && rXPaddle < 600)
+            if(iRight && rXPaddle < 640-4)
                 rXPaddle <= rXPaddle + 4;
 
             mem <= 1;

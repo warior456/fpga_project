@@ -7,58 +7,58 @@
 #  -string -flagsOSRD
 preplace port port-id_iRst -pg 1 -lvl 0 -x -10 -y 250 -defaultsOSRD
 preplace port port-id_iClk -pg 1 -lvl 0 -x -10 -y 200 -defaultsOSRD
-preplace port port-id_hdmi_tx_clk_p -pg 1 -lvl 6 -x 1430 -y 100 -defaultsOSRD
-preplace port port-id_hdmi_tx_clk_n -pg 1 -lvl 6 -x 1430 -y 130 -defaultsOSRD
+preplace port port-id_hdmi_tx_clk_p -pg 1 -lvl 6 -x 1460 -y 100 -defaultsOSRD
+preplace port port-id_hdmi_tx_clk_n -pg 1 -lvl 6 -x 1460 -y 130 -defaultsOSRD
 preplace port port-id_iDown -pg 1 -lvl 0 -x -10 -y 280 -defaultsOSRD
 preplace port port-id_iPushUp -pg 1 -lvl 0 -x -10 -y 340 -defaultsOSRD
 preplace port port-id_iPushLeft -pg 1 -lvl 0 -x -10 -y 370 -defaultsOSRD
 preplace port port-id_iPushRight -pg 1 -lvl 0 -x -10 -y 400 -defaultsOSRD
-preplace port port-id_oLEDRight -pg 1 -lvl 6 -x 1430 -y 220 -defaultsOSRD
-preplace port port-id_oLEDLeft -pg 1 -lvl 6 -x 1430 -y 50 -defaultsOSRD
-preplace port port-id_oLEDUp -pg 1 -lvl 6 -x 1430 -y 470 -defaultsOSRD
-preplace port port-id_oLEDDown -pg 1 -lvl 6 -x 1430 -y 20 -defaultsOSRD
+preplace port port-id_oLEDRight -pg 1 -lvl 6 -x 1460 -y 220 -defaultsOSRD
+preplace port port-id_oLEDLeft -pg 1 -lvl 6 -x 1460 -y 50 -defaultsOSRD
+preplace port port-id_oLEDUp -pg 1 -lvl 6 -x 1460 -y 470 -defaultsOSRD
+preplace port port-id_oLEDDown -pg 1 -lvl 6 -x 1460 -y 20 -defaultsOSRD
 preplace port port-id_iSoftRst -pg 1 -lvl 0 -x -10 -y 310 -defaultsOSRD
-preplace portBus hdmi_tx_d_p -pg 1 -lvl 6 -x 1430 -y 160 -defaultsOSRD
-preplace portBus hdmi_tx_d_n -pg 1 -lvl 6 -x 1430 -y 190 -defaultsOSRD
+preplace portBus hdmi_tx_d_p -pg 1 -lvl 6 -x 1460 -y 160 -defaultsOSRD
+preplace portBus hdmi_tx_d_n -pg 1 -lvl 6 -x 1460 -y 190 -defaultsOSRD
 preplace inst video_timings_0 -pg 1 -lvl 2 -x 360 -y 100 -defaultsOSRD
-preplace inst video_pattern_0 -pg 1 -lvl 3 -x 700 -y 330 -defaultsOSRD
-preplace inst rgb2dvi_0 -pg 1 -lvl 5 -x 1250 -y 130 -defaultsOSRD
-preplace inst xlconcat_0 -pg 1 -lvl 4 -x 960 -y 280 -defaultsOSRD
+preplace inst video_pattern_0 -pg 1 -lvl 3 -x 710 -y 330 -defaultsOSRD
+preplace inst rgb2dvi_0 -pg 1 -lvl 5 -x 1280 -y 130 -defaultsOSRD
+preplace inst xlconcat_0 -pg 1 -lvl 4 -x 990 -y 280 -defaultsOSRD
 preplace inst clk_wiz_0 -pg 1 -lvl 1 -x 110 -y 200 -defaultsOSRD
 preplace inst FSM_basicProject_0 -pg 1 -lvl 2 -x 360 -y 350 -defaultsOSRD
 preplace netloc FSM_basicProject_0_oLEDDown 1 5 1 N 20
 preplace netloc FSM_basicProject_0_oLEDLeft 1 5 1 N 50
 preplace netloc FSM_basicProject_0_oLEDRight 1 5 1 N 220
+preplace netloc FSM_basicProject_0_oPaddleSize1 1 2 1 N 390
 preplace netloc FSM_basicProject_0_oShapSize 1 2 1 N 370
 preplace netloc FSM_basicProject_0_oWalls 1 2 1 500 310n
 preplace netloc FSM_basicProject_0_oXball 1 2 1 N 330
 preplace netloc FSM_basicProject_0_oYBall 1 2 1 N 350
-preplace netloc clk_wiz_0_clk_25 1 1 4 210 470 540 470 NJ 470 1080
-preplace netloc clk_wiz_0_clk_250 1 1 4 NJ 210 520J 190 NJ 190 1070
+preplace netloc clk_wiz_0_clk_25 1 1 4 210 470 550 470 NJ 470 1110
+preplace netloc clk_wiz_0_clk_250 1 1 4 NJ 210 520J 190 NJ 190 1100
 preplace netloc iClk_1 1 0 1 NJ 200
 preplace netloc iDown_0_1 1 0 2 NJ 280 220J
 preplace netloc iLeft_0_1 1 0 2 NJ 370 NJ
 preplace netloc iRight_0_1 1 0 2 NJ 400 220J
-preplace netloc iRst_0_1 1 0 5 10J 130 220 200 560 160 NJ 160 N
+preplace netloc iRst_0_1 1 0 5 10J 130 220 200 570 160 NJ 160 N
+preplace netloc iRst_0_2 1 0 2 NJ 310 NJ
 preplace netloc iUp_0_1 1 0 2 NJ 340 200J
 preplace netloc rgb2dvi_0_TMDS_Clk_n 1 5 1 NJ 130
-preplace netloc rgb2dvi_0_TMDS_Clk_p 1 5 1 1410J 100n
-preplace netloc rgb2dvi_0_TMDS_Data_n 1 5 1 1410J 170n
-preplace netloc rgb2dvi_0_TMDS_Data_p 1 5 1 1410J 150n
-preplace netloc video_pattern_0_oActive 1 3 2 850J 140 N
-preplace netloc video_pattern_0_oBlue 1 3 1 860 280n
-preplace netloc video_pattern_0_oGreen 1 3 1 840 260n
+preplace netloc rgb2dvi_0_TMDS_Clk_p 1 5 1 1440J 100n
+preplace netloc rgb2dvi_0_TMDS_Data_n 1 5 1 1440J 170n
+preplace netloc rgb2dvi_0_TMDS_Data_p 1 5 1 1440J 150n
+preplace netloc video_pattern_0_oActive 1 3 2 860J 140 N
+preplace netloc video_pattern_0_oBlue 1 3 1 870 280n
+preplace netloc video_pattern_0_oGreen 1 3 1 850 260n
 preplace netloc video_pattern_0_oRed 1 3 1 N 300
-preplace netloc video_timings_0_oCountH 1 2 1 550 60n
+preplace netloc video_timings_0_oCountH 1 2 1 560 60n
 preplace netloc video_timings_0_oCountV 1 2 1 530 80n
-preplace netloc video_timings_0_oEndFrame 1 1 5 220 480 510 480 NJ 480 NJ 480 1410J
+preplace netloc video_timings_0_oEndFrame 1 1 5 220 480 510 480 NJ 480 NJ 480 1440J
 preplace netloc video_timings_0_oHS 1 2 3 NJ 100 NJ 100 N
 preplace netloc video_timings_0_oVS 1 2 3 NJ 120 NJ 120 N
-preplace netloc xlconcat_0_dout 1 4 1 1060 80n
-preplace netloc FSM_basicProject_0_oPaddleSize1 1 2 1 N 390
-preplace netloc iRst_0_2 1 0 2 NJ 310 NJ
-levelinfo -pg 1 -10 110 360 700 960 1250 1430
-pagesize -pg 1 -db -bbox -sgen -130 0 1590 490
+preplace netloc xlconcat_0_dout 1 4 1 1090 80n
+levelinfo -pg 1 -10 110 360 710 990 1280 1460
+pagesize -pg 1 -db -bbox -sgen -130 0 1630 490
 "
 }
 0
