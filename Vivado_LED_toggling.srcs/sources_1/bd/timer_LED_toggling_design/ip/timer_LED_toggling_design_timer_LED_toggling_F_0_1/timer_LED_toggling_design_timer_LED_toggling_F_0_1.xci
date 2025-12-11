@@ -8,7 +8,11 @@
     "gen_directory": "../../../../../../Vivado_LED_toggling.gen/sources_1/bd/timer_LED_toggling_design/ip/timer_LED_toggling_design_timer_LED_toggling_F_0_1",
     "parameters": {
       "component_parameters": {
+        "Clk_FREQ": [ { "value": "25000000", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "Component_Name": [ { "value": "timer_LED_toggling_design_timer_LED_toggling_F_0_1", "resolve_type": "user", "usage": "all" } ]
+      },
+      "model_parameters": {
+        "Clk_FREQ": [ { "value": "25000000", "resolve_type": "generated", "format": "long", "usage": "all" } ]
       },
       "project_parameters": {
         "ARCHITECTURE": [ { "value": "zynq" } ],

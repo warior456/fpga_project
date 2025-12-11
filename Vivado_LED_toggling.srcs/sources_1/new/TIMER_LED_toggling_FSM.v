@@ -20,7 +20,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module TIMER_LED_toggling_FSM(
+module TIMER_LED_toggling_FSM#
+(parameter Clk_FREQ = 25_000_000)(
   input   wire  iClk, iRst, iPush,
   output  wire  oLED
     );
@@ -34,7 +35,7 @@ module TIMER_LED_toggling_FSM(
   reg[1:0] rFSM_current, wFSM_next;
   
   toggle#(
-    .CLK_FREQ(25_000_000)
+    .CLK_FREQ(Clk_FREQ)
     )
   toggle_inst
     (

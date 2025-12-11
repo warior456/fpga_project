@@ -4,7 +4,7 @@
 <!-- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.                   -->
 <!-- Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.   -->
 
-<Project Product="Vivado" Version="7" Minor="70" Path="C:/labosDigOnt/fpga_project/Vivado_LED_toggling.xpr">
+<Project Product="Vivado" Version="7" Minor="70" Path="C:/Users/Jorbe/Vivado_project/fpga_project/Vivado_LED_toggling.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="2ea9b17120244984905deb6ad8de4672"/>
@@ -60,7 +60,7 @@
     <Option Name="IPStaticSourceDir" Val="$PIPUSERFILESDIR/ipstatic"/>
     <Option Name="EnableBDX" Val="FALSE"/>
     <Option Name="DSABoardId" Val="pynq-z2"/>
-    <Option Name="WTXSimLaunchSim" Val="34"/>
+    <Option Name="WTXSimLaunchSim" Val="60"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
@@ -91,6 +91,20 @@
   <FileSets Version="1" Minor="32">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
       <Filter Type="Srcs"/>
+      <File Path="$PSRCDIR/sources_1/new/Debounce_Switch.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/TIMER_LED_toggling_FSM.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PSRCDIR/sources_1/imports/new/counter.v">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PPRDIR/../lab2/lab2.srcs/sources_1/new/counter.v"/>
@@ -100,8 +114,69 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PSRCDIR/sources_1/imports/new/timer_1s.v">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../lab2/lab2.srcs/sources_1/new/timer_1s.v"/>
+          <Attr Name="ImportTime" Val="1763026347"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/new/toggle.v">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../lab2/lab2.srcs/sources_1/new/toggle.v"/>
+          <Attr Name="ImportTime" Val="1760605034"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/timer_LED_toggling_FSM_QUAD.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/bd/timer_LED_toggling_design/timer_LED_toggling_design.bd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+        <CompFileExtendedInfo CompFileName="timer_LED_toggling_design.bd" FileRelPathName="ip/timer_LED_toggling_design_Debounce_Switch_0_0/timer_LED_toggling_design_Debounce_Switch_0_0.xci">
+          <Proxy FileSetName="timer_LED_toggling_design_Debounce_Switch_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="timer_LED_toggling_design.bd" FileRelPathName="ip/timer_LED_toggling_design_Debounce_Switch_0_2/timer_LED_toggling_design_Debounce_Switch_0_2.xci">
+          <Proxy FileSetName="timer_LED_toggling_design_Debounce_Switch_0_2"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="timer_LED_toggling_design.bd" FileRelPathName="ip/timer_LED_toggling_design_Debounce_Switch_0_3/timer_LED_toggling_design_Debounce_Switch_0_3.xci">
+          <Proxy FileSetName="timer_LED_toggling_design_Debounce_Switch_0_3"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="timer_LED_toggling_design.bd" FileRelPathName="ip/timer_LED_toggling_design_Debounce_Switch_0_4/timer_LED_toggling_design_Debounce_Switch_0_4.xci">
+          <Proxy FileSetName="timer_LED_toggling_design_Debounce_Switch_0_4"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="timer_LED_toggling_design.bd" FileRelPathName="ip/timer_LED_toggling_design_Debounce_Switch_1_0/timer_LED_toggling_design_Debounce_Switch_1_0.xci">
+          <Proxy FileSetName="timer_LED_toggling_design_Debounce_Switch_1_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="timer_LED_toggling_design.bd" FileRelPathName="ip/timer_LED_toggling_design_clk_wiz_0_0/timer_LED_toggling_design_clk_wiz_0_0.xci">
+          <Proxy FileSetName="timer_LED_toggling_design_clk_wiz_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="timer_LED_toggling_design.bd" FileRelPathName="ip/timer_LED_toggling_design_timer_LED_toggling_F_0_1/timer_LED_toggling_design_timer_LED_toggling_F_0_1.xci">
+          <Proxy FileSetName="timer_LED_toggling_design_timer_LED_toggling_F_0_1"/>
+        </CompFileExtendedInfo>
+      </File>
+      <File Path="$PGENDIR/sources_1/bd/timer_LED_toggling_design/hdl/timer_LED_toggling_design_wrapper.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PSRCDIR/sources_1/imports/labosDigOnt/hdmi_controller/hdmi_controller.srcs/sources_1/new/video_timings.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="ImportPath" Val="$PPRDIR/../hdmi_controller/hdmi_controller.srcs/sources_1/new/video_timings.v"/>
           <Attr Name="ImportTime" Val="1761813517"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -111,6 +186,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/imports/labosDigOnt/hdmi_controller/hdmi_controller.srcs/sources_1/new/video_pattern.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="ImportPath" Val="$PPRDIR/../hdmi_controller/hdmi_controller.srcs/sources_1/new/video_pattern.v"/>
           <Attr Name="ImportTime" Val="1761820855"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -120,6 +196,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/FSM_basicProject.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -127,6 +204,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/bd/basic_project/basic_project.bd">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -137,57 +215,16 @@
         <CompFileExtendedInfo CompFileName="basic_project.bd" FileRelPathName="ip/basic_project_rgb2dvi_0_0/basic_project_rgb2dvi_0_0.xci">
           <Proxy FileSetName="basic_project_rgb2dvi_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="basic_project.bd" FileRelPathName="ip/basic_project_video_pattern_0_0/basic_project_video_pattern_0_0.xci">
-          <Proxy FileSetName="basic_project_video_pattern_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="basic_project.bd" FileRelPathName="ip/basic_project_video_timings_0_0/basic_project_video_timings_0_0.xci">
-          <Proxy FileSetName="basic_project_video_timings_0_0"/>
-        </CompFileExtendedInfo>
       </File>
       <File Path="$PGENDIR/sources_1/bd/basic_project/hdl/basic_project_wrapper.v">
         <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/new/timer_1s.v">
-        <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PPRDIR/../lab2/lab2.srcs/sources_1/new/timer_1s.v"/>
-          <Attr Name="ImportTime" Val="1763026347"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
       <File Path="$PSRCDIR/sources_1/new/timer_n_s.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/TIMER_LED_toggling_FSM.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/new/toggle.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PPRDIR/../lab2/lab2.srcs/sources_1/new/toggle.v"/>
-          <Attr Name="ImportTime" Val="1760605034"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/Debounce_Switch.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -213,25 +250,6 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/timer_LED_toggling_FSM_QUAD.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/bd/timer_LED_toggling_design/timer_LED_toggling_design.bd">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-        <CompFileExtendedInfo CompFileName="timer_LED_toggling_design.bd" FileRelPathName="ip/timer_LED_toggling_design_clk_wiz_0_0/timer_LED_toggling_design_clk_wiz_0_0.xci">
-          <Proxy FileSetName="timer_LED_toggling_design_clk_wiz_0_0"/>
-        </CompFileExtendedInfo>
       </File>
       <File Path="$PSRCDIR/sources_1/imports/labosDigOnt/lab1/lab1.srcs/sources_1/new/AND_gate.v">
         <FileInfo>
@@ -271,14 +289,6 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PGENDIR/sources_1/bd/timer_LED_toggling_design/hdl/timer_LED_toggling_design_wrapper.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PSRCDIR/sources_1/new/Timer.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
@@ -289,7 +299,7 @@
       </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="basic_project_wrapper"/>
+        <Option Name="TopModule" Val="timer_LED_toggling_design_wrapper"/>
       </Config>
     </FileSet>
     <FileSet Name="constrs_1" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">
@@ -306,14 +316,14 @@
     </FileSet>
     <FileSet Name="sim_1" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_1" RelGenDir="$PGENDIR/sim_1">
       <Filter Type="Srcs"/>
-      <File Path="$PSRCDIR/sim_1/new/FMS_Basicproject_TB.v">
+      <File Path="$PSRCDIR/sim_1/new/LED_toggling_FSM_TB.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sim_1/new/LED_toggling_FSM_TB.v">
+      <File Path="$PSRCDIR/sim_1/new/FMS_Basicproject_TB.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -323,7 +333,7 @@
       </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="FMS_Basicproject_TB"/>
+        <Option Name="TopModule" Val="LED_toggling_FSM_TB"/>
         <Option Name="TopLib" Val="xil_defaultlib"/>
         <Option Name="TransportPathDelay" Val="0"/>
         <Option Name="TransportIntDelay" Val="0"/>
@@ -337,6 +347,7 @@
         <Option Name="CosimPlatform" Val=""/>
         <Option Name="CosimElf" Val=""/>
         <Option Name="Dmv" Val=""/>
+        <Option Name="xsim.simulate.runtime" Val="5s"/>
       </Config>
     </FileSet>
     <FileSet Name="utils_1" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
@@ -369,15 +380,39 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="basic_project_video_timings_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/basic_project_video_timings_0_0" RelGenDir="$PGENDIR/basic_project_video_timings_0_0">
+    <FileSet Name="timer_LED_toggling_design_Debounce_Switch_0_2" Type="BlockSrcs" RelSrcDir="$PSRCDIR/timer_LED_toggling_design_Debounce_Switch_0_2" RelGenDir="$PGENDIR/timer_LED_toggling_design_Debounce_Switch_0_2">
       <Config>
-        <Option Name="TopModule" Val="basic_project_video_timings_0_0"/>
+        <Option Name="TopModule" Val="timer_LED_toggling_design_Debounce_Switch_0_2"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="basic_project_video_pattern_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/basic_project_video_pattern_0_0" RelGenDir="$PGENDIR/basic_project_video_pattern_0_0">
+    <FileSet Name="timer_LED_toggling_design_Debounce_Switch_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/timer_LED_toggling_design_Debounce_Switch_0_0" RelGenDir="$PGENDIR/timer_LED_toggling_design_Debounce_Switch_0_0">
       <Config>
-        <Option Name="TopModule" Val="basic_project_video_pattern_0_0"/>
+        <Option Name="TopModule" Val="timer_LED_toggling_design_Debounce_Switch_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="timer_LED_toggling_design_Debounce_Switch_0_3" Type="BlockSrcs" RelSrcDir="$PSRCDIR/timer_LED_toggling_design_Debounce_Switch_0_3" RelGenDir="$PGENDIR/timer_LED_toggling_design_Debounce_Switch_0_3">
+      <Config>
+        <Option Name="TopModule" Val="timer_LED_toggling_design_Debounce_Switch_0_3"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="timer_LED_toggling_design_Debounce_Switch_0_4" Type="BlockSrcs" RelSrcDir="$PSRCDIR/timer_LED_toggling_design_Debounce_Switch_0_4" RelGenDir="$PGENDIR/timer_LED_toggling_design_Debounce_Switch_0_4">
+      <Config>
+        <Option Name="TopModule" Val="timer_LED_toggling_design_Debounce_Switch_0_4"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="timer_LED_toggling_design_Debounce_Switch_1_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/timer_LED_toggling_design_Debounce_Switch_1_0" RelGenDir="$PGENDIR/timer_LED_toggling_design_Debounce_Switch_1_0">
+      <Config>
+        <Option Name="TopModule" Val="timer_LED_toggling_design_Debounce_Switch_1_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="timer_LED_toggling_design_timer_LED_toggling_F_0_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/timer_LED_toggling_design_timer_LED_toggling_F_0_1" RelGenDir="$PGENDIR/timer_LED_toggling_design_timer_LED_toggling_F_0_1">
+      <Config>
+        <Option Name="TopModule" Val="timer_LED_toggling_design_timer_LED_toggling_F_0_1"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -403,7 +438,9 @@
   <Runs Version="1" Minor="22">
     <Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7z020clg400-1" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" State="current" Dir="$PRUNDIR/synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -451,7 +488,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="basic_project_video_timings_0_0_synth_1" Type="Ft3:Synth" SrcSet="basic_project_video_timings_0_0" Part="xc7z020clg400-1" ConstrsSet="basic_project_video_timings_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/basic_project_video_timings_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/basic_project_video_timings_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/basic_project_video_timings_0_0_synth_1" ParallelReportGen="true">
+    <Run Id="timer_LED_toggling_design_Debounce_Switch_0_2_synth_1" Type="Ft3:Synth" SrcSet="timer_LED_toggling_design_Debounce_Switch_0_2" Part="xc7z020clg400-1" ConstrsSet="timer_LED_toggling_design_Debounce_Switch_0_2" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/timer_LED_toggling_design_Debounce_Switch_0_2_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_2_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_2_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025"/>
         <Step Id="synth_design"/>
@@ -461,7 +498,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="basic_project_video_pattern_0_0_synth_1" Type="Ft3:Synth" SrcSet="basic_project_video_pattern_0_0" Part="xc7z020clg400-1" ConstrsSet="basic_project_video_pattern_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/basic_project_video_pattern_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/basic_project_video_pattern_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/basic_project_video_pattern_0_0_synth_1" ParallelReportGen="true">
+    <Run Id="timer_LED_toggling_design_Debounce_Switch_0_0_synth_1" Type="Ft3:Synth" SrcSet="timer_LED_toggling_design_Debounce_Switch_0_0" Part="xc7z020clg400-1" ConstrsSet="timer_LED_toggling_design_Debounce_Switch_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/timer_LED_toggling_design_Debounce_Switch_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025"/>
         <Step Id="synth_design"/>
@@ -471,9 +508,51 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="constrs_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" State="current" Dir="$PRUNDIR/impl_1" SynthRun="synth_1" IncludeInArchive="true" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/impl_1" LaunchOptions="-jobs 16 " AutoRQSDir="$PSRCDIR/utils_1/imports/impl_1" ParallelReportGen="true">
+    <Run Id="timer_LED_toggling_design_Debounce_Switch_0_3_synth_1" Type="Ft3:Synth" SrcSet="timer_LED_toggling_design_Debounce_Switch_0_3" Part="xc7z020clg400-1" ConstrsSet="timer_LED_toggling_design_Debounce_Switch_0_3" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/timer_LED_toggling_design_Debounce_Switch_0_3_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_3_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_3_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="timer_LED_toggling_design_Debounce_Switch_0_4_synth_1" Type="Ft3:Synth" SrcSet="timer_LED_toggling_design_Debounce_Switch_0_4" Part="xc7z020clg400-1" ConstrsSet="timer_LED_toggling_design_Debounce_Switch_0_4" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/timer_LED_toggling_design_Debounce_Switch_0_4_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_4_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_4_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="timer_LED_toggling_design_Debounce_Switch_1_0_synth_1" Type="Ft3:Synth" SrcSet="timer_LED_toggling_design_Debounce_Switch_1_0" Part="xc7z020clg400-1" ConstrsSet="timer_LED_toggling_design_Debounce_Switch_1_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/timer_LED_toggling_design_Debounce_Switch_1_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_1_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_1_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="timer_LED_toggling_design_timer_LED_toggling_F_0_1_synth_1" Type="Ft3:Synth" SrcSet="timer_LED_toggling_design_timer_LED_toggling_F_0_1" Part="xc7z020clg400-1" ConstrsSet="timer_LED_toggling_design_timer_LED_toggling_F_0_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/timer_LED_toggling_design_timer_LED_toggling_F_0_1_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_timer_LED_toggling_F_0_1_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_timer_LED_toggling_F_0_1_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="constrs_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" State="current" Dir="$PRUNDIR/impl_1" SynthRun="synth_1" IncludeInArchive="true" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/impl_1" LaunchOptions="-jobs 12 " AutoRQSDir="$PSRCDIR/utils_1/imports/impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -557,7 +636,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="basic_project_video_timings_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="basic_project_video_timings_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="basic_project_video_timings_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/basic_project_video_timings_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/basic_project_video_timings_0_0_impl_1" ParallelReportGen="true">
+    <Run Id="timer_LED_toggling_design_Debounce_Switch_0_2_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="timer_LED_toggling_design_Debounce_Switch_0_2" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="timer_LED_toggling_design_Debounce_Switch_0_2_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_2_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_2_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025"/>
         <Step Id="init_design"/>
@@ -574,7 +653,75 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="basic_project_video_pattern_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="basic_project_video_pattern_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="basic_project_video_pattern_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/basic_project_video_pattern_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/basic_project_video_pattern_0_0_impl_1" ParallelReportGen="true">
+    <Run Id="timer_LED_toggling_design_Debounce_Switch_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="timer_LED_toggling_design_Debounce_Switch_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="timer_LED_toggling_design_Debounce_Switch_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="timer_LED_toggling_design_Debounce_Switch_0_3_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="timer_LED_toggling_design_Debounce_Switch_0_3" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="timer_LED_toggling_design_Debounce_Switch_0_3_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_3_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_3_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="timer_LED_toggling_design_Debounce_Switch_0_4_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="timer_LED_toggling_design_Debounce_Switch_0_4" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="timer_LED_toggling_design_Debounce_Switch_0_4_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_4_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_0_4_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="timer_LED_toggling_design_Debounce_Switch_1_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="timer_LED_toggling_design_Debounce_Switch_1_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="timer_LED_toggling_design_Debounce_Switch_1_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_1_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_Debounce_Switch_1_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="timer_LED_toggling_design_timer_LED_toggling_F_0_1_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="timer_LED_toggling_design_timer_LED_toggling_F_0_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="timer_LED_toggling_design_timer_LED_toggling_F_0_1_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_timer_LED_toggling_F_0_1_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/timer_LED_toggling_design_timer_LED_toggling_F_0_1_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025"/>
         <Step Id="init_design"/>

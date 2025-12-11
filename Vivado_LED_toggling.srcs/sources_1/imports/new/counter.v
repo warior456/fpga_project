@@ -44,7 +44,7 @@ module counter#(
         r_CntCurr <= w_CntNext;
 
   // Increment Circuit
-  assign w_CntNext = r_CntCurr + 1;
+  assign w_CntNext = r_CntCurr + N-1'd1;
 
   // Output
   assign oQ = r_CntCurr;

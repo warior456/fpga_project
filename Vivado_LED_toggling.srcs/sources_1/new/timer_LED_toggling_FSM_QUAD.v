@@ -20,33 +20,34 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module timer_LED_toggling_FSM_QUAD(
+module timer_LED_toggling_FSM_QUAD#
+(parameter Clk_FREQ = 25_000_000)(
   input   wire  iClk, iRst, iPushUp, iPushDown, iPushLeft, iPushRight,
   output  wire  oLEDUp, oLEDDown, oLEDLeft, oLEDRight
     );
     
-    TIMER_LED_toggling_FSM timer_LED_toggling_FSM_up(
+    TIMER_LED_toggling_FSM#(Clk_FREQ) timer_LED_toggling_FSM_up(
     .iClk(iClk),
     .iRst(iRst),
     .iPush(iPushUp),
     .oLED(oLEDUp)
     );
     
-    TIMER_LED_toggling_FSM timer_LED_toggling_FSM_down(
+    TIMER_LED_toggling_FSM#(Clk_FREQ) timer_LED_toggling_FSM_down(
     .iClk(iClk),
     .iRst(iRst),
     .iPush(iPushDown),
     .oLED(oLEDDown)
     );
     
-    TIMER_LED_toggling_FSM timer_LED_toggling_FSM_left(
+    TIMER_LED_toggling_FSM#(Clk_FREQ) timer_LED_toggling_FSM_left(
     .iClk(iClk),
     .iRst(iRst),
     .iPush(iPushLeft),
     .oLED(oLEDLeft)
     );
     
-    TIMER_LED_toggling_FSM timer_LED_toggling_FSM_right(
+    TIMER_LED_toggling_FSM#(Clk_FREQ) timer_LED_toggling_FSM_right(
     .iClk(iClk),
     .iRst(iRst),
     .iPush(iPushRight),

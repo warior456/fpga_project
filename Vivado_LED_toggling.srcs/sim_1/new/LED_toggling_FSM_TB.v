@@ -2,14 +2,17 @@
 
 module LED_toggling_FSM_TB;
 
-  reg   rClk, rRst, rPush;
-  wire  wLED;
+  reg   rClk, rRst, rPushUp, rPushDown, rPushLeft, rPushRight;
+  wire  wLEDUp, wLEDDown, wLEDLeft, wLEDRight;
   
-  LED_toggling_FSM    LED_toggling_FSM_INST
-  ( .iClk(rClk), .iRst(rRst), .iPush(rPush), .oLED(wLED));
+  localparam Clk_FREQ = 25;
+  timer_LED_toggling_FSM_QUAD   FSM_INST(
+  .iClk(rClk), .iRst(rRst), 
+  .iPushUp(rPushUp),.iPushDown(rPushDown),.iPushLeft(rPushLeft),.iPushRight(rPushRight)
+  ,.oLEDUp(wLEDUp),.oLEDDown(wLEDDown),.oLEDLeft(wLEDLeft),.oLEDRight(wLEDRight));
   
   // definition of clock period
-  localparam  T = 20;  
+  localparam  T = 2;  
   
   // generation of clock signal
   always 
@@ -20,27 +23,25 @@ module LED_toggling_FSM_TB;
     #(T/2);
   end
   
-  // stimulus generator
+ 
   initial
   begin
-    rRst = 1;       // assert reset
-    rPush = 0;      // assert push
-    #(2*T);         // wait
-    rRst = 0;       // de-assert reset
-    #(5*T);         // wait
-    rPush = 1;      // assert push
-    #(5*T);         // wait
-    rPush = 0;      // de-assert push
-    #(5*T);         // wait
-    rPush = 1;      // assert push
-    #(5*T);         // wait
-    rPush = 0;      // de-assert push
-    #(5*T);         // wait
-    
-    // let the counter run for at least 1 frame
+    rRst = 1;       
+    rPushUp = 0; 
+    rPushDown = 0;
+    rPushLeft = 0;
+    rPushRight = 0;     
+    #(100*T);        
+    rRst = 0;       
+    #(100*T);        
+    rPushUp = 1; 
+    rPushDown = 1;
+    rPushLeft = 1;
+    rPushRight = 1;  
     #(100*T);
-    
-    $stop;        //stop simulation       
-  end
+    rPushUp = 0;
+    #(100*T);
 
+           
+      end
 endmodule

@@ -47,51 +47,31 @@
 // DO NOT MODIFY THIS FILE.
 
 
-// IP VLNV: xilinx.com:module_ref:video_timings:1.0
+// IP VLNV: xilinx.com:module_ref:Debounce_Switch:1.0
 // IP Revision: 1
 
 `timescale 1ns/1ps
 
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
-module basic_project_video_timings_0_0 (
-  iClk,
-  iRst,
-  oCountH,
-  oCountV,
-  oHS,
-  oVS,
-  oEndFrame
+module timer_LED_toggling_design_Debounce_Switch_0_0 (
+  i_Clk,
+  i_Switch,
+  o_Switch
 );
 
-input wire iClk;
-input wire iRst;
-output wire [9 : 0] oCountH;
-output wire [9 : 0] oCountV;
-output wire oHS;
-output wire oVS;
-output wire oEndFrame;
+(* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 i_Clk CLK" *)
+(* X_INTERFACE_MODE = "slave" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME i_Clk, FREQ_HZ 25000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1, INSERT_VIP 0" *)
+input wire i_Clk;
+input wire i_Switch;
+output wire o_Switch;
 
-  video_timings #(
-    .WIDTH(640),
-    .H_FP(16),
-    .H_PW(96),
-    .H_BP(48),
-    .H_TOT(800),
-    .H_bits(10),
-    .HEIGHT(480),
-    .V_FP(10),
-    .V_PW(2),
-    .V_BP(33),
-    .V_TOT(525),
-    .V_bits(10)
+  Debounce_Switch #(
+    .c_DEBOUNCE_LIMIT(250000)
   ) inst (
-    .iClk(iClk),
-    .iRst(iRst),
-    .oCountH(oCountH),
-    .oCountV(oCountV),
-    .oHS(oHS),
-    .oVS(oVS),
-    .oEndFrame(oEndFrame)
+    .i_Clk(i_Clk),
+    .i_Switch(i_Switch),
+    .o_Switch(o_Switch)
   );
 endmodule

@@ -47,56 +47,31 @@
 // DO NOT MODIFY THIS FILE.
 
 
-// IP VLNV: xilinx.com:module_ref:FSM_basicProject:1.0
+// IP VLNV: xilinx.com:module_ref:Debounce_Switch:1.0
 // IP Revision: 1
 
 `timescale 1ns/1ps
 
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
-module basic_project_FSM_basicProject_0_0 (
-  iClk,
-  iRst,
-  iDown,
-  iUp,
-  iLeft,
-  iRight,
-  iClkTraag,
-  oWalls,
-  oXBall,
-  oYBall,
-  oXPaddle,
-  oPaddleSize
+module timer_LED_toggling_design_Debounce_Switch_0_4 (
+  i_Clk,
+  i_Switch,
+  o_Switch
 );
 
-input wire iClk;
-input wire iRst;
-input wire iDown;
-input wire iUp;
-input wire iLeft;
-input wire iRight;
-input wire iClkTraag;
-output wire [27 : 0] oWalls;
-output wire [9 : 0] oXBall;
-output wire [9 : 0] oYBall;
-output wire [9 : 0] oXPaddle;
-output wire [9 : 0] oPaddleSize;
+(* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 i_Clk CLK" *)
+(* X_INTERFACE_MODE = "slave" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME i_Clk, FREQ_HZ 25000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1, INSERT_VIP 0" *)
+input wire i_Clk;
+input wire i_Switch;
+output wire o_Switch;
 
-  FSM_basicProject #(
-    .Speed(833333),
-    .BallRadius(10)
+  Debounce_Switch #(
+    .c_DEBOUNCE_LIMIT(250000)
   ) inst (
-    .iClk(iClk),
-    .iRst(iRst),
-    .iDown(iDown),
-    .iUp(iUp),
-    .iLeft(iLeft),
-    .iRight(iRight),
-    .iClkTraag(iClkTraag),
-    .oWalls(oWalls),
-    .oXBall(oXBall),
-    .oYBall(oYBall),
-    .oXPaddle(oXPaddle),
-    .oPaddleSize(oPaddleSize)
+    .i_Clk(i_Clk),
+    .i_Switch(i_Switch),
+    .o_Switch(o_Switch)
   );
 endmodule

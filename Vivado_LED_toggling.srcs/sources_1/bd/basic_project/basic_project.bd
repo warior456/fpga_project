@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xAB246E1B08425F59",
+      "boundary_crc": "0xAB246E1B1888E899",
       "device": "xc7z020clg400-1",
       "gen_directory": "../../../../Vivado_LED_toggling.gen/sources_1/bd/basic_project",
       "name": "basic_project",
@@ -86,21 +86,7 @@
         },
         "ports": {
           "iClk": {
-            "direction": "I",
-            "parameters": {
-              "FREQ_HZ": {
-                "value": "25000000",
-                "value_src": "ip_prop"
-              },
-              "PHASE": {
-                "value": "0.0",
-                "value_src": "ip_prop"
-              },
-              "CLK_DOMAIN": {
-                "value": "/clk_wiz_0_clk_out1",
-                "value_src": "ip_prop"
-              }
-            }
+            "direction": "I"
           },
           "iRst": {
             "direction": "I"
@@ -140,21 +126,7 @@
         },
         "ports": {
           "iClk": {
-            "direction": "I",
-            "parameters": {
-              "FREQ_HZ": {
-                "value": "25000000",
-                "value_src": "ip_prop"
-              },
-              "PHASE": {
-                "value": "0.0",
-                "value_src": "ip_prop"
-              },
-              "CLK_DOMAIN": {
-                "value": "/clk_wiz_0_clk_out1",
-                "value_src": "ip_prop"
-              }
-            }
+            "direction": "I"
           },
           "iRst": {
             "direction": "I"
@@ -425,9 +397,9 @@
         "ports": [
           "clk_wiz_0/clk_25",
           "rgb2dvi_0/PixelClk",
-          "video_timings_0/iClk",
+          "FSM_basicProject_0/iClk",
           "video_pattern_0/iClk",
-          "FSM_basicProject_0/iClk"
+          "video_timings_0/iClk"
         ]
       },
       "clk_wiz_0_clk_250": {
@@ -464,8 +436,8 @@
         "ports": [
           "iRst",
           "rgb2dvi_0/aRst",
-          "video_timings_0/iRst",
-          "video_pattern_0/iRst"
+          "video_pattern_0/iRst",
+          "video_timings_0/iRst"
         ]
       },
       "iRst_0_2": {
