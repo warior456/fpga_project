@@ -31,22 +31,22 @@ module FSM_basicProject#(
     assign oWalls[27:21] = rWalls[3];
 
     // State definitions
-    localparam sInit        = 4'b0000;
-    localparam sIdle        = 4'b0001;
-    localparam sUp          = 4'b0010;
-    localparam sUpRight1    = 4'b0011;
-    localparam sUpRight2    = 4'b0100;
-    localparam sUpRight3    = 4'b0101;
-    localparam sDown        = 4'b0110;
-    localparam sDownRight1  = 4'b0111;
-    localparam sDownRight2  = 4'b1000;
-    localparam sDownRight3  = 4'b1001;
-    localparam sUpLeft1     = 4'b1010;
-    localparam sUpLeft2     = 4'b1011;
-    localparam sUpLeft3     = 4'b1100;
-    localparam sDownLeft1   = 4'b1101;
-    localparam sDownLeft2   = 4'b1110;
-    localparam sDownLeft3   = 4'b1111;
+    localparam sInit        = 5'b00000;
+    localparam sIdle        = 5'b00001;
+    localparam sUp          = 5'b00010;
+    localparam sUpRight1    = 5'b00011;
+    localparam sUpRight2    = 5'b00100;
+    localparam sUpRight3    = 5'b00101;
+    localparam sDown        = 5'b00110;
+    localparam sDownRight1  = 5'b00111;
+    localparam sDownRight2  = 5'b01000;
+    localparam sDownRight3  = 5'b01001;
+    localparam sUpLeft1     = 5'b01010;
+    localparam sUpLeft2     = 5'b01011;
+    localparam sUpLeft3     = 5'b01100;
+    localparam sDownLeft1   = 5'b01101;
+    localparam sDownLeft2   = 5'b01110;
+    localparam sDownLeft3   = 5'b01111;
 
     // Collision types
     localparam CNo   = 3'b000;
@@ -285,8 +285,6 @@ module FSM_basicProject#(
         if (rFSMB_current == sInit) begin
             rXBall      <= 10'd300;
             rYBall      <= 10'd400;
-            rXBallNext  <= 10'd300;
-            rYBallNext  <= 10'd400;
             rXPaddle    <= 10'd300;
 
             // Re-initialize walls
@@ -296,8 +294,7 @@ module FSM_basicProject#(
             rWalls[3] <= 8'b11111111;
         end
         else if (iClkTraag == 1'b1) begin
-            rXBallNext <= rXBall;
-            rYBallNext <= rYBall;
+        
             mem <= 0;
         end
         else if (iClkTraag == 1'b0 && mem == 0) begin
