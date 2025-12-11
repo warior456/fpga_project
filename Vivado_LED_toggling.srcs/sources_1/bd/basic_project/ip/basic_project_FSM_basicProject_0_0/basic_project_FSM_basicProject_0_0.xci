@@ -9,12 +9,12 @@
     "parameters": {
       "component_parameters": {
         "Speed": [ { "value": "833333", "resolve_type": "user", "format": "long", "usage": "all" } ],
-        "BallRadius": [ { "value": "10", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "BallRadius": [ { "value": "5", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "Component_Name": [ { "value": "basic_project_FSM_basicProject_0_0", "resolve_type": "user", "usage": "all" } ]
       },
       "model_parameters": {
         "Speed": [ { "value": "833333", "resolve_type": "generated", "format": "long", "usage": "all" } ],
-        "BallRadius": [ { "value": "10", "resolve_type": "generated", "format": "long", "usage": "all" } ]
+        "BallRadius": [ { "value": "5", "resolve_type": "generated", "format": "long", "usage": "all" } ]
       },
       "project_parameters": {
         "ARCHITECTURE": [ { "value": "zynq" } ],

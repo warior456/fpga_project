@@ -2,7 +2,7 @@
 
 module FSM_basicProject#(
         parameter Speed = 25000000/30, // Adjust as needed
-        parameter BallRadius = 10
+        parameter BallRadius = 5
     )
     (
         input wire iClk, iRst, iDown, iUp, iLeft, iRight, iClkTraag,
@@ -77,12 +77,17 @@ module FSM_basicProject#(
     wire [3:0] gridX_Right  = (ballRight - 40) / 80;
     wire [3:0] gridY_Top    = (ballTop - 40) / 40;
     wire [3:0] gridY_Bottom = (ballBottom - 40) / 40;
+    wire [9:0] paddleRight, paddleLeft;
+    assign paddleRight = rXPaddle + oPaddleSize/2;
+    assign paddleLeft  = rXPaddle - oPaddleSize/2;
 
     // Boolean checks for being inside the grid area
     wire inGridY_Top    = (ballTop >= 40 && ballTop < 200);
     wire inGridY_Bottom = (ballBottom >= 40 && ballBottom < 200);
     wire inGridX_Left   = (ballLeft >= 40 && ballLeft < 600);
     wire inGridX_Right  = (ballRight >= 40 && ballRight < 600);
+    wire safeCenterY = (rYBall < 200); //todo try <=
+    wire safeCenterX = (rXBall < 600);
 
     wire movingUp  = (rFSMB_current == sUp || rFSMB_current == sUpLeft1 || rFSMB_current == sUpLeft2 || rFSMB_current == sUpLeft3 ||
                       rFSMB_current == sUpRight1 || rFSMB_current == sUpRight2 || rFSMB_current == sUpRight3);
@@ -95,23 +100,48 @@ module FSM_basicProject#(
 
     wire movingRight = (rFSMB_current == sUpRight1 || rFSMB_current == sUpRight2 || rFSMB_current == sUpRight3 ||
                         rFSMB_current == sDownRight1 || rFSMB_current == sDownRight2 || rFSMB_current == sDownRight3);
-    // -----------------------------------------------------------
-    // Combinational Logic: Collision Detection & Next State
-    // -----------------------------------------------------------
+
+
+
+
+    //functions
+    function [0:0] fcoordinateCollidesWithWall (input [9:0] fXCoord, input [9:0] fYCoord);//f voor variabelen betekent dat het van deze functie is
+        reg [0:3] fGridCol;
+        reg [0:3] fGridRow;
+        begin
+            if (fXCoord < 40 || fXCoord >= 600 || fYCoord < 40 || fYCoord >= 200) begin
+                fcoordinateCollidesWithWall = 1'b0; // buiten grid
+            end
+            else begin
+                fGridCol = (fXCoord - 40) / 80;
+                fGridRow = (fYCoord - 40) / 40;
+                fcoordinateCollidesWithWall = rWalls[fGridRow][fGridCol];
+            end
+        end
+    endfunction
+
+    function [3:0] fgetWallRowIndex (input [9:0] fYCoord);
+        begin
+            fgetWallRowIndex = (fYCoord - 40) / 40;
+        end
+    endfunction
+
+    function [6:0] fgetWallColumnIndex (input [9:0] fXCoord);
+        begin
+            fgetWallColumnIndex = (fXCoord - 40) / 80;
+        end
+    endfunction
+
+
     always @(*) begin
-        // 1. DEFAULT VALUES (Crucial to prevent Latches)
+        //start met de variabelen op iets neutraal te zetten ('=' word overschreven indien nodig)
         rCollision = CNo;
         rFSMB_next = rFSMB_current;
 
-        // 2. DETECT COLLISION
+        //paddle Collision
+        if (movingDown) begin
 
-        // --- Paddle Collision ---
-        //alleen als hij naar beneden beweegt
-        if (rFSMB_current == sDown || rFSMB_current == sDownLeft1 || rFSMB_current == sDownLeft2 ||
-                rFSMB_current == sDownLeft3 || rFSMB_current == sDownRight1 || rFSMB_current == sDownRight2 ||
-                rFSMB_current == sDownRight3) begin
-
-            // Paddle Y is approx 430. Check if Ball Bottom hits Paddle Top
+            // paddly y is hardgecodeerd op 430 bovenkant
             if(ballBottom >= 430 && ballBottom <= 445) begin
                 if(rXBall + BallRadius >= rXPaddle - 35 && rXBall -BallRadius <= rXPaddle + 35) begin
                     rCollision = CPaddle; // We hit the paddle
@@ -130,57 +160,45 @@ module FSM_basicProject#(
         // --- Wall Collision ---
         // Only check walls if we haven't already hit screen or paddle
         if (rCollision == CNo) begin
-            // Hit Block Above (Moving Up)
-            if (movingUp && inGridY_Top && inGridX_Left && rWalls[gridY_Top][(rXBall-40)/80]) begin
-                // Check if actually moving up
-                if (rFSMB_current == sUp || rFSMB_current == sUpLeft1 || rFSMB_current == sUpLeft2 || rFSMB_current == sUpLeft3 ||
-                        rFSMB_current == sUpRight1 || rFSMB_current == sUpRight2 || rFSMB_current == sUpRight3)
-                    rCollision = CUp;
+            // naar boven bewegen en bovenkant bal
+            if (movingUp && fcoordinateCollidesWithWall(rXBall, ballTop)) begin
+                rCollision = CUp;
             end
-
-            // Hit Block Below (Moving Down)
-            else if (movingDown && inGridY_Bottom && inGridX_Left && rWalls[gridY_Bottom][(rXBall-40)/80]) begin
-                if (rFSMB_current == sDown || rFSMB_current == sDownLeft1 || rFSMB_current == sDownLeft2 || rFSMB_current == sDownLeft3 ||
-                        rFSMB_current == sDownRight1 || rFSMB_current == sDownRight2 || rFSMB_current == sDownRight3)
-                    rCollision = CDown;
+            // naar beneden bewegen en onderkant bal
+            else if (movingDown && fcoordinateCollidesWithWall(rXBall, ballBottom)) begin
+                rCollision = CDown;
             end
-
-            // Hit Block Left
-            else if ( movingLeft && inGridX_Left && inGridY_Top && rWalls[(rYBall-40)/40][gridX_Left]) begin
-                if (rFSMB_current == sUpLeft1 || rFSMB_current == sUpLeft2 || rFSMB_current == sUpLeft3 ||
-                        rFSMB_current == sDownLeft1 || rFSMB_current == sDownLeft2 || rFSMB_current == sDownLeft3)
-                    rCollision = CLeft;
+            //naar links bewegen en linkerkant bal
+            else if ( movingLeft && fcoordinateCollidesWithWall(ballLeft, rYBall)) begin
+                rCollision = CLeft;
             end
-
-            // Hit Block Right
-            else if ( movingRight &&inGridX_Right && inGridY_Top && rWalls[(rYBall-40)/40][gridX_Right]) begin
-                if (rFSMB_current == sUpRight1 || rFSMB_current == sUpRight2 || rFSMB_current == sUpRight3 ||
-                        rFSMB_current == sDownRight1 || rFSMB_current == sDownRight2 || rFSMB_current == sDownRight3)
-                    rCollision = CRight;
+            //naar rechts bewegen en rechterkant bal
+            else if ( movingRight && fcoordinateCollidesWithWall(ballRight, rYBall)) begin
+                rCollision = CRight;
             end
             else begin
                 rCollision = CNo;
             end
         end
 
-        // 3. NEXT STATE LOGIC (Reaction to Collision)
+
 
         if (rCollision == CPaddle) begin
-        
+
             if (wDiff >= 25)
-                rFSMB_next = sUpRight3;    // Sharp Right
+                rFSMB_next = sUpRight3;    // scherp rechts
             else if (wDiff >= 15)
-                rFSMB_next = sUpRight2;    // Mid Right
+                rFSMB_next = sUpRight2;    // diagonaal rechts
             else if (wDiff >= 5)
-                rFSMB_next = sUpRight1;    // Soft Right
+                rFSMB_next = sUpRight1;    // zacht rechts
             else if (wDiff >= -5)
                 rFSMB_next = sUp;
             else if (wDiff >= -15)
-                rFSMB_next = sUpLeft1;     // Soft Left
+                rFSMB_next = sUpLeft1;     // zacht links
             else if (wDiff >= -25)
-                rFSMB_next = sUpLeft2;     // Mid Left
+                rFSMB_next = sUpLeft2;     // diagonaal links
             else
-                rFSMB_next = sUpLeft3;     // Sharp Left (Covers everything < -25)
+                rFSMB_next = sUpLeft3;     // scherp links
         end
         else begin
             case (rFSMB_current)
@@ -189,7 +207,6 @@ module FSM_basicProject#(
                 sIdle:
                     rFSMB_next = sUp;
 
-                // --- UPWARDS ---
                 sUp:
                     if(rCollision == CUp)
                         rFSMB_next = sDown;
@@ -212,7 +229,6 @@ module FSM_basicProject#(
                     else if(rCollision == CRight)
                         rFSMB_next = sUpLeft3;
 
-                // --- DOWNWARDS ---
                 sDown:
                     if(rCollision == CDown)
                         rFSMB_next = sUp;
@@ -235,7 +251,6 @@ module FSM_basicProject#(
                     else if(rCollision == CRight)
                         rFSMB_next = sDownLeft3;
 
-                // --- LEFTWARDS ---
                 sUpLeft1:
                     if(rCollision == CUp)
                         rFSMB_next = sDownLeft1;
@@ -283,9 +298,9 @@ module FSM_basicProject#(
     // Position Update & Wall Destruction
     always @(posedge iClk) begin
         if (rFSMB_current == sInit) begin
-            rXBall      <= 10'd300;
+            rXBall      <= 10'd320;
             rYBall      <= 10'd400;
-            rXPaddle    <= 10'd300;
+            rXPaddle    <= 10'd320;
 
             // Re-initialize walls
             rWalls[0] <= 8'b11111111;
@@ -294,7 +309,7 @@ module FSM_basicProject#(
             rWalls[3] <= 8'b11111111;
         end
         else if (iClkTraag == 1'b1) begin
-        
+
             mem <= 0;
         end
         else if (iClkTraag == 1'b0 && mem == 0) begin
@@ -360,32 +375,33 @@ module FSM_basicProject#(
                 end
             endcase
 
+
             // Update Paddle Position
-            if(iLeft && rXPaddle > 4)
+            if(iLeft && paddleLeft > 4)
                 rXPaddle <= rXPaddle - 4;
-            if(iRight && rXPaddle < 640-4)
+            if(iRight && paddleRight < 640 - 4)
                 rXPaddle <= rXPaddle + 4;
 
             mem <= 1;
         end
 
-        // Wall Destruction
+        // wall destruction (25MHz)
         case (rCollision)
             CUp: begin
-                if(inGridY_Top && inGridX_Left)
-                    rWalls[gridY_Top][(rXBall-40)/80] <= 0;
+                if(fcoordinateCollidesWithWall(rXBall, ballTop))
+                    rWalls[ fgetWallRowIndex(ballTop) ][ fgetWallColumnIndex(rXBall) ] <= 0;
             end
             CDown: begin
-                if(inGridY_Bottom && inGridX_Left)
-                    rWalls[gridY_Bottom][(rXBall-40)/80] <= 0;
+                if(fcoordinateCollidesWithWall(rXBall, ballBottom))
+                    rWalls[ fgetWallRowIndex(ballBottom) ][ fgetWallColumnIndex(rXBall) ] <= 0;
             end
             CLeft: begin
-                if(inGridX_Left && inGridY_Top)
-                    rWalls[(rYBall-40)/40][gridX_Left] <= 0;
+                if(fcoordinateCollidesWithWall(ballLeft, rYBall))
+                    rWalls[ fgetWallRowIndex(rYBall) ][ fgetWallColumnIndex(ballLeft) ] <= 0;
             end
             CRight: begin
-                if(inGridX_Right && inGridY_Top)
-                    rWalls[(rYBall-40)/40][gridX_Right] <= 0;
+                if(fcoordinateCollidesWithWall(ballRight, rYBall))
+                    rWalls[ fgetWallRowIndex(rYBall) ][ fgetWallColumnIndex(ballRight) ] <= 0;
             end
         endcase
 

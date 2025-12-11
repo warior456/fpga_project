@@ -41,7 +41,7 @@ module video_pattern#(
     localparam WALL_WIDTH = 80;
     localparam WALL_HEIGHT = 40;
     localparam PADDING = 40;
-    localparam BALL_RADIUS = 10;
+    localparam BALL_RADIUS = 5;
 
     wire [6:0] wWalls [3:0];
     integer i;
@@ -92,12 +92,12 @@ module video_pattern#(
             end
 
             //wall grid
-            if(iCountH > PADDING && iCountV > PADDING && iCountH < PADDING+ 7*WALL_WIDTH && iCountV < PADDING+ 4*WALL_HEIGHT ) begin
+            if(iCountH >= PADDING && iCountV >= PADDING && iCountH < PADDING+ 7*WALL_WIDTH && iCountV < PADDING+ 4*WALL_HEIGHT ) begin
                 oBlue <= 8'd255;
                 for (i = 1; i <= 7; i = i+1) begin
                     for(j = 1; j <= 4; j = j+1) begin
                         if((wWalls[j-1][i-1] == 1) &&
-                                (iCountH >= PADDING + ((i-1)*WALL_WIDTH) + 1) &&
+                                (iCountH >= PADDING + ((i-1)*WALL_WIDTH) + 1) &&//
                                 (iCountH <  PADDING + (i*WALL_WIDTH) - 1)      &&
                                 (iCountV >= PADDING + ((j-1)*WALL_HEIGHT) + 1) &&
                                 (iCountV <  PADDING + (j*WALL_HEIGHT) - 1)) begin
