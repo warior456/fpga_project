@@ -33,6 +33,8 @@ module video_pattern#(
         input wire [9:0] iBallX, iBallY,
         input wire [9:0] iPaddleX, iPaddleSize,
         input wire [27:0] iWalls,
+        input wire [7:0] iWallRed, iWallGreen, iWallBlue,
+        input wire [7:0] iBgRed, iBgGreen, iBgBlue,
         output reg [7:0] oRed,
         output reg [7:0] oGreen,
         output reg [7:0] oBlue,
@@ -63,9 +65,9 @@ module video_pattern#(
         end
         else if(iCountH < H_ACTIVE && iCountV < V_ACTIVE) begin //active mode
             oActive <= 1'b1;
-            oRed <= 8'd100;
-            oGreen <= 8'd0;
-            oBlue <= 8'd100;
+            oRed <= iBgRed;
+            oGreen <= iBgGreen;
+            oBlue <= iBgBlue;
 
             //ball
             if(iCountH >= iBallX - BALL_RADIUS && iCountH <= (iBallX + BALL_RADIUS) 
@@ -83,7 +85,14 @@ module video_pattern#(
             end
 
             //paddle
-            if(iCountH >= iPaddleX - iPaddleSize/2 && iCountH < (iPaddleX + iPaddleSize/2)
+            if(iCountH >= iPaddleX - iPaddleSize/8 && iCountH < (iPaddleX + iPaddleSize/8)//center mark //todo fix values
+                    && iCountV >= 430 && iCountV <= 439
+              ) begin
+                oRed <= 8'd255;
+                oGreen <= 8'd255;
+                oBlue <= 8'd0;
+            end
+            else if(iCountH >= iPaddleX - iPaddleSize/2 && iCountH < (iPaddleX + iPaddleSize/2)
                     && iCountV >= 430 && iCountV <= 439
               ) begin
                 oRed <= 8'd0;
@@ -93,7 +102,6 @@ module video_pattern#(
 
             //wall grid
             if(iCountH >= PADDING && iCountV >= PADDING && iCountH < PADDING+ 7*WALL_WIDTH && iCountV < PADDING+ 4*WALL_HEIGHT ) begin
-                oBlue <= 8'd255;
                 for (i = 1; i <= 7; i = i+1) begin
                     for(j = 1; j <= 4; j = j+1) begin
                         if((wWalls[j-1][i-1] == 1) &&
@@ -101,9 +109,9 @@ module video_pattern#(
                                 (iCountH <  PADDING + (i*WALL_WIDTH) - 1)      &&
                                 (iCountV >= PADDING + ((j-1)*WALL_HEIGHT) + 1) &&
                                 (iCountV <  PADDING + (j*WALL_HEIGHT) - 1)) begin
-                            oRed <= 8'd000;
-                            oBlue <= 8'd000;
-                            oGreen <= 8'd000;
+                            oRed <= iWallRed;
+                            oBlue <= iWallBlue;
+                            oGreen <= iWallGreen;
                         end
                     end
                 end

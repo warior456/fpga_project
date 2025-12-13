@@ -8,18 +8,29 @@ module FSM_basicProject#(
         input wire iClk, iRst, iDown, iUp, iLeft, iRight, iClkTraag,
         output wire [27 : 0] oWalls,
         output wire [9:0] oXBall, oYBall,
-        output wire [9:0] oXPaddle,
-        output wire [9:0] oPaddleSize
+        output wire [9:0] oXPaddle, oPaddleSize,
+        output wire [7:0] oWallRed, oWallGreen, oWallBlue,
+        output wire [7:0] oBgRed, oBgGreen, oBgBlue
     );
 
-    // Registers for position
+    //regs voor ball en paddle posities
     reg[9:0] rXBall, rYBall;
     reg[9:0] rXBallNext, rYBallNext;
     reg[9:0] rXPaddle;
     reg[6:0] rWalls [3:0];
     reg mem;
 
-    // Outputs
+    //color regs
+    reg[7:0] rWallRed, rWallGreen, rWallBlue, rBgRed, rBgGreen, rBgBlue;
+    assign oWallRed = rWallRed;
+    assign oWallGreen = rWallGreen;
+    assign oWallBlue = rWallBlue;
+    assign oBgRed = rBgRed;
+    assign oBgGreen = rBgGreen;
+    assign oBgBlue = rBgBlue;
+    
+
+    //uitput assignments
     assign oXBall = rXBall;
     assign oYBall = rYBall;
     assign oPaddleSize = 10'd70;
@@ -48,7 +59,7 @@ module FSM_basicProject#(
     localparam sDownLeft2   = 5'b01110;
     localparam sDownLeft3   = 5'b01111;
 
-    // Collision types
+    // Collision flags
     localparam CNo   = 3'b000;
     localparam CUp   = 3'b010;
     localparam CDown = 3'b011;
@@ -73,21 +84,21 @@ module FSM_basicProject#(
     wire [9:0] ballRight  = rXBall + BallRadius;
 
     // Calculate Grid Indices (Signed checks handled in logic)
-    wire [3:0] gridX_Left   = (ballLeft - 40) / 80;
-    wire [3:0] gridX_Right  = (ballRight - 40) / 80;
-    wire [3:0] gridY_Top    = (ballTop - 40) / 40;
-    wire [3:0] gridY_Bottom = (ballBottom - 40) / 40;
+    // wire [3:0] gridX_Left   = (ballLeft - 40) / 80;
+    // wire [3:0] gridX_Right  = (ballRight - 40) / 80;
+    // wire [3:0] gridY_Top    = (ballTop - 40) / 40;
+    // wire [3:0] gridY_Bottom = (ballBottom - 40) / 40;
     wire [9:0] paddleRight, paddleLeft;
     assign paddleRight = rXPaddle + oPaddleSize/2;
     assign paddleLeft  = rXPaddle - oPaddleSize/2;
 
     // Boolean checks for being inside the grid area
-    wire inGridY_Top    = (ballTop >= 40 && ballTop < 200);
-    wire inGridY_Bottom = (ballBottom >= 40 && ballBottom < 200);
-    wire inGridX_Left   = (ballLeft >= 40 && ballLeft < 600);
-    wire inGridX_Right  = (ballRight >= 40 && ballRight < 600);
-    wire safeCenterY = (rYBall < 200); //todo try <=
-    wire safeCenterX = (rXBall < 600);
+    // wire inGridY_Top    = (ballTop >= 40 && ballTop < 200);
+    // wire inGridY_Bottom = (ballBottom >= 40 && ballBottom < 200);
+    // wire inGridX_Left   = (ballLeft >= 40 && ballLeft < 600);
+    // wire inGridX_Right  = (ballRight >= 40 && ballRight < 600);
+    // wire safeCenterY = (rYBall < 200); //todo try <=
+    // wire safeCenterX = (rXBall < 600);
 
     wire movingUp  = (rFSMB_current == sUp || rFSMB_current == sUpLeft1 || rFSMB_current == sUpLeft2 || rFSMB_current == sUpLeft3 ||
                       rFSMB_current == sUpRight1 || rFSMB_current == sUpRight2 || rFSMB_current == sUpRight3);
@@ -185,17 +196,17 @@ module FSM_basicProject#(
 
         if (rCollision == CPaddle) begin
 
-            if (wDiff >= 25)
+            if (wDiff >= 30)
                 rFSMB_next = sUpRight3;    // scherp rechts
             else if (wDiff >= 15)
                 rFSMB_next = sUpRight2;    // diagonaal rechts
-            else if (wDiff >= 5)
+            else if (wDiff >= 4)
                 rFSMB_next = sUpRight1;    // zacht rechts
-            else if (wDiff >= -5)
+            else if (wDiff >= -4)
                 rFSMB_next = sUp;
             else if (wDiff >= -15)
                 rFSMB_next = sUpLeft1;     // zacht links
-            else if (wDiff >= -25)
+            else if (wDiff >= -30)
                 rFSMB_next = sUpLeft2;     // diagonaal links
             else
                 rFSMB_next = sUpLeft3;     // scherp links
@@ -302,7 +313,15 @@ module FSM_basicProject#(
             rYBall      <= 10'd400;
             rXPaddle    <= 10'd320;
 
-            // Re-initialize walls
+            rWallRed <= 8'd0;
+            rWallGreen <= 8'd255;
+            rWallBlue <= 8'd255;
+
+            rBgRed <= 8'd100;
+            rBgGreen <= 8'd0;
+            rBgBlue <= 8'd100;
+
+
             rWalls[0] <= 8'b11111111;
             rWalls[1] <= 8'b11111111;
             rWalls[2] <= 8'b11111111;

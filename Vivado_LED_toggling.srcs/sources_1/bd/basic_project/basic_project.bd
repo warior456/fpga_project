@@ -253,6 +253,36 @@
             "left": "27",
             "right": "0"
           },
+          "iWallRed": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "iWallGreen": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "iWallBlue": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "iBgRed": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "iBgGreen": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "iBgBlue": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
           "oRed": {
             "direction": "O",
             "left": "7",
@@ -444,11 +474,59 @@
             "direction": "O",
             "left": "9",
             "right": "0"
+          },
+          "oWallRed": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          },
+          "oWallGreen": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          },
+          "oWallBlue": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          },
+          "oBgRed": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          },
+          "oBgGreen": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          },
+          "oBgBlue": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
           }
         }
       }
     },
     "nets": {
+      "FSM_basicProject_0_oBgBlue": {
+        "ports": [
+          "FSM_basicProject_0/oBgBlue",
+          "video_pattern_0/iBgBlue"
+        ]
+      },
+      "FSM_basicProject_0_oBgGreen": {
+        "ports": [
+          "FSM_basicProject_0/oBgGreen",
+          "video_pattern_0/iBgGreen"
+        ]
+      },
+      "FSM_basicProject_0_oBgRed": {
+        "ports": [
+          "FSM_basicProject_0/oBgRed",
+          "video_pattern_0/iBgRed"
+        ]
+      },
       "FSM_basicProject_0_oLEDDown": {
         "ports": [
           "oLEDDown"
@@ -474,6 +552,24 @@
         "ports": [
           "FSM_basicProject_0/oXPaddle",
           "video_pattern_0/iPaddleX"
+        ]
+      },
+      "FSM_basicProject_0_oWallBlue": {
+        "ports": [
+          "FSM_basicProject_0/oWallBlue",
+          "video_pattern_0/iWallBlue"
+        ]
+      },
+      "FSM_basicProject_0_oWallGreen": {
+        "ports": [
+          "FSM_basicProject_0/oWallGreen",
+          "video_pattern_0/iWallGreen"
+        ]
+      },
+      "FSM_basicProject_0_oWallRed": {
+        "ports": [
+          "FSM_basicProject_0/oWallRed",
+          "video_pattern_0/iWallRed"
         ]
       },
       "FSM_basicProject_0_oWalls": {
