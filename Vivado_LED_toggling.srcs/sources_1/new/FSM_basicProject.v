@@ -422,17 +422,17 @@ module FSM_basicProject#(
                     rLedUp <= 1'b0;
                     rLedDown <= 1'b1;
                     // Update Paddle Position
-                    if(iLeft && paddleLeft > 4)
+                    if(iLeft && paddleLeft > 4)//todo if time: maybe change > to >=
                         rPaddleX <= rPaddleX - 4;
                     if(iRight && paddleRight < 640 - 4)
                         rPaddleX <= rPaddleX + 4;
                     // Update Ball Position
                     case (rFSMB_current)
                         sUp: begin
-                            rBallY <= rBallY - 2;
+                            rBallY <= rBallY - 3;
                         end
                         sDown: begin
-                            rBallY <= rBallY + 2;
+                            rBallY <= rBallY + 3;
                         end
 
                         sUpRight1: begin
