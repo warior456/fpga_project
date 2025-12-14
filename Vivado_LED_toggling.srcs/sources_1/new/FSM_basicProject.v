@@ -1,65 +1,80 @@
 `timescale 1ns / 1ps
 
 module FSM_basicProject#(
-        parameter Speed = 25000000/30, // Adjust as needed
+        //parameter Speed = 25000000/30, //niet in gebruik
         parameter BallRadius = 5
     )
     (
         input wire iClk, iRst, iDown, iUp, iLeft, iRight, iClkTraag,
         output wire [27 : 0] oWalls,
-        output wire [9:0] oXBall, oYBall,
-        output wire [9:0] oXPaddle, oPaddleSize,
+        output wire [9:0] oBallX, oBallY,
+        output wire [9:0] oPaddleX, oPaddleSize,
         output wire [7:0] oWallRed, oWallGreen, oWallBlue,
-        output wire [7:0] oBgRed, oBgGreen, oBgBlue
+        output wire [7:0] oBgRed, oBgGreen, oBgBlue,
+        output wire oLedLeft, oLedRight, oLedUp, oLedDown
     );
 
     //regs voor ball en paddle posities
-    reg[9:0] rXBall, rYBall;
-    reg[9:0] rXBallNext, rYBallNext;
-    reg[9:0] rXPaddle;
+    reg[9:0] rBallX, rBallY;
+    reg[9:0] rBallXNext, rBallYNext;
+    reg[9:0] rPaddleX;
     reg[6:0] rWalls [3:0];
-    reg mem;
+    reg rLedLeft, rLedRight, rLedUp, rLedDown;
+    //reg mem;
 
     //color regs
     reg[7:0] rWallRed, rWallGreen, rWallBlue, rBgRed, rBgGreen, rBgBlue;
-    assign oWallRed = rWallRed;
-    assign oWallGreen = rWallGreen;
-    assign oWallBlue = rWallBlue;
-    assign oBgRed = rBgRed;
-    assign oBgGreen = rBgGreen;
-    assign oBgBlue = rBgBlue;
-    
 
-    //uitput assignments
-    assign oXBall = rXBall;
-    assign oYBall = rYBall;
-    assign oPaddleSize = 10'd70;
-    assign oXPaddle = rXPaddle;
+    //uitgangen
+    assign oBallX = rBallX;
+    assign oBallY = rBallY;
+    assign oPaddleSize = 10'd60;
+    assign oPaddleX = rPaddleX;
 
     assign oWalls[6:0]   = rWalls[0];
     assign oWalls[13:7]  = rWalls[1];
     assign oWalls[20:14] = rWalls[2];
     assign oWalls[27:21] = rWalls[3];
 
-    // State definitions
-    localparam sInit        = 5'b00000;
-    localparam sIdle        = 5'b00001;
-    localparam sUp          = 5'b00010;
-    localparam sUpRight1    = 5'b00011;
-    localparam sUpRight2    = 5'b00100;
-    localparam sUpRight3    = 5'b00101;
-    localparam sDown        = 5'b00110;
-    localparam sDownRight1  = 5'b00111;
-    localparam sDownRight2  = 5'b01000;
-    localparam sDownRight3  = 5'b01001;
-    localparam sUpLeft1     = 5'b01010;
-    localparam sUpLeft2     = 5'b01011;
-    localparam sUpLeft3     = 5'b01100;
-    localparam sDownLeft1   = 5'b01101;
-    localparam sDownLeft2   = 5'b01110;
-    localparam sDownLeft3   = 5'b01111;
+    assign oWallRed = rWallRed;
+    assign oWallGreen = rWallGreen;
+    assign oWallBlue = rWallBlue;
+    assign oBgRed = rBgRed;
+    assign oBgGreen = rBgGreen;
+    assign oBgBlue = rBgBlue;
 
-    // Collision flags
+    assign oLedLeft  = rLedLeft;
+    assign oLedRight = rLedRight;
+    assign oLedUp    = rLedUp;
+    assign oLedDown  = rLedDown;
+
+    //gamestates
+    localparam sGInit    = 3'd0;
+    localparam sGIdle    = 3'd1; // Main Menu / Wait for start
+    localparam sGRunning = 3'd2;
+    localparam sGPaused  = 3'd3;
+    localparam sGWon     = 3'd4;
+    localparam sGLost    = 3'd5;
+
+
+    //movementstates
+    localparam sUp          = 4'b0010;
+    localparam sUpRight1    = 4'b0011;
+    localparam sUpRight2    = 4'b0100;
+    localparam sUpRight3    = 4'b0101;
+    localparam sDown        = 4'b0110;
+    localparam sDownRight1  = 4'b0111;
+    localparam sDownRight2  = 4'b1000;
+    localparam sDownRight3  = 4'b1001;
+    localparam sUpLeft1     = 4'b1010;
+    localparam sUpLeft2     = 4'b1011;
+    localparam sUpLeft3     = 4'b1100;
+    localparam sDownLeft1   = 4'b1101;
+    localparam sDownLeft2   = 4'b1110;
+    localparam sDownLeft3   = 4'b1111;
+
+
+    //collision flags
     localparam CNo   = 3'b000;
     localparam CUp   = 3'b010;
     localparam CDown = 3'b011;
@@ -68,37 +83,12 @@ module FSM_basicProject#(
     localparam CPaddle = 3'b110;
 
     reg[4:0] rFSMB_current, rFSMB_next;
+    reg[2:0] rFSMG_current, rFSMG_next;
     reg[2:0] rCollision;
 
-    // helpvariableen.
+    //helpvariableen.
 
     wire signed [11:0] wDiff;
-
-    // Calculate difference: cast to signed to prevent unsigned underflow/wrapping
-    assign wDiff = $signed({1'b0, rXBall}) - $signed({1'b0, rXPaddle});
-
-    // Check points relative to ball center
-    wire [9:0] ballTop    = rYBall - BallRadius;
-    wire [9:0] ballBottom = rYBall + BallRadius;
-    wire [9:0] ballLeft   = rXBall - BallRadius;
-    wire [9:0] ballRight  = rXBall + BallRadius;
-
-    // Calculate Grid Indices (Signed checks handled in logic)
-    // wire [3:0] gridX_Left   = (ballLeft - 40) / 80;
-    // wire [3:0] gridX_Right  = (ballRight - 40) / 80;
-    // wire [3:0] gridY_Top    = (ballTop - 40) / 40;
-    // wire [3:0] gridY_Bottom = (ballBottom - 40) / 40;
-    wire [9:0] paddleRight, paddleLeft;
-    assign paddleRight = rXPaddle + oPaddleSize/2;
-    assign paddleLeft  = rXPaddle - oPaddleSize/2;
-
-    // Boolean checks for being inside the grid area
-    // wire inGridY_Top    = (ballTop >= 40 && ballTop < 200);
-    // wire inGridY_Bottom = (ballBottom >= 40 && ballBottom < 200);
-    // wire inGridX_Left   = (ballLeft >= 40 && ballLeft < 600);
-    // wire inGridX_Right  = (ballRight >= 40 && ballRight < 600);
-    // wire safeCenterY = (rYBall < 200); //todo try <=
-    // wire safeCenterX = (rXBall < 600);
 
     wire movingUp  = (rFSMB_current == sUp || rFSMB_current == sUpLeft1 || rFSMB_current == sUpLeft2 || rFSMB_current == sUpLeft3 ||
                       rFSMB_current == sUpRight1 || rFSMB_current == sUpRight2 || rFSMB_current == sUpRight3);
@@ -112,16 +102,29 @@ module FSM_basicProject#(
     wire movingRight = (rFSMB_current == sUpRight1 || rFSMB_current == sUpRight2 || rFSMB_current == sUpRight3 ||
                         rFSMB_current == sDownRight1 || rFSMB_current == sDownRight2 || rFSMB_current == sDownRight3);
 
+    //signed wire om negatieve getallen toe te staan
+    assign wDiff = $signed({1'b0, rBallX}) - $signed({1'b0, rPaddleX});
+
+    // Check points relative to ball center
+    wire [9:0] ballTop    = rBallY - BallRadius;
+    wire [9:0] ballBottom = rBallY + BallRadius;
+    wire [9:0] ballLeft   = rBallX - BallRadius;
+    wire [9:0] ballRight  = rBallX + BallRadius;
+
+    wire [9:0] paddleRight, paddleLeft;
+    assign paddleRight = rPaddleX + oPaddleSize/2;
+    assign paddleLeft  = rPaddleX - oPaddleSize/2;
 
 
 
     //functions
-    function [0:0] fcoordinateCollidesWithWall (input [9:0] fXCoord, input [9:0] fYCoord);//f voor variabelen betekent dat het van deze functie is
+    //f voor variabelen betekent dat het van deze functie is
+    function [0:0] fcoordinateCollidesWithWall (input [9:0] fXCoord, input [9:0] fYCoord);
         reg [0:3] fGridCol;
         reg [0:3] fGridRow;
         begin
-            if (fXCoord < 40 || fXCoord >= 600 || fYCoord < 40 || fYCoord >= 200) begin
-                fcoordinateCollidesWithWall = 1'b0; // buiten grid
+            if (fXCoord < 40 || fXCoord >= 600 || fYCoord < 40 || fYCoord >= 200) begin// buiten grid
+                fcoordinateCollidesWithWall = 1'b0;
             end
             else begin
                 fGridCol = (fXCoord - 40) / 80;
@@ -148,43 +151,42 @@ module FSM_basicProject#(
         //start met de variabelen op iets neutraal te zetten ('=' word overschreven indien nodig)
         rCollision = CNo;
         rFSMB_next = rFSMB_current;
+        rFSMG_next = rFSMG_current;
 
         //paddle Collision
         if (movingDown) begin
-
             // paddly y is hardgecodeerd op 430 bovenkant
-            if(ballBottom >= 430 && ballBottom <= 445) begin
-                if(rXBall + BallRadius >= rXPaddle - 35 && rXBall -BallRadius <= rXPaddle + 35) begin
+            if(ballBottom >= 430-2 && ballBottom <= 445) begin
+                if(rBallX + BallRadius >= rPaddleX - oPaddleSize/2 && rBallX -BallRadius <= rPaddleX + oPaddleSize/2) begin
                     rCollision = CPaddle; // We hit the paddle
                 end
             end
         end
 
-        // --- Screen Boundary Collision ---
-        if(ballTop <= 2)
+        //schermranden collision detectie
+        if(ballTop <= 3)
             rCollision = CUp;
-        else if(ballRight >= 638)
+        else if(ballRight >= 637)
             rCollision = CRight;
-        else if(ballLeft <= 2)
+        else if(ballLeft <= 3)
             rCollision = CLeft;
 
-        // --- Wall Collision ---
-        // Only check walls if we haven't already hit screen or paddle
+        //muren collision detectie
         if (rCollision == CNo) begin
-            // naar boven bewegen en bovenkant bal
-            if (movingUp && fcoordinateCollidesWithWall(rXBall, ballTop)) begin
+            //naar boven bewegen en bovenkant bal
+            if (movingUp && fcoordinateCollidesWithWall(rBallX, ballTop)) begin
                 rCollision = CUp;
             end
-            // naar beneden bewegen en onderkant bal
-            else if (movingDown && fcoordinateCollidesWithWall(rXBall, ballBottom)) begin
+            //naar beneden bewegen en onderkant bal
+            else if (movingDown && fcoordinateCollidesWithWall(rBallX, ballBottom)) begin
                 rCollision = CDown;
             end
             //naar links bewegen en linkerkant bal
-            else if ( movingLeft && fcoordinateCollidesWithWall(ballLeft, rYBall)) begin
+            else if ( movingLeft && fcoordinateCollidesWithWall(ballLeft, rBallY)) begin
                 rCollision = CLeft;
             end
             //naar rechts bewegen en rechterkant bal
-            else if ( movingRight && fcoordinateCollidesWithWall(ballRight, rYBall)) begin
+            else if ( movingRight && fcoordinateCollidesWithWall(ballRight, rBallY)) begin
                 rCollision = CRight;
             end
             else begin
@@ -194,246 +196,339 @@ module FSM_basicProject#(
 
 
 
-        if (rCollision == CPaddle) begin
-
-            if (wDiff >= 30)
-                rFSMB_next = sUpRight3;    // scherp rechts
-            else if (wDiff >= 15)
-                rFSMB_next = sUpRight2;    // diagonaal rechts
-            else if (wDiff >= 4)
-                rFSMB_next = sUpRight1;    // zacht rechts
-            else if (wDiff >= -4)
-                rFSMB_next = sUp;
-            else if (wDiff >= -15)
-                rFSMB_next = sUpLeft1;     // zacht links
-            else if (wDiff >= -30)
-                rFSMB_next = sUpLeft2;     // diagonaal links
-            else
-                rFSMB_next = sUpLeft3;     // scherp links
-        end
-        else begin
-            case (rFSMB_current)
-                sInit:
-                    rFSMB_next = sIdle;
-                sIdle:
+        case(rFSMG_current)
+            sGInit://reset
+                rFSMG_next = sGIdle;
+            sGIdle:
+                if(iUp&&!iDown) begin
+                    rFSMG_next = sGRunning;
                     rFSMB_next = sUp;
+                end
+                else
+                    rFSMG_next = sGIdle;
+            sGPaused:
+                if(iUp&&!iDown)
+                    rFSMG_next = sGRunning;
+                else
+                    rFSMG_next = sGPaused;
+            sGWon:
+                if(iRight&&iDown) begin//two middle buttons
+                    rFSMG_next = sGInit;
+                end
+                else
+                    rFSMG_next = sGWon;
+            sGLost:
+                if(iRight&&iDown) begin//two middle buttons
+                    rFSMG_next = sGInit;
+                end
+                else
+                    rFSMG_next = sGLost;
+            sGRunning: begin
+                if(iDown && !iUp) begin
+                    rFSMG_next = sGPaused;
+                end
+                if(rWalls[0] == 7'b0000000 && rWalls[1] == 7'b0000000 && rWalls[2] == 7'b0000000 && rWalls[3] == 7'b0000000) begin
+                    rFSMG_next = sGWon;
+                end
 
-                sUp:
-                    if(rCollision == CUp)
-                        rFSMB_next = sDown;
 
-                sUpRight1:
-                    if(rCollision == CUp)
-                        rFSMB_next = sDownRight1;
-                    else if(rCollision == CRight)
-                        rFSMB_next = sUpLeft1;
+                if (rCollision == CPaddle) begin
 
-                sUpRight2:
-                    if(rCollision == CUp)
-                        rFSMB_next = sDownRight2;
-                    else if(rCollision == CRight)
-                        rFSMB_next = sUpLeft2;
-
-                sUpRight3:
-                    if(rCollision == CUp)
-                        rFSMB_next = sDownRight3;
-                    else if(rCollision == CRight)
-                        rFSMB_next = sUpLeft3;
-
-                sDown:
-                    if(rCollision == CDown)
+                    if (wDiff >= 25)
+                        rFSMB_next = sUpRight3;    //scherp rechts
+                    else if (wDiff >= 14)
+                        rFSMB_next = sUpRight2;    //diagonaal rechts
+                    else if (wDiff >= 3)
+                        rFSMB_next = sUpRight1;    //zacht rechts
+                    else if (wDiff >= -3)
                         rFSMB_next = sUp;
+                    else if (wDiff >= -14)
+                        rFSMB_next = sUpLeft1;     //zacht links
+                    else if (wDiff >= -25)
+                        rFSMB_next = sUpLeft2;     //diagonaal links
+                    else
+                        rFSMB_next = sUpLeft3;     //scherp links
+                end
+                else begin
+                    case (rFSMB_current)
+                        sUp:
+                            if(rCollision == CUp)
+                                rFSMB_next = sDown;
 
-                sDownRight1:
-                    if(rCollision == CDown)
-                        rFSMB_next = sUpRight1;
-                    else if(rCollision == CRight)
-                        rFSMB_next = sDownLeft1;
+                        sUpRight1:
+                            if(rCollision == CUp)
+                                rFSMB_next = sDownRight1;
+                            else if(rCollision == CRight)
+                                rFSMB_next = sUpLeft1;
 
-                sDownRight2:
-                    if(rCollision == CDown)
-                        rFSMB_next = sUpRight2;
-                    else if(rCollision == CRight)
-                        rFSMB_next = sDownLeft2;
+                        sUpRight2:
+                            if(rCollision == CUp)
+                                rFSMB_next = sDownRight2;
+                            else if(rCollision == CRight)
+                                rFSMB_next = sUpLeft2;
 
-                sDownRight3:
-                    if(rCollision == CDown)
-                        rFSMB_next = sUpRight3;
-                    else if(rCollision == CRight)
-                        rFSMB_next = sDownLeft3;
+                        sUpRight3:
+                            if(rCollision == CUp)
+                                rFSMB_next = sDownRight3;
+                            else if(rCollision == CRight)
+                                rFSMB_next = sUpLeft3;
 
-                sUpLeft1:
-                    if(rCollision == CUp)
-                        rFSMB_next = sDownLeft1;
-                    else if(rCollision == CLeft)
-                        rFSMB_next = sUpRight1;
+                        sDown:
+                            if(rCollision == CDown)
+                                rFSMB_next = sUp;
 
-                sUpLeft2:
-                    if(rCollision == CUp)
-                        rFSMB_next = sDownLeft2;
-                    else if(rCollision == CLeft)
-                        rFSMB_next = sUpRight2;
+                        sDownRight1:
+                            if(rCollision == CDown)
+                                rFSMB_next = sUpRight1;
+                            else if(rCollision == CRight)
+                                rFSMB_next = sDownLeft1;
 
-                sUpLeft3:
-                    if(rCollision == CUp)
-                        rFSMB_next = sDownLeft3;
-                    else if(rCollision == CLeft)
-                        rFSMB_next = sUpRight3;
+                        sDownRight2:
+                            if(rCollision == CDown)
+                                rFSMB_next = sUpRight2;
+                            else if(rCollision == CRight)
+                                rFSMB_next = sDownLeft2;
 
-                sDownLeft1:
-                    if(rCollision == CDown)
-                        rFSMB_next = sUpLeft1;
-                    else if(rCollision == CLeft)
-                        rFSMB_next = sDownRight1;
+                        sDownRight3:
+                            if(rCollision == CDown)
+                                rFSMB_next = sUpRight3;
+                            else if(rCollision == CRight)
+                                rFSMB_next = sDownLeft3;
 
-                sDownLeft2:
-                    if(rCollision == CDown)
-                        rFSMB_next = sUpLeft2;
-                    else if(rCollision == CLeft)
-                        rFSMB_next = sDownRight2;
+                        sUpLeft1:
+                            if(rCollision == CUp)
+                                rFSMB_next = sDownLeft1;
+                            else if(rCollision == CLeft)
+                                rFSMB_next = sUpRight1;
 
-                sDownLeft3:
-                    if(rCollision == CDown)
-                        rFSMB_next = sUpLeft3;
-                    else if(rCollision == CLeft)
-                        rFSMB_next = sDownRight3;
+                        sUpLeft2:
+                            if(rCollision == CUp)
+                                rFSMB_next = sDownLeft2;
+                            else if(rCollision == CLeft)
+                                rFSMB_next = sUpRight2;
 
-                default:
-                    rFSMB_next = sIdle;
-            endcase
-        end
+                        sUpLeft3:
+                            if(rCollision == CUp)
+                                rFSMB_next = sDownLeft3;
+                            else if(rCollision == CLeft)
+                                rFSMB_next = sUpRight3;
+
+                        sDownLeft1:
+                            if(rCollision == CDown)
+                                rFSMB_next = sUpLeft1;
+                            else if(rCollision == CLeft)
+                                rFSMB_next = sDownRight1;
+
+                        sDownLeft2:
+                            if(rCollision == CDown)
+                                rFSMB_next = sUpLeft2;
+                            else if(rCollision == CLeft)
+                                rFSMB_next = sDownRight2;
+
+                        sDownLeft3:
+                            if(rCollision == CDown)
+                                rFSMB_next = sUpLeft3;
+                            else if(rCollision == CLeft)
+                                rFSMB_next = sDownRight3;
+
+                        default:
+                            rFSMB_next = sUp;
+                    endcase
+                end
+
+            end
+        endcase
     end
+
+
 
 
     // Sequentieele Logica
     // Position Update & Wall Destruction
     always @(posedge iClk) begin
-        if (rFSMB_current == sInit) begin
-            rXBall      <= 10'd320;
-            rYBall      <= 10'd400;
-            rXPaddle    <= 10'd320;
 
-            rWallRed <= 8'd0;
-            rWallGreen <= 8'd255;
-            rWallBlue <= 8'd255;
+        // else if (iClkTraag == 1'b1) begin
 
-            rBgRed <= 8'd100;
-            rBgGreen <= 8'd0;
-            rBgBlue <= 8'd100;
-
-
-            rWalls[0] <= 8'b11111111;
-            rWalls[1] <= 8'b11111111;
-            rWalls[2] <= 8'b11111111;
-            rWalls[3] <= 8'b11111111;
-        end
-        else if (iClkTraag == 1'b1) begin
-
-            mem <= 0;
-        end
-        else if (iClkTraag == 1'b0 && mem == 0) begin
+        //     mem <= 0;
+        // end
+        if (iClkTraag == 1'b1 ) begin//&& mem == 0
+            rFSMB_current <= rFSMB_next;
+            rFSMG_current <= rFSMG_next;
             // Update Position based on State
-            case (rFSMB_current)
-                sUp: begin
-                    rYBall <= rYBall - 2;
+            case(rFSMG_current)
+                sGInit: begin
+                    rBallX      <= 10'd320;
+                    rBallY      <= 10'd400;
+                    rPaddleX    <= 10'd320;
+
+                    rWallRed <= 8'd0;
+                    rWallGreen <= 8'd255;
+                    rWallBlue <= 8'd255;
+
+                    rBgRed <= 8'd100;
+                    rBgGreen <= 8'd0;
+                    rBgBlue <= 8'd100;
+
+
+                    rWalls[0] <= 7'b1111111;
+                    rWalls[1] <= 7'b1111111;
+                    rWalls[2] <= 7'b1111111;
+                    rWalls[3] <= 7'b1111111;
+
+
                 end
-                sDown: begin
-                    rYBall <= rYBall + 2;
+                sGIdle: begin
+                    rLedLeft <= 1'b0;
+                    rLedRight <= 1'b0;
+                    rLedUp <= 1'b1;
+                    rLedDown <= 1'b0;
+                end
+                sGPaused: begin
+                    rLedLeft <= 1'b1;
+                    rLedRight <= 1'b1;
+                    rLedUp <= 1'b1;
+                    rLedDown <= 1'b0;
+                end
+                sGWon: begin
+                    rLedLeft <= 1'b1;
+                    rLedRight <= 1'b1;
+                    rLedUp <= 1'b1;
+                    rLedDown <= 1'b1;
+
+                    rBallY <= 10'd900;   //uit scherm om onzichtbaar te maken
+
+                    rWalls[0] <= 7'b0010100;
+                    rWalls[1] <= 7'b0000000;
+                    rWalls[2] <= 7'b0100010;
+                    rWalls[3] <= 7'b0011100;
+                end
+                sGLost: begin
+                    rLedRight <= 1'b0;
+                    rLedLeft <= 1'b0;
+                    rLedUp <= 1'b0;
+                    rLedDown <= 1'b0;
+                    rPaddleX <= 10'd800; //uit scherm om onzichtbaar te maken
+                    rBallY <= 10'd800;   //uit scherm om onzichtbaar te maken
+
+                    rWalls[0] <= 7'b0010100;
+                    rWalls[1] <= 7'b0000000;
+                    rWalls[2] <= 7'b0011100;
+                    rWalls[3] <= 7'b0100010;
+
+                end
+                sGRunning: begin
+                    rLedLeft <= 1'b0;
+                    rLedRight <= 1'b0;
+                    rLedUp <= 1'b0;
+                    rLedDown <= 1'b1;
+                    // Update Paddle Position
+                    if(iLeft && paddleLeft > 4)
+                        rPaddleX <= rPaddleX - 4;
+                    if(iRight && paddleRight < 640 - 4)
+                        rPaddleX <= rPaddleX + 4;
+                    // Update Ball Position
+                    case (rFSMB_current)
+                        sUp: begin
+                            rBallY <= rBallY - 2;
+                        end
+                        sDown: begin
+                            rBallY <= rBallY + 2;
+                        end
+
+                        sUpRight1: begin
+                            rBallX <= rBallX + 1;
+                            rBallY <= rBallY - 2;
+                        end
+                        sUpRight2: begin
+                            rBallX <= rBallX + 2;
+                            rBallY <= rBallY - 2;
+                        end
+                        sUpRight3: begin
+                            rBallX <= rBallX + 2;
+                            rBallY <= rBallY - 1;
+                        end
+
+                        sDownRight1: begin
+                            rBallX <= rBallX + 1;
+                            rBallY <= rBallY + 2;
+                        end
+                        sDownRight2: begin
+                            rBallX <= rBallX + 2;
+                            rBallY <= rBallY + 2;
+                        end
+                        sDownRight3: begin
+                            rBallX <= rBallX + 2;
+                            rBallY <= rBallY + 1;
+                        end
+
+                        sUpLeft1: begin
+                            rBallX <= rBallX - 1;
+                            rBallY <= rBallY - 2;
+                        end
+                        sUpLeft2: begin
+                            rBallX <= rBallX - 2;
+                            rBallY <= rBallY - 2;
+                        end
+                        sUpLeft3: begin
+                            rBallX <= rBallX - 2;
+                            rBallY <= rBallY - 1;
+                        end
+
+                        sDownLeft1: begin
+                            rBallX <= rBallX - 1;
+                            rBallY <= rBallY + 2;
+                        end
+                        sDownLeft2: begin
+                            rBallX <= rBallX - 2;
+                            rBallY <= rBallY + 2;
+                        end
+                        sDownLeft3: begin
+                            rBallX <= rBallX - 2;
+                            rBallY <= rBallY + 1;
+                        end
+                    endcase
+
                 end
 
-                sUpRight1: begin
-                    rXBall <= rXBall + 1;
-                    rYBall <= rYBall - 2;
-                end
-                sUpRight2: begin
-                    rXBall <= rXBall + 2;
-                    rYBall <= rYBall - 2;
-                end
-                sUpRight3: begin
-                    rXBall <= rXBall + 2;
-                    rYBall <= rYBall - 1;
-                end
+            endcase
 
-                sDownRight1: begin
-                    rXBall <= rXBall + 1;
-                    rYBall <= rYBall + 2;
-                end
-                sDownRight2: begin
-                    rXBall <= rXBall + 2;
-                    rYBall <= rYBall + 2;
-                end
-                sDownRight3: begin
-                    rXBall <= rXBall + 2;
-                    rYBall <= rYBall + 1;
-                end
 
-                sUpLeft1: begin
-                    rXBall <= rXBall - 1;
-                    rYBall <= rYBall - 2;
+            // wall destruction (60Hz)
+            case (rCollision)
+                CUp: begin
+                    if(fcoordinateCollidesWithWall(rBallX, ballTop))
+                        rWalls[ fgetWallRowIndex(ballTop) ][ fgetWallColumnIndex(rBallX) ] <= 0;
                 end
-                sUpLeft2: begin
-                    rXBall <= rXBall - 2;
-                    rYBall <= rYBall - 2;
+                CDown: begin
+                    if(fcoordinateCollidesWithWall(rBallX, ballBottom))
+                        rWalls[ fgetWallRowIndex(ballBottom) ][ fgetWallColumnIndex(rBallX) ] <= 0;
                 end
-                sUpLeft3: begin
-                    rXBall <= rXBall - 2;
-                    rYBall <= rYBall - 1;
+                CLeft: begin
+                    if(fcoordinateCollidesWithWall(ballLeft, rBallY))
+                        rWalls[ fgetWallRowIndex(rBallY) ][ fgetWallColumnIndex(ballLeft) ] <= 0;
                 end
-
-                sDownLeft1: begin
-                    rXBall <= rXBall - 1;
-                    rYBall <= rYBall + 2;
-                end
-                sDownLeft2: begin
-                    rXBall <= rXBall - 2;
-                    rYBall <= rYBall + 2;
-                end
-                sDownLeft3: begin
-                    rXBall <= rXBall - 2;
-                    rYBall <= rYBall + 1;
+                CRight: begin
+                    if(fcoordinateCollidesWithWall(ballRight, rBallY))
+                        rWalls[ fgetWallRowIndex(rBallY) ][ fgetWallColumnIndex(ballRight) ] <= 0;
                 end
             endcase
 
 
-            // Update Paddle Position
-            if(iLeft && paddleLeft > 4)
-                rXPaddle <= rXPaddle - 4;
-            if(iRight && paddleRight < 640 - 4)
-                rXPaddle <= rXPaddle + 4;
 
-            mem <= 1;
+            //mem <= 1;
         end
 
-        // wall destruction (25MHz)
-        case (rCollision)
-            CUp: begin
-                if(fcoordinateCollidesWithWall(rXBall, ballTop))
-                    rWalls[ fgetWallRowIndex(ballTop) ][ fgetWallColumnIndex(rXBall) ] <= 0;
-            end
-            CDown: begin
-                if(fcoordinateCollidesWithWall(rXBall, ballBottom))
-                    rWalls[ fgetWallRowIndex(ballBottom) ][ fgetWallColumnIndex(rXBall) ] <= 0;
-            end
-            CLeft: begin
-                if(fcoordinateCollidesWithWall(ballLeft, rYBall))
-                    rWalls[ fgetWallRowIndex(rYBall) ][ fgetWallColumnIndex(ballLeft) ] <= 0;
-            end
-            CRight: begin
-                if(fcoordinateCollidesWithWall(ballRight, rYBall))
-                    rWalls[ fgetWallRowIndex(rYBall) ][ fgetWallColumnIndex(ballRight) ] <= 0;
-            end
-        endcase
-
-        // State Update
+        // State Update (25MHZ!!)
         if(iRst == 1) begin
-            rFSMB_current <= sInit;
+            rFSMG_current <= sGInit;
         end
-        else if(rYBall >= 470) begin // kill zone
-            rFSMB_current <= sInit;
-        end
-        else begin
-            rFSMB_current <= rFSMB_next;
-        end
+        else if(rFSMG_current == sGRunning && rBallY >= 475 && rBallY <700) // kill zone
+            rFSMG_current <= sGLost;
     end
+    // else begin
+    //     rFSMB_current <= rFSMB_next;
+    //     rFSMG_current <= rFSMG_next;
+    // end
+
 
 endmodule

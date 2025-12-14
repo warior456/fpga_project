@@ -85,7 +85,7 @@ module video_pattern#(
             end
 
             //paddle
-            if(iCountH >= iPaddleX - iPaddleSize/8 && iCountH < (iPaddleX + iPaddleSize/8)//center mark //todo fix values
+            if(iCountH >= iPaddleX - iPaddleSize/20 && iCountH < (iPaddleX + iPaddleSize/20)//center mark
                     && iCountV >= 430 && iCountV <= 439
               ) begin
                 oRed <= 8'd255;
@@ -99,6 +99,7 @@ module video_pattern#(
                 oGreen <= 8'd255;
                 oBlue <= 8'd0;
             end
+                           
 
             //wall grid
             if(iCountH >= PADDING && iCountV >= PADDING && iCountH < PADDING+ 7*WALL_WIDTH && iCountV < PADDING+ 4*WALL_HEIGHT ) begin

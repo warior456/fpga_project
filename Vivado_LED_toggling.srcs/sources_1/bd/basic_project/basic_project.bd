@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xAB246E1B08425F59",
+      "boundary_crc": "0xFFD5FDA801E0CD3D",
       "device": "xc7z020clg400-1",
       "gen_directory": "../../../../Vivado_LED_toggling.gen/sources_1/bd/basic_project",
       "name": "basic_project",
@@ -102,7 +102,7 @@
         "left": "2",
         "right": "0"
       },
-      "iDown": {
+      "iPushDown": {
         "direction": "I"
       },
       "iPushUp": {
@@ -455,17 +455,17 @@
             "left": "27",
             "right": "0"
           },
-          "oXBall": {
+          "oBallX": {
             "direction": "O",
             "left": "9",
             "right": "0"
           },
-          "oYBall": {
+          "oBallY": {
             "direction": "O",
             "left": "9",
             "right": "0"
           },
-          "oXPaddle": {
+          "oPaddleX": {
             "direction": "O",
             "left": "9",
             "right": "0"
@@ -504,6 +504,18 @@
             "direction": "O",
             "left": "7",
             "right": "0"
+          },
+          "oLedLeft": {
+            "direction": "O"
+          },
+          "oLedRight": {
+            "direction": "O"
+          },
+          "oLedUp": {
+            "direction": "O"
+          },
+          "oLedDown": {
+            "direction": "O"
           }
         }
       }
@@ -529,17 +541,26 @@
       },
       "FSM_basicProject_0_oLEDDown": {
         "ports": [
+          "FSM_basicProject_0/oLedDown",
           "oLEDDown"
         ]
       },
       "FSM_basicProject_0_oLEDLeft": {
         "ports": [
+          "FSM_basicProject_0/oLedLeft",
           "oLEDLeft"
         ]
       },
       "FSM_basicProject_0_oLEDRight": {
         "ports": [
+          "FSM_basicProject_0/oLedRight",
           "oLEDRight"
+        ]
+      },
+      "FSM_basicProject_0_oLedUp": {
+        "ports": [
+          "FSM_basicProject_0/oLedUp",
+          "oLEDUp"
         ]
       },
       "FSM_basicProject_0_oPaddleSize1": {
@@ -550,7 +571,7 @@
       },
       "FSM_basicProject_0_oShapSize": {
         "ports": [
-          "FSM_basicProject_0/oXPaddle",
+          "FSM_basicProject_0/oPaddleX",
           "video_pattern_0/iPaddleX"
         ]
       },
@@ -580,13 +601,13 @@
       },
       "FSM_basicProject_0_oXball": {
         "ports": [
-          "FSM_basicProject_0/oXBall",
+          "FSM_basicProject_0/oBallX",
           "video_pattern_0/iBallX"
         ]
       },
       "FSM_basicProject_0_oYBall": {
         "ports": [
-          "FSM_basicProject_0/oYBall",
+          "FSM_basicProject_0/oBallY",
           "video_pattern_0/iBallY"
         ]
       },
@@ -613,7 +634,7 @@
       },
       "iDown_0_1": {
         "ports": [
-          "iDown",
+          "iPushDown",
           "FSM_basicProject_0/iDown"
         ]
       },
@@ -712,7 +733,6 @@
       "video_timings_0_oEndFrame": {
         "ports": [
           "video_timings_0/oEndFrame",
-          "oLEDUp",
           "FSM_basicProject_0/iClkTraag"
         ]
       },

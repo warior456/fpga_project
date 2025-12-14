@@ -8,12 +8,10 @@
     "gen_directory": "../../../../../../Vivado_LED_toggling.gen/sources_1/bd/basic_project/ip/basic_project_FSM_basicProject_0_0",
     "parameters": {
       "component_parameters": {
-        "Speed": [ { "value": "833333", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "BallRadius": [ { "value": "5", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "Component_Name": [ { "value": "basic_project_FSM_basicProject_0_0", "resolve_type": "user", "usage": "all" } ]
       },
       "model_parameters": {
-        "Speed": [ { "value": "833333", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "BallRadius": [ { "value": "5", "resolve_type": "generated", "format": "long", "usage": "all" } ]
       },
       "project_parameters": {
@@ -50,16 +48,20 @@
         "iRight": [ { "direction": "in" } ],
         "iClkTraag": [ { "direction": "in" } ],
         "oWalls": [ { "direction": "out", "size_left": "27", "size_right": "0" } ],
-        "oXBall": [ { "direction": "out", "size_left": "9", "size_right": "0" } ],
-        "oYBall": [ { "direction": "out", "size_left": "9", "size_right": "0" } ],
-        "oXPaddle": [ { "direction": "out", "size_left": "9", "size_right": "0" } ],
+        "oBallX": [ { "direction": "out", "size_left": "9", "size_right": "0" } ],
+        "oBallY": [ { "direction": "out", "size_left": "9", "size_right": "0" } ],
+        "oPaddleX": [ { "direction": "out", "size_left": "9", "size_right": "0" } ],
         "oPaddleSize": [ { "direction": "out", "size_left": "9", "size_right": "0" } ],
         "oWallRed": [ { "direction": "out", "size_left": "7", "size_right": "0" } ],
         "oWallGreen": [ { "direction": "out", "size_left": "7", "size_right": "0" } ],
         "oWallBlue": [ { "direction": "out", "size_left": "7", "size_right": "0" } ],
         "oBgRed": [ { "direction": "out", "size_left": "7", "size_right": "0" } ],
         "oBgGreen": [ { "direction": "out", "size_left": "7", "size_right": "0" } ],
-        "oBgBlue": [ { "direction": "out", "size_left": "7", "size_right": "0" } ]
+        "oBgBlue": [ { "direction": "out", "size_left": "7", "size_right": "0" } ],
+        "oLedLeft": [ { "direction": "out" } ],
+        "oLedRight": [ { "direction": "out" } ],
+        "oLedUp": [ { "direction": "out" } ],
+        "oLedDown": [ { "direction": "out" } ]
       }
     }
   }
