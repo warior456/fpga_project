@@ -343,7 +343,7 @@ module FSM_basicProject#(
 
 
 
-    // Sequentieele Logica
+
     // Position Update & Wall Destruction
     always @(posedge iClk) begin
 
