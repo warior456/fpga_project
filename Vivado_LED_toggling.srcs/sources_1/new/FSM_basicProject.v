@@ -361,13 +361,15 @@ module FSM_basicProject#(
                     rBallY      <= 10'd400;
                     rPaddleX    <= 10'd320;
 
+                    //walls
                     rWallRed <= 8'd0;
                     rWallGreen <= 8'd255;
                     rWallBlue <= 8'd255;
 
-                    rBgRed <= 8'd100;
-                    rBgGreen <= 8'd0;
-                    rBgBlue <= 8'd100;
+                    //background
+                    rBgRed <= 8'd30;
+                    rBgGreen <= 8'd30;
+                    rBgBlue <= 8'd30;
 
 
                     rWalls[0] <= 7'b1111111;
