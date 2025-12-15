@@ -78,6 +78,9 @@ module FSM_basicProject
     always @(*) begin
         case (rFSM_current)
             sInit:
+                if(iRst)
+                    wFSM_next <= sInit;
+                else
                 wFSM_next <= sIdle;
 
             sIdle:
@@ -127,7 +130,7 @@ module FSM_basicProject
 
 
             default:
-                wFSM_next <= sIdle;
+                wFSM_next <= sInit;
         endcase
     end
 

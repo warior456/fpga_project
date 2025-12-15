@@ -2,7 +2,7 @@
 //Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
-//Date        : Thu Dec  4 10:51:48 2025
+//Date        : Mon Dec 15 14:25:06 2025
 //Host        : laptop-MATTEO running 64-bit major release  (build 9200)
 //Command     : generate_target basic_project.bd
 //Design      : basic_project

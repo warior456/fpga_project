@@ -477,9 +477,9 @@
       "clk_wiz_0_clk_25": {
         "ports": [
           "clk_wiz_0/clk_25",
-          "video_timings_0/iClk",
           "rgb2dvi_0/PixelClk",
           "video_pattern_0/iClk",
+          "video_timings_0/iClk",
           "FSM_basicProject_0/iClk"
         ]
       },
@@ -516,9 +516,9 @@
       "iRst_0_1": {
         "ports": [
           "iRst",
-          "video_timings_0/iRst",
           "rgb2dvi_0/aRst",
           "video_pattern_0/iRst",
+          "video_timings_0/iRst",
           "FSM_basicProject_0/iRst"
         ]
       },
